@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initMobileMenu();
   initCarousels();
+  initCertFilters();
+  initCertModal();
 });
 
 /* ==========================================================================
@@ -129,5 +131,145 @@ function initCarousels() {
     // Initial Start
     updateCarousel();
     startAutoplay();
+  });
+}
+
+/* ==========================================================================
+   CERTIFICATIONS DUAL FILTER ENGINE
+   ========================================================================== */
+function initCertFilters() {
+  const orgGroup = document.getElementById('orgFilterGroup');
+  const catGroup = document.getElementById('catFilterGroup');
+  const resultsCountSpan = document.getElementById('resultsCount');
+  const cards = document.querySelectorAll('.gallery-card');
+
+  if (!orgGroup || !catGroup || !resultsCountSpan) return;
+
+  function filterCertifications() {
+    const selectedOrgs = Array.from(orgGroup.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+    const selectedCats = Array.from(catGroup.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cardIssuer = card.getAttribute('data-issuer');
+      const cardCategory = card.getAttribute('data-category');
+
+      const matchOrg = selectedOrgs.includes(cardIssuer);
+      const matchCat = selectedCats.includes(cardCategory);
+
+      if (matchOrg && matchCat) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    resultsCountSpan.textContent = visibleCount;
+  }
+
+  // Event listener for all checkboxes
+  document.querySelectorAll('.checkbox-list input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', filterCertifications);
+  });
+
+  // Action Buttons
+  document.getElementById('selectAllOrgs')?.addEventListener('click', () => {
+    orgGroup.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = true);
+    filterCertifications();
+  });
+
+  document.getElementById('unselectAllOrgs')?.addEventListener('click', () => {
+    orgGroup.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    filterCertifications();
+  });
+
+  document.getElementById('selectAllCats')?.addEventListener('click', () => {
+    catGroup.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = true);
+    filterCertifications();
+  });
+
+  document.getElementById('unselectAllCats')?.addEventListener('click', () => {
+    catGroup.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    filterCertifications();
+  });
+
+  // Initial calculation
+  filterCertifications();
+}
+
+/* ==========================================================================
+   CERTIFICATE LIGHTBOX MODAL
+   ========================================================================== */
+function initCertModal() {
+  const modal = document.getElementById('certModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalClose = document.getElementById('modalClose');
+  const modalPrev = document.getElementById('modalPrev');
+  const modalNext = document.getElementById('modalNext');
+
+  if (!modal || !modalImg) return;
+
+  let clickableImages = Array.from(document.querySelectorAll('.clickable-cert'));
+  let currentIndex = 0;
+
+  function openModal(index) {
+    // Get list of currently visible images
+    clickableImages = Array.from(document.querySelectorAll('.gallery-card'))
+      .filter(card => card.style.display !== 'none')
+      .map(card => card.querySelector('.clickable-cert'));
+
+    if (clickableImages.length === 0) return;
+
+    currentIndex = index;
+    modalImg.src = clickableImages[currentIndex].src;
+    modal.style.display = 'flex';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
+  function showNext() {
+    if (clickableImages.length === 0) return;
+    currentIndex = (currentIndex + 1) % clickableImages.length;
+    modalImg.src = clickableImages[currentIndex].src;
+  }
+
+  function showPrev() {
+    if (clickableImages.length === 0) return;
+    currentIndex = (currentIndex - 1 + clickableImages.length) % clickableImages.length;
+    modalImg.src = clickableImages[currentIndex].src;
+  }
+
+  // Attach click listener to images in gallery
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('clickable-cert')) {
+      const visibleImages = Array.from(document.querySelectorAll('.gallery-card'))
+        .filter(card => card.style.display !== 'none')
+        .map(card => card.querySelector('.clickable-cert'));
+      
+      const idx = visibleImages.indexOf(e.target);
+      if (idx !== -1) {
+        openModal(idx);
+      }
+    }
+  });
+
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modalNext) modalNext.addEventListener('click', showNext);
+  if (modalPrev) modalPrev.addEventListener('click', showPrev);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (modal.style.display === 'flex') {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    }
   });
 }

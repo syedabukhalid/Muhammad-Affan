@@ -37,7 +37,7 @@
     </nav>
   </header>
 
-  <main>
+<main>
   <section class="section page-header-section">
     <h1 class="page-title">Verified Certifications</h1>
     <p class="page-description">Official credentials and certificates earned across enterprise AI, cybersecurity, and cloud architecture.</p>
@@ -46,12 +46,61 @@
     </p>
   </section>
 
-  <section class="section">
-    <div class="gallery-grid">
+  <section class="section certifications-layout">
+    <!-- Filter Sidebar (Left) -->
+    <aside class="filter-sidebar">
+      <div class="filter-results-summary">
+        <span id="resultsCount">17</span> results found
+      </div>
+
+      <!-- Filter 1: Organization -->
+      <div class="filter-group">
+        <div class="filter-header">
+          <h4>Organizations</h4>
+          <div class="filter-actions">
+            <button type="button" class="btn-text" id="selectAllOrgs">Select All</button>
+            <span>|</span>
+            <button type="button" class="btn-text" id="unselectAllOrgs">Unselect All</button>
+          </div>
+        </div>
+        <div class="checkbox-list" id="orgFilterGroup">
+          <label><input type="checkbox" value="Google" checked> Google</label>
+          <label><input type="checkbox" value="Anthropic" checked> Anthropic</label>
+          <label><input type="checkbox" value="Oracle" checked> Oracle</label>
+          <label><input type="checkbox" value="Cisco" checked> Cisco</label>
+          <label><input type="checkbox" value="IBM" checked> IBM</label>
+          <label><input type="checkbox" value="Microsoft" checked> Microsoft</label>
+          <label><input type="checkbox" value="Confluent" checked> Confluent</label>
+          <label><input type="checkbox" value="Hackviser" checked> Hackviser</label>
+          <label><input type="checkbox" value="HackerRank" checked> HackerRank</label>
+          <label><input type="checkbox" value="RedTeamLeaders" checked> RedTeamLeaders</label>
+        </div>
+      </div>
+
+      <!-- Filter 2: Category -->
+      <div class="filter-group">
+        <div class="filter-header">
+          <h4>Categories</h4>
+          <div class="filter-actions">
+            <button type="button" class="btn-text" id="selectAllCats">Select All</button>
+            <span>|</span>
+            <button type="button" class="btn-text" id="unselectAllCats">Unselect All</button>
+          </div>
+        </div>
+        <div class="checkbox-list" id="catFilterGroup">
+          <label><input type="checkbox" value="Artificial Intelligence" checked> Artificial Intelligence</label>
+          <label><input type="checkbox" value="Cybersecurity" checked> Cybersecurity</label>
+          <label><input type="checkbox" value="Data analyses" checked> Data analyses</label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Cards Grid -->
+    <div class="gallery-grid" id="certGrid">
       <!-- Google -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Google" data-category="Artificial Intelligence">
         <div class="card-img-wrapper">
-          <img src="Certificates/google-gemini-certified-student-k-12.png" alt="Gemini Certified K-12 Student" loading="lazy">
+          <img src="Certificates/google-gemini-certified-student-k-12.png" alt="Gemini Certified K-12 Student" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Gemini Certified K-12 Student</h3>
@@ -60,9 +109,9 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Google" data-category="Artificial Intelligence">
         <div class="card-img-wrapper">
-          <img src="Certificates/google-gemini-certified-student-University.png" alt="Gemini Certified University Student" loading="lazy">
+          <img src="Certificates/google-gemini-certified-student-University.png" alt="Gemini Certified University Student" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Gemini Certified University Student</h3>
@@ -71,9 +120,9 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Google" data-category="Artificial Intelligence">
         <div class="card-img-wrapper">
-          <img src="Certificates/Google_Certified_Educator_Level_1.png" alt="Google Certified Educator Level 1" loading="lazy">
+          <img src="Certificates/Google_Certified_Educator_Level_1.png" alt="Google Certified Educator Level 1" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Google Certified Educator Level 1</h3>
@@ -82,9 +131,9 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Google" data-category="Cybersecurity">
         <div class="card-img-wrapper">
-          <img src="Certificates/In Progress.jpg" alt="Foundations of Cybersecurity" loading="lazy">
+          <img src="Certificates/In Progress.jpg" alt="Foundations of Cybersecurity" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Foundations of Cybersecurity</h3>
@@ -94,9 +143,9 @@
       </div>
 
       <!-- Anthropic -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Anthropic" data-category="Artificial Intelligence">
         <div class="card-img-wrapper">
-          <img src="Certificates/anthropic-ai-fluency-framework-foundations.jpg" alt="AI Fluency Framework & Foundations" loading="lazy">
+          <img src="Certificates/anthropic-ai-fluency-framework-foundations.jpg" alt="AI Fluency Framework & Foundations" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>AI Fluency Framework & Foundations</h3>
@@ -105,9 +154,9 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Anthropic" data-category="Artificial Intelligence">
         <div class="card-img-wrapper">
-          <img src="Certificates/anthropic-claude-101.jpg" alt="Claude 101" loading="lazy">
+          <img src="Certificates/anthropic-claude-101.jpg" alt="Claude 101" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Claude 101</h3>
@@ -116,9 +165,9 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Anthropic" data-category="Artificial Intelligence">
         <div class="card-img-wrapper">
-          <img src="Certificates/anthropic-claude-code-in-action.jpg" alt="Claude Code in Action" loading="lazy">
+          <img src="Certificates/anthropic-claude-code-in-action.jpg" alt="Claude Code in Action" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Claude Code in Action</h3>
@@ -127,9 +176,9 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Anthropic" data-category="Artificial Intelligence">
         <div class="card-img-wrapper">
-          <img src="Certificates/anthropic-introduction-to-model-context-protocol.jpg" alt="Introduction to Model Context Protocol" loading="lazy">
+          <img src="Certificates/anthropic-introduction-to-model-context-protocol.jpg" alt="Introduction to Model Context Protocol" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Introduction to Model Context Protocol</h3>
@@ -138,9 +187,9 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Anthropic" data-category="Artificial Intelligence">
         <div class="card-img-wrapper">
-          <img src="Certificates/anthropic-teaching-ai-fluency-framework.jpg" alt="Teaching the AI Fluency Framework" loading="lazy">
+          <img src="Certificates/anthropic-teaching-ai-fluency-framework.jpg" alt="Teaching the AI Fluency Framework" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Teaching the AI Fluency Framework</h3>
@@ -150,9 +199,9 @@
       </div>
 
       <!-- Oracle -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Oracle" data-category="Artificial Intelligence">
         <div class="card-img-wrapper">
-          <img src="Certificates/oracle_agentic_ai_certified_foundations_associate.jpg" alt="Agentic AI Certified Foundations Associate" loading="lazy">
+          <img src="Certificates/oracle_agentic_ai_certified_foundations_associate.jpg" alt="Agentic AI Certified Foundations Associate" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Agentic AI Certified Foundations Associate</h3>
@@ -162,9 +211,9 @@
       </div>
 
       <!-- Cisco -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Cisco" data-category="Cybersecurity">
         <div class="card-img-wrapper">
-          <img src="Certificates/Cisco_Introduction_to_Cybersecurity_certificate.jpg" alt="Introduction to Cybersecurity" loading="lazy">
+          <img src="Certificates/Cisco_Introduction_to_Cybersecurity_certificate.jpg" alt="Introduction to Cybersecurity" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Introduction to Cybersecurity</h3>
@@ -174,9 +223,9 @@
       </div>
 
       <!-- Confluent -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Confluent" data-category="Data analyses">
         <div class="card-img-wrapper">
-          <img src="Certificates/Data_Streaming_Engineer_Foundations_page-0001.jpg" alt="Data Streaming Engineer Foundations" loading="lazy">
+          <img src="Certificates/Data_Streaming_Engineer_Foundations_page-0001.jpg" alt="Data Streaming Engineer Foundations" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Data Streaming Engineer Foundations</h3>
@@ -186,9 +235,9 @@
       </div>
 
       <!-- Hackviser -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="Hackviser" data-category="Cybersecurity">
         <div class="card-img-wrapper">
-          <img src="Certificates/hackviser-certified-cybersecurity-foundations.jpg" alt="Certified Cybersecurity Foundations" loading="lazy">
+          <img src="Certificates/hackviser-certified-cybersecurity-foundations.jpg" alt="Certified Cybersecurity Foundations" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Certified Cybersecurity Foundations</h3>
@@ -198,9 +247,9 @@
       </div>
 
       <!-- HackerRank -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="HackerRank" data-category="Data analyses">
         <div class="card-img-wrapper">
-          <img src="Certificates/hackerrank-sql-advanced.jpg" alt="SQL (Advanced)" loading="lazy">
+          <img src="Certificates/hackerrank-sql-advanced.jpg" alt="SQL (Advanced)" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>SQL (Advanced)</h3>
@@ -209,9 +258,9 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="HackerRank" data-category="Data analyses">
         <div class="card-img-wrapper">
-          <img src="Certificates/hackerrank-python-basic.jpg" alt="Python (Basic)" loading="lazy">
+          <img src="Certificates/hackerrank-python-basic.jpg" alt="Python (Basic)" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Python (Basic)</h3>
@@ -221,9 +270,9 @@
       </div>
 
       <!-- RedTeamLeaders -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="RedTeamLeaders" data-category="Artificial Intelligence">
         <div class="card-img-wrapper">
-          <img src="Certificates/redteamleaders-offensive-agent-ai-course.jpg" alt="Offensive Agent AI Course" loading="lazy">
+          <img src="Certificates/redteamleaders-offensive-agent-ai-course.jpg" alt="Offensive Agent AI Course" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Offensive Agent AI Course</h3>
@@ -232,9 +281,9 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-issuer="RedTeamLeaders" data-category="Cybersecurity">
         <div class="card-img-wrapper">
-          <img src="Certificates/Introduction_to_Offensive_Security_with_Artificial_Intelligence.jpg" alt="Introduction to Offensive Security with Artificial Intelligence" loading="lazy">
+          <img src="Certificates/Introduction_to_Offensive_Security_with_Artificial_Intelligence.jpg" alt="Introduction to Offensive Security with Artificial Intelligence" loading="lazy" class="clickable-cert">
         </div>
         <div class="card-content">
           <h3>Introduction to Offensive Security with Artificial Intelligence</h3>
@@ -244,6 +293,16 @@
       </div>
     </div>
   </section>
+
+  <!-- Certificate Image Lightbox Modal -->
+  <div id="certModal" class="cert-modal">
+    <span class="cert-modal-close" id="modalClose">&times;</span>
+    <button class="modal-nav modal-prev" id="modalPrev">&#10094;</button>
+    <div class="cert-modal-content">
+      <img id="modalImg" src="" alt="Certificate View">
+    </div>
+    <button class="modal-nav modal-next" id="modalNext">&#10095;</button>
+  </div>
 </main>
 
   <footer>
