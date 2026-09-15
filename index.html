@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Muhammad Affan Bukhari (Syed Abu Khalid) - IT & Software Candidate specializing in Python, SQL, and Agentic AI.">
+  <title>Home | Syed Abu Khalid</title>
+  <link rel="icon" type="image/jpeg" href="profile.jpg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+</head>
+<body>
+
+  <!-- Particle Mesh Background -->
+  <div id="tsparticles"></div>
+
+  <!-- Header & Navigation -->
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">M. <span>Affan</span></a>
+      
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="Skills.html">Skills</a></li>
+        <li><a href="Certifications.html">Certifications</a></li>
+        <li><a href="Badges.html">Badges</a></li>
+        <li><a href="Education.html">Education</a></li>
+        <li><a href="Experience.html">Experience</a></li>
+        <li><a href="Projects.html">Projects</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+      </ul>
+
+      <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle light and dark mode">
+        <i class="fa-solid fa-sun"></i>
+      </button>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero / Header Section -->
+    <section class="section hero-section">
+      <div class="home-container">
+        <div class="home-text">
+          <h1>Muhammad Affan Bukhari</h1>
+          <p class="subtitle">(Syed Abu Khalid)</p>
+          <p class="tagline">IT & Software Candidate | Python, SQL, & Agentic AI Specialist</p>
+          <p class="bio">
+            Hello! I'm Abu Khalid. I am an IT and software developer with hands-on experience in Python, SQL, and cutting-edge Agentic AI technologies. I hold verified credentials from Google, Oracle, Cisco, Anthropic, and Confluent, combined with practical experience tutoring STEM subjects and building web solutions.
+          </p>
+          <div class="hero-cta-group">
+            <a href="Contact.html" class="btn">Get In Touch</a>
+            <a href="Projects.html" class="btn btn-outline">Explore Work</a>
+          </div>
+        </div>
+        <div class="home-img">
+          <div class="profile-gear-container" id="profileContainer">
+            <div class="gear-ring"></div>
+            <img src="profile.jpg" alt="Syed Abu Khalid Profile Picture" id="profilePic">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Preview Section -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Core Expertise & Technologies</h2>
+        <p class="section-subtitle">
+          From front-end development and database engineering to building AI workflows and network security analysis, I leverage a wide array of modern tools and programming languages to build efficient solutions.
+        </p>
+      </div>
+
+      <div class="skills-preview-grid">
+        <div class="skill-pill"><i class="devicon-python-plain colored"></i> Python</div>
+        <div class="skill-pill"><i class="devicon-mysql-plain colored"></i> SQL</div>
+        <div class="skill-pill"><i class="devicon-javascript-plain colored"></i> JavaScript</div>
+        <div class="skill-pill"><i class="fa-solid fa-link"></i> LangChain</div>
+        <div class="skill-pill"><i class="fa-solid fa-robot"></i> AutoGen</div>
+        <div class="skill-pill"><i class="fa-solid fa-database"></i> Vector Databases</div>
+        <div class="skill-pill"><i class="fa-solid fa-shield-halved"></i> Cybersecurity</div>
+        <div class="skill-pill"><i class="fa-brands fa-google"></i> Google Workspace</div>
+        <div class="skill-pill"><i class="devicon-vscode-plain colored"></i> VS Code</div>
+        <div class="skill-pill"><i class="devicon-git-plain colored"></i> Git</div>
+      </div>
+
+      <div class="center-cta">
+        <a href="Skills.html" class="btn">View Skills</a>
+      </div>
+    </section>
+
+    <!-- Certifications Preview Section -->
+    <section class="section">
+      <div class="two-column-layout">
+        <div class="column-text">
+          <h2 class="section-title">Professional Certifications</h2>
+          <p class="description-text">
+            Continuous learning is central to my career growth. I hold verified professional certifications in AI, cloud systems, cybersecurity, and data streaming across major tech platforms.
+          </p>
+          <ul class="highlight-list">
+            <li><i class="fa-solid fa-check"></i> Oracle Agentic AI Certified Foundations Associate</li>
+            <li><i class="fa-solid fa-check"></i> Google Certified Educator & Gemini Certified</li>
+            <li><i class="fa-solid fa-check"></i> Confluent Data Streaming Engineer Foundations</li>
+            <li><i class="fa-solid fa-check"></i> Cisco Introduction to Cybersecurity</li>
+          </ul>
+          <a href="Certifications.html" class="btn">View Certifications</a>
+        </div>
+        <div class="column-media">
+          <div class="carousel-container" data-carousel="cert-preview">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="Certificate/oracle_agentic_ai_certified_foundations_associate.jpg" alt="Oracle Certification"></div>
+              <div class="carousel-slide"><img src="Certificate/Google_Certified_Educator_Level_1.png" alt="Google Educator Certification"></div>
+              <div class="carousel-slide"><img src="Certificate/Data_Streaming_Engineer_Foundations_page-0001.jpg" alt="Confluent Certification"></div>
+              <div class="carousel-slide"><img src="Certificate/Cisco_Introduction_to_Cybersecurity_certificate.jpg" alt="Cisco Certification"></div>
+              <div class="carousel-slide"><img src="Certificate/anthropic-ai-fluency-framework-foundations.jpg" alt="Anthropic AI Certification"></div>
+            </div>
+            <button class="carousel-btn prev-btn" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn next-btn" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Badges Preview Section -->
+    <section class="section">
+      <div class="two-column-layout reverse-mobile">
+        <div class="column-media">
+          <div class="carousel-container" data-carousel="badge-preview">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="Badges/Gemini_for_Security_Engineers.png" alt="Gemini for Security Engineers Badge"></div>
+              <div class="carousel-slide"><img src="Badges/Google_Certified_Educator_Level_1_Exam_(A).png" alt="Google Certified Educator Badge"></div>
+              <div class="carousel-slide"><img src="Badges/Introduction_to_Gemini_for_Education.png" alt="Introduction to Gemini Badge"></div>
+              <div class="carousel-slide"><img src="Badges/Machine_Learning_Operations_(MLOps)_for_Generative_AI.png" alt="MLOps Badge"></div>
+              <div class="carousel-slide"><img src="Badges/Trust_and_Security_with_Google_Cloud.png" alt="Google Cloud Security Badge"></div>
+            </div>
+            <button class="carousel-btn prev-btn" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn next-btn" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="column-text">
+          <h2 class="section-title">Verified Badges & Achievement Skills</h2>
+          <p class="description-text">
+            Take a look at my micro credentials and digital badges earned through practical assessments and specialized technical workshops.
+          </p>
+          <p class="description-text">
+            You can also explore my Accredible, Credly, and Google for Education profiles to see my verified Certificates and Badges achievements.
+          </p>
+          <div class="badge-links-group">
+            <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" class="badge-link-btn"><i class="fa-solid fa-wallet"></i> Accredible Wallet</a>
+            <a href="https://www.credly.com/users/muhammad-affan-bukhari/badges/credly" target="_blank" rel="noopener noreferrer" class="badge-link-btn"><i class="fa-solid fa-certificate"></i> Credly Profile</a>
+            <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" class="badge-link-btn"><i class="fa-brands fa-google"></i> Google Edu Wallet</a>
+          </div>
+          <a href="Badges.html" class="btn">View Badges</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Preview Section -->
+    <section class="section">
+      <div class="two-column-layout">
+        <div class="column-text">
+          <h2 class="section-title">Educational Background</h2>
+          <p class="description-text">
+            My academic foundation spans rigorous private preparation in STEM disciplines, O/A Level coursework, and ongoing studies in General Educational Development (GED) alongside independent computer science certifications.
+          </p>
+          <a href="Education.html" class="btn">My Education</a>
+        </div>
+        <div class="column-media">
+          <div class="carousel-container single-logo-carousel" data-carousel="edu-preview" data-peek="false">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="Logos/cambridge_dt_logo.png" alt="Cambridge International Logo"></div>
+              <div class="carousel-slide"><img src="Logos/Pearson_Edexcel.svg" alt="Pearson Edexcel Logo"></div>
+              <div class="carousel-slide"><img src="Logos/GED.svg" alt="GED Logo"></div>
+              <div class="carousel-slide"><img src="Logos/ICE_dt_1.png" alt="ICE Logo"></div>
+              <div class="carousel-slide"><img src="Logos/Olevels_dt_logo.png" alt="O Levels Logo"></div>
+            </div>
+            <button class="carousel-btn prev-btn" aria-label="Previous Logo"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn next-btn" aria-label="Next Logo"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Preview Section -->
+    <section class="section">
+      <div class="two-column-layout reverse-mobile">
+        <div class="column-media">
+          <div class="carousel-container" data-carousel="exp-preview">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="Testimonials/testimonial_1.png" alt="Client & Student Feedback 1"></div>
+              <div class="carousel-slide"><img src="Testimonials/testimonial_2.png" alt="Client & Student Feedback 2"></div>
+            </div>
+            <button class="carousel-btn prev-btn" aria-label="Previous Testimonial"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn next-btn" aria-label="Next Testimonial"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="column-text">
+          <h2 class="section-title">Practical Experience & Teaching</h2>
+          <p class="description-text">
+            Combining practical technical execution with knowledge delivery, I work as a private online tutor teaching AS Level Physics and Computer Science, alongside freelance web development projects.
+          </p>
+          <a href="Experience.html" class="btn">My Experience</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Preview Section -->
+    <section class="section">
+      <div class="two-column-layout">
+        <div class="column-text">
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="description-text">
+            Discover custom web projects, database solutions, automation scripts, and portfolio builds developed for real-world clients and technical exercises.
+          </p>
+          <a href="Projects.html" class="btn">Projects I Did</a>
+        </div>
+        <div class="column-media">
+          <div class="carousel-container" data-carousel="project-preview">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="Projects/project_1.png" alt="Featured Web Solution Snapshot"></div>
+              <div class="carousel-slide"><img src="Projects/project_2.png" alt="Database & Automation Script Snapshot"></div>
+            </div>
+            <button class="carousel-btn prev-btn" aria-label="Previous Project"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn next-btn" aria-label="Next Project"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="section cta-banner-section">
+      <div class="cta-banner-card">
+        <h2>Let's Connect</h2>
+        <p>
+          Interested in collaborating, hiring, or discussing technical projects? Reach out to me directly or check out my work across social platforms.
+        </p>
+        <a href="Contact.html" class="btn btn-large">Get In Touch</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Global Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Syed Abu Khalid</h3>
+        <p>IT & Software Candidate specializing in Python, SQL, and Agentic AI solutions.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Skills.html">Skills</a></li>
+          <li><a href="Certifications.html">Certifications</a></li>
+          <li><a href="Badges.html">Badges</a></li>
+          <li><a href="Education.html">Education</a></li>
+          <li><a href="Experience.html">Experience</a></li>
+          <li><a href="Projects.html">Projects</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Profiles</h4>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/syed-abu-khalid/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
+          <a href="tel:0567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
+          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-wallet"></i> Accredible</a>
+          <a href="https://www.credly.com/users/muhammad-affan-bukhari/badges/credly" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Credly</a>
+          <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Edu</a>
+          <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Skills</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Syed Abu Khalid (Muhammad Affan Bukhari). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

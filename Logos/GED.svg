@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="221.86926mm"
+   height="100.20325mm"
+   viewBox="0 0 221.86926 100.20325"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="GED.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.45291836"
+     inkscape:cx="252.80494"
+     inkscape:cy="313.52229"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <polygon
+       id="path-1"
+       points="326.848,0.579 0,0.579 0,186 326.848,186 " />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-36.11941,-59.762107)">
+    <g
+       transform="matrix(0.67881479,0,0,0.67881479,36.11941,59.083292)"
+       id="g860"
+       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1">
+      <g
+         id="Group-28"
+         transform="translate(0,0.421)">
+        <mask
+           id="mask-2"
+           fill="#ffffff">
+          <use
+             xlink:href="#path-1"
+             id="use835"
+             x="0"
+             y="0"
+             width="100%"
+             height="100%" />
+        </mask>
+        <g
+           id="Clip-8" />
+        <polygon
+           id="Fill-19"
+           fill="#0083a8"
+           mask="url(#mask-2)"
+           points="105.53,148.193 105.53,42.662 0,42.662 0,148.193 " />
+        <path
+           d="m 68.4619,114.7578 c -2.322,4.442 -7.369,7.369 -15.142,7.369 -9.791,0 -16.352,-8.681 -16.352,-26.346 0,-19.784 7.167,-27.254 17.564,-27.254 8.883,0 13.93,3.621 15.343,12.1 h 10.7 v -20.983 h -10.094 l -0.505,6.965 c -2.624,-4.745 -10.296,-7.873 -18.674,-7.873 -15.444,0 -26.346,11.002 -26.346,37.045 0,25.135 11.81,36.34 28.364,36.34 13.325,0 23.924,-5.956 27.154,-15.243 v -24.832 h -28.869 v 9.287 h 16.857 z"
+           id="Fill-20"
+           fill="#fefefe"
+           mask="url(#mask-2)" />
+        <path
+           d="m 68.4619,114.7578 c -2.322,4.442 -7.369,7.369 -15.142,7.369 -9.791,0 -16.352,-8.681 -16.352,-26.346 0,-19.784 7.167,-27.254 17.564,-27.254 8.883,0 13.93,3.621 15.343,12.1 h 10.7 v -20.983 h -10.094 l -0.505,6.965 c -2.624,-4.745 -10.296,-7.873 -18.674,-7.873 -15.444,0 -26.346,11.002 -26.346,37.045 0,25.135 11.81,36.34 28.364,36.34 13.325,0 23.924,-5.956 27.154,-15.243 v -24.832 h -28.869 v 9.287 h 16.857 z"
+           id="Stroke-21"
+           stroke="#fefefe"
+           stroke-width="0.485"
+           mask="url(#mask-2)" />
+        <polygon
+           id="Fill-22"
+           fill="#0083a8"
+           mask="url(#mask-2)"
+           points="210.1633,148.1933 210.1633,42.6623 125.5703,0.5783 125.5703,106.1103 " />
+        <polygon
+           id="Fill-23"
+           fill="#fefefe"
+           mask="url(#mask-2)"
+           points="162.553,46.5789 180.292,55.3679 180.292,63.3369 188.81,67.5579 188.81,51.6479 146.923,30.8949 146.923,38.8349 153.175,41.9329 153.175,92.0939 146.923,88.9959 146.923,97.1229 188.81,117.8769 188.81,100.2419 180.292,96.0219 180.292,105.5299 162.553,96.7399 162.553,75.5359 183.705,86.0169 183.705,77.5159 162.553,67.0359 " />
+        <polygon
+           id="Stroke-24"
+           stroke="#fefefe"
+           stroke-width="0.485"
+           mask="url(#mask-2)"
+           points="162.553,46.5789 180.292,55.3679 180.292,63.3369 188.81,67.5579 188.81,51.6479 146.923,30.8949 146.923,38.8349 153.175,41.9329 153.175,92.0939 146.923,88.9959 146.923,97.1229 188.81,117.8769 188.81,100.2419 180.292,96.0219 180.292,105.5299 162.553,96.7399 162.553,75.5359 183.705,86.0169 183.705,77.5159 162.553,67.0359 " />
+        <polygon
+           id="Fill-25"
+           fill="#0083a8"
+           mask="url(#mask-2)"
+           points="326.849,148.194 326.849,42.662 220.623,42.662 220.623,148.194 " />
+        <path
+           d="m 262.2778,122.4297 v -54.206 h 11.509 c 13.929,0 19.481,6.965 19.481,27.456 0,20.189 -5.552,26.75 -19.481,26.75 z m 11.509,8.782 c 22.307,0 31.595,-7.873 31.595,-35.532 0,-28.163 -9.288,-36.036 -31.595,-36.036 h -31.596 v 8.58 h 7.975 v 54.206 h -8.076 v 8.782 z"
+           id="Fill-26"
+           fill="#fefefe"
+           mask="url(#mask-2)" />
+        <path
+           d="m 262.2778,122.4297 v -54.206 h 11.509 c 13.929,0 19.481,6.965 19.481,27.456 0,20.189 -5.552,26.75 -19.481,26.75 z m 11.509,8.782 c 22.307,0 31.595,-7.873 31.595,-35.532 0,-28.163 -9.288,-36.036 -31.595,-36.036 h -31.596 v 8.58 h 7.975 v 54.206 h -8.076 v 8.782 z"
+           id="Stroke-27"
+           stroke="#fefefe"
+           stroke-width="0.485"
+           mask="url(#mask-2)" />
+      </g>
+    </g>
+  </g>
+</svg>
