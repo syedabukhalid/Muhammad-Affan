@@ -279,37 +279,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Active Navigation Link Highlight on Scroll (only the visible section is green)
-  const sections = document.querySelectorAll('section.section');
+  // Multipage navigation:
+  // Each page sets its own active link in the HTML, so the active state
+  // remains stable while scrolling and when moving between pages.
   const navItems = document.querySelectorAll('.nav-links a');
 
-  function updateActiveNav() {
-    let current = '';
-    const scrollPos = window.scrollY + 120; // offset for fixed header
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
+  // Close the mobile navigation whenever a page link is selected.
+  navItems.forEach(link => {
+    link.addEventListener('click', () => {
+      if (hamburgerBtn && navLinks) {
+        hamburgerBtn.classList.remove('active');
+        navLinks.classList.remove('nav-active');
       }
     });
-
-    // At the very top, force Home as active
-    if (window.scrollY < 100) {
-      current = 'home';
-    }
-
-    navItems.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', updateActiveNav);
-  updateActiveNav(); // set correct state on load
+  });
 
   // Modal / Lightbox functionality for Certificates, Badges & Project Snapshots
   const modal = document.getElementById('imageModal');
@@ -550,11 +533,12 @@ document.addEventListener('keydown', (e) => {
   initCarousel('csTestimonialsCarousel');
   initCarousel('physicsTestimonialsCarousel');
 
-      // --- DYNAMIC vCARD (.txt output format) ---
-    const vcardBtn = document.getElementById('download-vcard');
+  // --- DYNAMIC vCARD (.txt output format) ---
+  const vcardBtn = document.getElementById('download-vcard');
 
+  if (vcardBtn) {
     vcardBtn.addEventListener('click', () => {
-        const vCardData = `BEGIN:VCARD
+      const vCardData = `BEGIN:VCARD
 VERSION: 2.3
 FULL NAME: Muhammad Affan Bukhari
 NICK NAME: Syed Abu Khalid
@@ -564,13 +548,15 @@ EMAIL: syedabukhalid.pro@gmail.com
 ADR: Riyadh; Saudi Arabia
 END: VCARD`;
 
-        const blob = new Blob([vCardData], { type: 'text/plain;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'Syed_Abu_Khalid_VCard.txt');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+      const blob = new Blob([vCardData], { type: 'text/plain;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'Syed_Abu_Khalid_VCard.txt');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     });
+  }
 });
