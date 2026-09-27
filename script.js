@@ -274,18 +274,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hamburger Menu Functional Logic
   const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const navLinks = document.querySelector('.nav-links');
+  const navMenu = document.querySelector('.nav-links');
 
-  if (hamburgerBtn && navLinks) {
+  if (hamburgerBtn && navMenu) {
     hamburgerBtn.addEventListener('click', () => {
       hamburgerBtn.classList.toggle('active');
-      navLinks.classList.toggle('nav-active');
+      navMenu.classList.toggle('nav-active');
     });
 
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         hamburgerBtn.classList.remove('active');
-        navLinks.classList.remove('nav-active');
+        navMenu.classList.remove('nav-active');
       });
     });
   }
@@ -307,9 +307,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Close the mobile navigation whenever a page link is selected.
   navItems.forEach(link => {
     link.addEventListener('click', () => {
-      if (hamburgerBtn && navLinks) {
+      if (hamburgerBtn && navMenu) {
         hamburgerBtn.classList.remove('active');
-        navLinks.classList.remove('nav-active');
+        navMenu.classList.remove('nav-active');
       }
     });
   });
