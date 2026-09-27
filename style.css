@@ -26,6 +26,12 @@
   --particle-color: #311ce6;
 }
 
+/* Active link highlight using theme custom variable */
+.nav-links a.active {
+  color: var(--accent-green);
+  font-weight: 600; /* Optional: makes the active page name stand out more */
+}
+
 * {
   margin: 0;
   padding: 0;

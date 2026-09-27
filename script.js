@@ -1,4 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
+  
+  // Get current page filename (defaults to 'index.html' if path is empty/root)
+  const currentPath = window.location.pathname.split("/").pop() || "index.html";
+
+  // Get all navigation links
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  navLinks.forEach((link) => {
+    // Remove hardcoded active class
+    link.classList.remove("active");
+    link.removeAttribute("aria-current");
+
+    // Match link href with current path
+    const linkHref = link.getAttribute("href");
+    if (linkHref === currentPath) {
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
+    }
+  });
+
   // Dynamic Role Typing Animation Implementation
   const typedRoleElement = document.getElementById('typedRole');
   if (typedRoleElement) {
@@ -305,90 +325,90 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentTriggers = [];
   let currentImgIndex = -1;
 
- // ==========================================
-// POPUP MODAL CODE (UNIQUE VARIABLE NAMES)
-// ==========================================
-const projectModalElement = document.getElementById('projectModal');
-const projectIframe = document.getElementById('projectIframe');
-const closeProjectModalBtn = document.getElementById('closeModalBtn');
-const openModalButtons = document.querySelectorAll('.open-modal-btn');
-const chromeTabTitle = document.getElementById('chromeTabTitle');
+  // ==========================================
+  // POPUP MODAL CODE (UNIQUE VARIABLE NAMES)
+  // ==========================================
+  const projectModalElement = document.getElementById('projectModal');
+  const projectIframe = document.getElementById('projectIframe');
+  const closeProjectModalBtn = document.getElementById('closeModalBtn');
+  const openModalButtons = document.querySelectorAll('.open-modal-btn');
+  const chromeTabTitle = document.getElementById('chromeTabTitle');
 
-// Helper function to check if current parent site is in light mode
-const isParentInLightMode = () => {
-  return document.body.classList.contains('light-mode') || 
-         document.body.classList.contains('light') || 
-         document.documentElement.getAttribute('data-theme') === 'light' ||
-         document.body.getAttribute('data-theme') === 'light';
-};
+  // Helper function to check if current parent site is in light mode
+  const isParentInLightMode = () => {
+    return document.body.classList.contains('light-mode') || 
+           document.body.classList.contains('light') || 
+           document.documentElement.getAttribute('data-theme') === 'light' ||
+           document.body.getAttribute('data-theme') === 'light';
+  };
 
-// Open Modal
-openModalButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const projectSrc = btn.getAttribute('data-src');
-    const projectTitle = btn.getAttribute('data-title') || 'Project View';
-    
-    if (projectSrc) {
-      projectIframe.src = projectSrc;
-      if (chromeTabTitle) {
-        chromeTabTitle.textContent = projectTitle;
-      }
-      projectModalElement.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    }
-  });
-});
-
-// Pass light/dark mode theme state into the iframe content once loaded
-if (projectIframe) {
-  projectIframe.addEventListener('load', () => {
-    try {
-      const iframeDoc = projectIframe.contentDocument || projectIframe.contentWindow.document;
-      if (iframeDoc && iframeDoc.body) {
-        if (isParentInLightMode()) {
-          iframeDoc.body.classList.add('light-mode', 'light');
-          iframeDoc.documentElement.setAttribute('data-theme', 'light');
-        } else {
-          iframeDoc.body.classList.remove('light-mode', 'light');
-          iframeDoc.documentElement.setAttribute('data-theme', 'dark');
+  // Open Modal
+  openModalButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const projectSrc = btn.getAttribute('data-src');
+      const projectTitle = btn.getAttribute('data-title') || 'Project View';
+      
+      if (projectSrc) {
+        projectIframe.src = projectSrc;
+        if (chromeTabTitle) {
+          chromeTabTitle.textContent = projectTitle;
         }
+        projectModalElement.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
       }
-    } catch (e) {
-      // Cross-origin restriction fallback silently handled if applicable
-      console.log('Iframe theme synchronization:', e);
-    }
+    });
   });
-}
 
-// Function to Close Modal
-const closeProjectModal = () => {
-  if (projectModalElement) {
-    projectModalElement.classList.remove('active');
-    projectIframe.src = ''; // Stop running scripts inside iframe when closed
-    document.body.style.overflow = ''; // Restore background scrolling
+  // Pass light/dark mode theme state into the iframe content once loaded
+  if (projectIframe) {
+    projectIframe.addEventListener('load', () => {
+      try {
+        const iframeDoc = projectIframe.contentDocument || projectIframe.contentWindow.document;
+        if (iframeDoc && iframeDoc.body) {
+          if (isParentInLightMode()) {
+            iframeDoc.body.classList.add('light-mode', 'light');
+            iframeDoc.documentElement.setAttribute('data-theme', 'light');
+          } else {
+            iframeDoc.body.classList.remove('light-mode', 'light');
+            iframeDoc.documentElement.setAttribute('data-theme', 'dark');
+          }
+        }
+      } catch (e) {
+        // Cross-origin restriction fallback silently handled if applicable
+        console.log('Iframe theme synchronization:', e);
+      }
+    });
   }
-};
 
-// Close via button click
-if (closeProjectModalBtn) {
-  closeProjectModalBtn.addEventListener('click', closeProjectModal);
-}
+  // Function to Close Modal
+  const closeProjectModal = () => {
+    if (projectModalElement) {
+      projectModalElement.classList.remove('active');
+      projectIframe.src = ''; // Stop running scripts inside iframe when closed
+      document.body.style.overflow = ''; // Restore background scrolling
+    }
+  };
 
-// Close when clicking outside the container overlay
-if (projectModalElement) {
-  projectModalElement.addEventListener('click', (e) => {
-    if (e.target === projectModalElement) {
+  // Close via button click
+  if (closeProjectModalBtn) {
+    closeProjectModalBtn.addEventListener('click', closeProjectModal);
+  }
+
+  // Close when clicking outside the container overlay
+  if (projectModalElement) {
+    projectModalElement.addEventListener('click', (e) => {
+      if (e.target === projectModalElement) {
+        closeProjectModal();
+      }
+    });
+  }
+
+  // Close using ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && projectModalElement && projectModalElement.classList.contains('active')) {
       closeProjectModal();
     }
   });
-}
-
-// Close using ESC key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && projectModalElement && projectModalElement.classList.contains('active')) {
-    closeProjectModal();
-  }
-});
 
   // Certificates & Badges triggers
   const certTriggers = Array.from(document.querySelectorAll('.cert-modal-trigger'));
