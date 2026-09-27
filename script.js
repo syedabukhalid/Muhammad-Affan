@@ -453,6 +453,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+
+  const certModal = document.getElementById('certModal');
+  const modalCertTitle = document.getElementById('modalCertTitle');
+  const modalCertImg = document.getElementById('modalCertImg');
+  const certCloseBtn = document.querySelector('.cert-modal-close');
+
+  // Add click listeners to all certificate overview cards
+  const certCards = document.querySelectorAll('#certifications-overview .cert-modal-trigger');
+  
+  certCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const title = this.getAttribute('data-title');
+      const imgSrc = this.getAttribute('data-img');
+
+      modalCertTitle.textContent = title;
+      modalCertImg.src = imgSrc;
+
+      certModal.style.display = 'flex';
+    });
+  });
+
+  // Close modal when clicking on 'X'
+  if (certCloseBtn) {
+    certCloseBtn.addEventListener('click', function() {
+      certModal.style.display = 'none';
+    });
+  }
+
+  // Close modal when clicking outside the content box
+  window.addEventListener('click', function(e) {
+    if (e.target === certModal) {
+      certModal.style.display = 'none';
+    }
+  });
+
+
   // Certificates & Badges triggers
   const certTriggers = Array.from(document.querySelectorAll('.cert-modal-trigger'));
   certTriggers.forEach((trigger, idx) => {
@@ -595,6 +631,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Experience Testimonial Carousels
   initCarousel('csTestimonialsCarousel');
   initCarousel('physicsTestimonialsCarousel');
+
+  
+
+
+
 
   // --- DYNAMIC vCARD (.txt output format) ---
   const vcardBtn = document.getElementById('download-vcard');
