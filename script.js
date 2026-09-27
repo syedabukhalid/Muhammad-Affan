@@ -96,6 +96,49 @@ document.addEventListener('DOMContentLoaded', () => {
       logo.src = isLight ? 'Logos/CONFLUENT-Developer_lt_o_logo_2.png' : 'Logos/CONFLUENT-Developer_dt_o_logo.png';
     });
 
+    // Home Page Skills Section
+    const modal = document.getElementById('skillModal');
+  const modalIcon = document.getElementById('modalSkillIcon');
+  const modalTitle = document.getElementById('modalSkillTitle');
+  const modalDesc = document.getElementById('modalSkillDesc');
+  const closeBtn = document.querySelector('.skill-modal-close');
+
+  // Add click listeners to all skill cards
+  const skillCards = document.querySelectorAll('.skill-modal-trigger');
+  
+  skillCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const title = this.getAttribute('data-title');
+      const iconClass = this.getAttribute('data-icon');
+      const desc = this.getAttribute('data-desc');
+
+      modalIcon.className = 'fa-solid ' + iconClass;
+      // Handle brand icons (e.g. Google / Microsoft)
+      if (iconClass.includes('microsoft') || iconClass.includes('google')) {
+        modalIcon.className = 'fa-brands ' + iconClass;
+      }
+
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+
+      modal.style.display = 'flex';
+    });
+  });
+
+  // Close modal when clicking on 'X'
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+  }
+
+  // Close modal when clicking outside the content box
+  window.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+    
     // Education & Slider Section Logos
     const iceLogos = document.querySelectorAll('img[src*="ICE_dt_1"], img[src*="ICE_lt_1"]');
     const olevelsLogos = document.querySelectorAll('img[src*="Olevels_dt_logo"], img[src*="olevels_lt_logo"]');
