@@ -3,32 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Academic background and educational journey of Syed Abu Khalid.">
-  <title>Education | Syed Abu Khalid</title>
+  <title>Education - Syed Abu Khalid</title>
   <link rel="icon" type="image/jpeg" href="profile.jpg">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Devicon CDN for tech and brand logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <!-- tsParticles Engine & Preset Links CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-basic@2.12.0/tsparticles.basic.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-grab@2.12.0/tsparticles.interaction.external.grab.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-attract@2.12.0/tsparticles.interaction.external.attract.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-canvas-mask@2.12.0/tsparticles.plugin.canvas-mask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 </head>
 <body>
 
+  <!-- Lightweight Background Container for Neural Network Particle Mesh -->
   <div id="tsparticles"></div>
 
   <header>
     <nav class="navbar">
       <a href="index.html" class="logo">M. <span>Affan</span></a>
+
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="Skills.html">Skills</a></li>
-        <li><a href="Certifications.html">Certifications</a></li>
-        <li><a href="Badges.html">Badges</a></li>
-        <li><a href="Education.html" class="active">Education</a></li>
-        <li><a href="Experience.html">Experience</a></li>
-        <li><a href="Projects.html">Projects</a></li>
-        <li><a href="Contact.html">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Skills.html">Skills</a></li>
+      <li><a href="Certifications.html">Certifications</a></li>
+      <li><a href="Badges.html">Badges</a></li>
+      <li><a href="Education.html" class="active" aria-current="page">Education</a></li>
+      <li><a href="Experience.html">Experience</a></li>
+      <li><a href="Projects.html">Projects</a></li>
+      <li><a href="Contact.html">Contact</a></li>
       </ul>
+
+      <!-- Theme Toggle Switch -->
       <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle light and dark mode">
         <i class="fa-solid fa-sun"></i>
       </button>
+
+      <!-- Hamburger Toggle Button -->
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -38,52 +52,53 @@
   </header>
 
   <main>
-    <section class="section page-header-section">
-      <h1 class="page-title">Educational Journey</h1>
-      <p class="page-description">Academic progression spanning STEM coursework, international board preparations, and professional computer science specializations.</p>
-    </section>
-
-    <section class="section">
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <img src="Logos/GED.svg" alt="GED Logo" class="timeline-logo">
-              <div>
-                <h3>General Educational Development (GED) & Computer Science</h3>
-                <span class="timeline-date">Ongoing Academic Studies</span>
-              </div>
+<section id="education" class="section">
+      <h2 class="section-title">Education</h2>
+      <div class="education-container">
+        <div class="education-cards">
+          <div class="edu-card">
+            <div class="edu-card-content">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <h3>B.S. in Computer Science</h3>
+              <p class="edu-sub">International College of Excellence — Pakistan | Incoming Student</p>
             </div>
-            <p>Pursuing high-school equivalency diploma focusing on advanced mathematics, science, and technical studies alongside independent Computer Science specialization tracks.</p>
+            <div class="edu-action">
+              <img src="Logos/ICE_dt_1.png" alt="XYZ Logo" class="edu-logo">
+              <a href="https://docs.google.com/document/d/1o32ykOUNj0pTycBHhUeX7ws7ZJN84l9AubMpf3XQMWs/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn edu-btn">View Documents</a>
+            </div>
           </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <img src="Logos/cambridge_dt_logo.png" alt="Cambridge International Logo" class="timeline-logo">
-              <div>
-                <h3>O/A Level STEM & Physics Preparation</h3>
-                <span class="timeline-date">Cambridge & Pearson Edexcel Curricula</span>
-              </div>
+          <div class="edu-card">
+            <div class="edu-card-content">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <h3>GED (General Educational Development)</h3>
+              <p class="edu-sub">Private Candidate — Riyadh, KSA | 2026</p>
             </div>
-            <p>Rigorous private preparation in Advanced Physics, Mathematics, and Computer Science under Cambridge Assessment International Education and Pearson Edexcel guidelines.</p>
+            <div class="edu-action">
+              <img src="Logos/GED.svg" alt="GED Logo" class="edu-logo">
+              <a href="https://docs.google.com/document/d/1o32ykOUNj0pTycBHhUeX7ws7ZJN84l9AubMpf3XQMWs/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn edu-btn">View Documents</a>
+            </div>
           </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <img src="Logos/ICE_dt_1.png" alt="ICE Logo" class="timeline-logo">
-              <div>
-                <h3>International Certificate of Education (ICE) Path</h3>
-                <span class="timeline-date">Foundational Studies</span>
-              </div>
+          <div class="edu-card">
+            <div class="edu-card-content">
+              <i class="fa-solid fa-book-open"></i>
+              <h3>AS Level (Physics, Computer Science, Mathematics)</h3>
+              <p class="edu-sub">Olevels.com — Riyadh, KSA | 2025</p>
             </div>
-            <p>Completed broad-spectrum studies spanning technical, scientific, and linguistic foundational disciplines.</p>
+            <div class="edu-action">
+              <img src="Logos/Olevels_dt_logo.png" alt="Olevels Logo" class="edu-logo">
+              <a href="https://docs.google.com/document/d/1o32ykOUNj0pTycBHhUeX7ws7ZJN84l9AubMpf3XQMWs/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn edu-btn">View Documents</a>
+            </div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-card-content">
+              <i class="fa-solid fa-book-open"></i>
+              <h3>O'Level (Physics, Computer Science, Mathematics, Chemistry, English)</h3>
+              <p class="edu-sub">Olevels.com — Riyadh, KSA | 2023</p>
+            </div>
+            <div class="edu-action">
+              <img src="Logos/Olevels_dt_logo.png" alt="Olevels Logo" class="edu-logo">
+              <a href="https://docs.google.com/document/d/1o32ykOUNj0pTycBHhUeX7ws7ZJN84l9AubMpf3XQMWs/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn edu-btn">View Documents</a>
+            </div>
           </div>
         </div>
       </div>
@@ -92,39 +107,37 @@
 
   <footer>
     <div class="footer-container">
-      <div class="footer-col">
-        <h3>Syed Abu Khalid</h3>
-        <p>IT & Software Candidate specializing in Python, SQL, and Agentic AI solutions.</p>
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="index.html">Home</a>
+          <a href="Skills.html">Skills</a>
+          <a href="Certifications.html">Certifications</a>
+          <a href="Badges.html">Badges</a>
+          <a href="Education.html">Education</a>
+          <a href="Experience.html">Experience</a>
+          <a href="Projects.html">Projects</a>
+          <a href="Contact.html">Contact</a>
+        </nav>
       </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="Skills.html">Skills</a></li>
-          <li><a href="Certifications.html">Certifications</a></li>
-          <li><a href="Badges.html">Badges</a></li>
-          <li><a href="Education.html">Education</a></li>
-          <li><a href="Experience.html">Experience</a></li>
-          <li><a href="Projects.html">Projects</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect & Profiles</h4>
-        <div class="footer-links">
+
+      <div class="footer-column">
+        <h3>Connect &amp; Profiles</h3>
+        <div class="footer-links footer-profile-links">
           <a href="https://www.linkedin.com/in/syed-abu-khalid/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
-          <a href="tel:0567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
-          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-wallet"></i> Accredible</a>
-          <a href="https://www.credly.com/users/muhammad-affan-bukhari/badges/credly" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Credly</a>
-          <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Edu</a>
-          <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Skills</a>
+          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+          <a href="tel:+966567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
+          <a href="https://github.com/syedabukhalid" target="_blank" rel="noopener noreferrer"><i class="devicon-github-original"></i> GitHub</a>
+          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Accredible</a>
+          <a href="https://www.credly.com/users/muhammad-affan-bukhari" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-award"></i> Credly</a>
+          <a href="https://learn.microsoft.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-microsoft"></i> Microsoft</a>
+          <a href="https://edu.google.com/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Edu</a>
+          <a href="https://www.skills.google/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Skills</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Syed Abu Khalid (Muhammad Affan Bukhari). All rights reserved.</p>
-    </div>
+
+    <p class="footer-copyright">&copy; 2026 Syed Abu Khalid. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>

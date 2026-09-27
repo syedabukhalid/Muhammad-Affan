@@ -3,32 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Verified professional certifications held by Syed Abu Khalid from Google, Oracle, Anthropic, Cisco, Confluent, and more.">
-  <title>Certifications | Syed Abu Khalid</title>
+  <title>Certifications - Syed Abu Khalid</title>
   <link rel="icon" type="image/jpeg" href="profile.jpg">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Devicon CDN for tech and brand logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <!-- tsParticles Engine & Preset Links CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-basic@2.12.0/tsparticles.basic.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-grab@2.12.0/tsparticles.interaction.external.grab.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-attract@2.12.0/tsparticles.interaction.external.attract.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-canvas-mask@2.12.0/tsparticles.plugin.canvas-mask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 </head>
 <body>
 
+  <!-- Lightweight Background Container for Neural Network Particle Mesh -->
   <div id="tsparticles"></div>
 
   <header>
     <nav class="navbar">
       <a href="index.html" class="logo">M. <span>Affan</span></a>
+
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="Skills.html">Skills</a></li>
-        <li><a href="Certifications.html" class="active">Certifications</a></li>
-        <li><a href="Badges.html">Badges</a></li>
-        <li><a href="Education.html">Education</a></li>
-        <li><a href="Experience.html">Experience</a></li>
-        <li><a href="Projects.html">Projects</a></li>
-        <li><a href="Contact.html">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Skills.html">Skills</a></li>
+      <li><a href="Certifications.html" class="active" aria-current="page">Certifications</a></li>
+      <li><a href="Badges.html">Badges</a></li>
+      <li><a href="Education.html">Education</a></li>
+      <li><a href="Experience.html">Experience</a></li>
+      <li><a href="Projects.html">Projects</a></li>
+      <li><a href="Contact.html">Contact</a></li>
       </ul>
+
+      <!-- Theme Toggle Switch -->
       <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle light and dark mode">
         <i class="fa-solid fa-sun"></i>
       </button>
+
+      <!-- Hamburger Toggle Button -->
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -37,309 +51,257 @@
     </nav>
   </header>
 
-<main>
-  <section class="section page-header-section">
-    <h1 class="page-title">Verified Certifications</h1>
-    <p class="page-description">Official credentials and certificates earned across enterprise AI, cybersecurity, and cloud architecture.</p>
-    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 1.05rem;">
-      Explore my <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Accredible</a>, <a href="https://www.credly.com/users/muhammad-affan-bukhari" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Credly</a> and <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Google for Education</a> profile to see my verified Certificates and Badges achievements.
-    </p>
-  </section>
+  <main>
+<!-- Certifications Section -->
+    <section id="certifications" class="section">
+      <h2 class="section-title">Certifications</h2>
+      <p style="text-align: center; margin-bottom: 2rem; color: var(--text-muted); font-size: 1.05rem;">
+        Explore my <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Accredible</a>, <a href="https://www.credly.com/users/muhammad-affan-bukhari" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Credly</a> and <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Google for Education</a> profile to see my verified Certificates and Badges achievements.
+      </p>
 
-  <section class="section certifications-layout">
-    <!-- Filter Sidebar (Left) -->
-    <aside class="filter-sidebar">
-      <div class="filter-results-summary">
-        <span id="resultsCount">17</span> results found
+      <!-- Organization Filter Box for Certifications -->
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all" data-target="certifications">
+          <span>All</span>
+        </button>
+        <button class="filter-btn" data-filter="google" data-target="certifications">
+          <img src="Logos/Google_logo.webp" alt="Google Logo">
+          <span>Google</span>
+        </button>
+        <button class="filter-btn" data-filter="anthropic" data-target="certifications">
+          <img src="Logos/Anthropic_d_logo.png" alt="Anthropic Logo">
+          <span>Anthropic</span>
+        </button>
+        <button class="filter-btn" data-filter="oracle" data-target="certifications">
+          <img src="Logos/Oracle_d_logo.webp" alt="Oracle Logo">
+          <span>Oracle</span>
+        </button>
+        <button class="filter-btn" data-filter="cisco" data-target="certifications">
+          <img src="Logos/Cisco_logo.webp" alt="Cisco Logo">
+          <span>Cisco</span>
+        </button>
+        <button class="filter-btn" data-filter="confluent" data-target="certifications">
+          <img src="Logos/CONFLUENT-Developer_dt_o_logo.png" alt="Confluent Logo">
+          <span>Confluent</span>
+        </button>
+        <button class="filter-btn" data-filter="hackviser" data-target="certifications">
+          <img src="Logos/Hackviser_logo.jpg" alt="Hackviser Logo">
+          <span>Hackviser</span>
+        </button>
+        <button class="filter-btn" data-filter="hackerrank" data-target="certifications">
+          <img src="Logos/HackerRank_s_logo.png" alt="HackerRank Logo">
+          <span>HackerRank</span>
+        </button>
+        <button class="filter-btn" data-filter="redteamleaders" data-target="certifications">
+          <img src="Logos/RedTeamLeaders_s_logo.jfif" alt="RedTeamLeaders Logo">
+          <span>RedTeamLeaders</span>
+        </button>
       </div>
 
-      <!-- Filter 1: Organization -->
-      <div class="filter-group">
-        <div class="filter-header">
-          <h4>Organizations</h4>
-          <div class="filter-actions">
-            <button type="button" class="btn-text" id="selectAllOrgs">Select All</button>
-            <span>|</span>
-            <button type="button" class="btn-text" id="unselectAllOrgs">Unselect All</button>
-          </div>
-        </div>
-        <div class="checkbox-list" id="orgFilterGroup">
-          <label><input type="checkbox" value="Google" checked> Google</label>
-          <label><input type="checkbox" value="Anthropic" checked> Anthropic</label>
-          <label><input type="checkbox" value="Oracle" checked> Oracle</label>
-          <label><input type="checkbox" value="Cisco" checked> Cisco</label>
-          <label><input type="checkbox" value="IBM" checked> IBM</label>
-          <label><input type="checkbox" value="Microsoft" checked> Microsoft</label>
-          <label><input type="checkbox" value="Confluent" checked> Confluent</label>
-          <label><input type="checkbox" value="Hackviser" checked> Hackviser</label>
-          <label><input type="checkbox" value="HackerRank" checked> HackerRank</label>
-          <label><input type="checkbox" value="RedTeamLeaders" checked> RedTeamLeaders</label>
-        </div>
-      </div>
-
-      <!-- Filter 2: Category -->
-      <div class="filter-group">
-        <div class="filter-header">
-          <h4>Categories</h4>
-          <div class="filter-actions">
-            <button type="button" class="btn-text" id="selectAllCats">Select All</button>
-            <span>|</span>
-            <button type="button" class="btn-text" id="unselectAllCats">Unselect All</button>
-          </div>
-        </div>
-        <div class="checkbox-list" id="catFilterGroup">
-          <label><input type="checkbox" value="Artificial Intelligence" checked> Artificial Intelligence</label>
-          <label><input type="checkbox" value="Cybersecurity" checked> Cybersecurity</label>
-          <label><input type="checkbox" value="Data analyses" checked> Data analyses</label>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Cards Grid -->
-    <div class="gallery-grid" id="certGrid">
       <!-- Google -->
-      <div class="gallery-card" data-issuer="Google" data-category="Artificial Intelligence">
-        <div class="card-img-wrapper">
-          <img src="Certificates/google-gemini-certified-student-k-12.png" alt="Gemini Certified K-12 Student" loading="lazy" class="clickable-cert">
+      <div class="cert-provider" data-org="google">
+        <div class="provider-header">
+          <img src="Logos/Google_logo.webp" alt="Google Logo" class="provider-logo">
+          <h3>Google</h3>
         </div>
-        <div class="card-content">
-          <h3>Gemini Certified K-12 Student</h3>
-          <p class="issuer">Issuer: Google</p>
-          <a href="https://edu.exceedlms.com/student/award/c3WKpYgNUoURPSDrUfwEGot1" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
-        </div>
-      </div>
-
-      <div class="gallery-card" data-issuer="Google" data-category="Artificial Intelligence">
-        <div class="card-img-wrapper">
-          <img src="Certificates/google-gemini-certified-student-University.png" alt="Gemini Certified University Student" loading="lazy" class="clickable-cert">
-        </div>
-        <div class="card-content">
-          <h3>Gemini Certified University Student</h3>
-          <p class="issuer">Issuer: Google</p>
-          <a href="https://edu.exceedlms.com/student/award/c3WKpYgNUoURPSDrUfwEGot1" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
-        </div>
-      </div>
-
-      <div class="gallery-card" data-issuer="Google" data-category="Artificial Intelligence">
-        <div class="card-img-wrapper">
-          <img src="Certificates/Google_Certified_Educator_Level_1.png" alt="Google Certified Educator Level 1" loading="lazy" class="clickable-cert">
-        </div>
-        <div class="card-content">
-          <h3>Google Certified Educator Level 1</h3>
-          <p class="issuer">Issuer: Google for Education</p>
-          <a href="https://edu.google.accredible.com/f06583c7-ab2c-4e70-9e5d-72907e7de52b#acc.dgCyISnh" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
-        </div>
-      </div>
-
-      <div class="gallery-card" data-issuer="Google" data-category="Cybersecurity">
-        <div class="card-img-wrapper">
-          <img src="Certificates/In Progress.jpg" alt="Foundations of Cybersecurity" loading="lazy" class="clickable-cert">
-        </div>
-        <div class="card-content">
-          <h3>Foundations of Cybersecurity</h3>
-          <p class="issuer">Issuer: Google</p>
-          <a href="https://www.coursera.org/learn/foundations-of-cybersecurity" target="_blank" rel="noopener noreferrer" class="btn btn-small">IN PROGRESS</a>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Gemini Certified K-12 Student</h4>
+            <img src="Certificates/google-gemini-certified-student-k-12.png" alt="Gemini Certified Student Certificate" class="cert-modal-trigger">
+            <a href="https://edu.exceedlms.com/student/award/c3WKpYgNUoURPSDrUfwEGot1" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Gemini Certified University Student</h4>
+            <img src="Certificates/google-gemini-certified-student-University.png" alt="Gemini Certified Student Certificate" class="cert-modal-trigger">
+            <a href="https://edu.exceedlms.com/student/award/c3WKpYgNUoURPSDrUfwEGot1" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Google Certified Educator Level 1</h4>
+            <img src="Certificates/Google_Certified_Educator_Level_1.png" alt="Google Certified Educator Level 1 Certificate" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/f06583c7-ab2c-4e70-9e5d-72907e7de52b#acc.dgCyISnh" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
         </div>
       </div>
 
       <!-- Anthropic -->
-      <div class="gallery-card" data-issuer="Anthropic" data-category="Artificial Intelligence">
-        <div class="card-img-wrapper">
-          <img src="Certificates/anthropic-ai-fluency-framework-foundations.jpg" alt="AI Fluency Framework & Foundations" loading="lazy" class="clickable-cert">
+      <div class="cert-provider" data-org="anthropic">
+        <div class="provider-header">
+          <img src="Logos/Anthropic_d_logo.png" alt="Anthropic Logo" class="provider-logo">
+          <h3>Anthropic</h3>
         </div>
-        <div class="card-content">
-          <h3>AI Fluency Framework & Foundations</h3>
-          <p class="issuer">Issuer: Anthropic</p>
-          <a href="https://verify.skilljar.com/c/d69oxxsc83if" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
-        </div>
-      </div>
-
-      <div class="gallery-card" data-issuer="Anthropic" data-category="Artificial Intelligence">
-        <div class="card-img-wrapper">
-          <img src="Certificates/anthropic-claude-101.jpg" alt="Claude 101" loading="lazy" class="clickable-cert">
-        </div>
-        <div class="card-content">
-          <h3>Claude 101</h3>
-          <p class="issuer">Issuer: Anthropic</p>
-          <a href="https://verify.skilljar.com/c/5h8cf9xektgz" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
-        </div>
-      </div>
-
-      <div class="gallery-card" data-issuer="Anthropic" data-category="Artificial Intelligence">
-        <div class="card-img-wrapper">
-          <img src="Certificates/anthropic-claude-code-in-action.jpg" alt="Claude Code in Action" loading="lazy" class="clickable-cert">
-        </div>
-        <div class="card-content">
-          <h3>Claude Code in Action</h3>
-          <p class="issuer">Issuer: Anthropic</p>
-          <a href="https://verify.skilljar.com/c/5t8snjv6c2yr" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
-        </div>
-      </div>
-
-      <div class="gallery-card" data-issuer="Anthropic" data-category="Artificial Intelligence">
-        <div class="card-img-wrapper">
-          <img src="Certificates/anthropic-introduction-to-model-context-protocol.jpg" alt="Introduction to Model Context Protocol" loading="lazy" class="clickable-cert">
-        </div>
-        <div class="card-content">
-          <h3>Introduction to Model Context Protocol</h3>
-          <p class="issuer">Issuer: Anthropic</p>
-          <a href="https://verify.skilljar.com/c/8tmyhr4qejot" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
-        </div>
-      </div>
-
-      <div class="gallery-card" data-issuer="Anthropic" data-category="Artificial Intelligence">
-        <div class="card-img-wrapper">
-          <img src="Certificates/anthropic-teaching-ai-fluency-framework.jpg" alt="Teaching the AI Fluency Framework" loading="lazy" class="clickable-cert">
-        </div>
-        <div class="card-content">
-          <h3>Teaching the AI Fluency Framework</h3>
-          <p class="issuer">Issuer: Anthropic</p>
-          <a href="https://verify.skilljar.com/c/j3ftuovk4d2p" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>AI Fluency Framework & Foundations</h4>
+            <img src="Certificates/anthropic-ai-fluency-framework-foundations.jpg" alt="Anthropic AI Fluency Certificate" class="cert-modal-trigger">
+            <a href="https://verify.skilljar.com/c/d69oxxsc83if" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Claude 101</h4>
+            <img src="Certificates/anthropic-claude-101.jpg" alt="Anthropic Claude 101 Certificate" class="cert-modal-trigger">
+            <a href="https://verify.skilljar.com/c/5h8cf9xektgz" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Claude Code in Action</h4>
+            <img src="Certificates/anthropic-claude-code-in-action.jpg" alt="Anthropic Claude Code Certificate" class="cert-modal-trigger">
+            <a href="https://verify.skilljar.com/c/5t8snjv6c2yr" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Introduction to Model Context Protocol</h4>
+            <img src="Certificates/anthropic-introduction-to-model-context-protocol.jpg" alt="Anthropic MCP Certificate" class="cert-modal-trigger">
+            <a href="https://verify.skilljar.com/c/8tmyhr4qejot" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Teaching the AI Fluency Framework</h4>
+            <img src="Certificates/anthropic-teaching-ai-fluency-framework.jpg" alt="Anthropic Teaching AI Fluency Certificate" class="cert-modal-trigger">
+            <a href="https://verify.skilljar.com/c/j3ftuovk4d2p" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
         </div>
       </div>
 
       <!-- Oracle -->
-      <div class="gallery-card" data-issuer="Oracle" data-category="Artificial Intelligence">
-        <div class="card-img-wrapper">
-          <img src="Certificates/oracle_agentic_ai_certified_foundations_associate.jpg" alt="Agentic AI Certified Foundations Associate" loading="lazy" class="clickable-cert">
+      <div class="cert-provider" data-org="oracle">
+        <div class="provider-header">
+          <img src="Logos/Oracle_d_logo.webp" alt="Oracle Logo" class="provider-logo">
+          <h3>Oracle</h3>
         </div>
-        <div class="card-content">
-          <h3>Agentic AI Certified Foundations Associate</h3>
-          <p class="issuer">Issuer: Oracle</p>
-          <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=346B5346DB92DBAF5377FE00AC85859B90EECDE3F2DCB7817D7D8DB29A82DA9E" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Agentic AI Certified Foundations Associate</h4>
+            <img src="Certificates/oracle_agentic_ai_certified_foundations_associate.jpg" alt="Oracle Agentic AI Foundations Certificate" class="cert-modal-trigger">
+            <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=346B5346DB92DBAF5377FE00AC85859B90EECDE3F2DCB7817D7D8DB29A82DA9E" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
         </div>
       </div>
 
       <!-- Cisco -->
-      <div class="gallery-card" data-issuer="Cisco" data-category="Cybersecurity">
-        <div class="card-img-wrapper">
-          <img src="Certificates/Cisco_Introduction_to_Cybersecurity_certificate.jpg" alt="Introduction to Cybersecurity" loading="lazy" class="clickable-cert">
+      <div class="cert-provider" data-org="cisco">
+        <div class="provider-header">
+          <img src="Logos/Cisco_logo.webp" alt="Cisco Logo" class="provider-logo">
+          <h3>Cisco</h3>
         </div>
-        <div class="card-content">
-          <h3>Introduction to Cybersecurity</h3>
-          <p class="issuer">Issuer: Cisco</p>
-          <a href="https://www.netacad.com/recognitions/verify/4c41588d-a839-4fee-a819-44cec4621f76" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Introduction to Cybersecurity</h4>
+            <img src="Certificates/Cisco_Introduction_to_Cybersecurity_certificate.jpg" alt="Cisco Introduction to Cybersecurity Certificate" class="cert-modal-trigger" id="ciscoCertImg">
+            <a href="https://www.netacad.com/recognitions/verify/4c41588d-a839-4fee-a819-44cec4621f76" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
         </div>
       </div>
 
-      <!-- Confluent -->
-      <div class="gallery-card" data-issuer="Confluent" data-category="Data analyses">
-        <div class="card-img-wrapper">
-          <img src="Certificates/Data_Streaming_Engineer_Foundations_page-0001.jpg" alt="Data Streaming Engineer Foundations" loading="lazy" class="clickable-cert">
+      <!-- CONFLUENT Developer -->
+      <div class="cert-provider" data-org="confluent">
+        <div class="provider-header">
+          <img src="Logos/CONFLUENT-Developer_dt_o_logo.png" alt="CONFLUENT Developer Logo" class="provider-logo">
+          <h3>Confluent Developer</h3>
         </div>
-        <div class="card-content">
-          <h3>Data Streaming Engineer Foundations</h3>
-          <p class="issuer">Issuer: Confluent Developer</p>
-          <a href="https://certificates.confluent.io/7f3506da-b842-4fef-8ba7-44f64ef6caba#acc.VNQfgjUO" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Data Streaming Engineer Foundations</h4>
+            <img src="Certificates/Data_Streaming_Engineer_Foundations_page-0001.jpg" alt="CONFLUENT Developer Certificate" class="cert-modal-trigger" id="confluentCertImg">
+            <a href="https://certificates.confluent.io/7f3506da-b842-4fef-8ba7-44f64ef6caba#acc.VNQfgjUO" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
         </div>
       </div>
 
       <!-- Hackviser -->
-      <div class="gallery-card" data-issuer="Hackviser" data-category="Cybersecurity">
-        <div class="card-img-wrapper">
-          <img src="Certificates/hackviser-certified-cybersecurity-foundations.jpg" alt="Certified Cybersecurity Foundations" loading="lazy" class="clickable-cert">
+      <div class="cert-provider" data-org="hackviser">
+        <div class="provider-header">
+          <img src="Logos/Hackviser_logo.jpg" alt="Hackviser Logo" class="provider-logo">
+          <h3>Hackviser</h3>
         </div>
-        <div class="card-content">
-          <h3>Certified Cybersecurity Foundations</h3>
-          <p class="issuer">Issuer: Hackviser</p>
-          <a href="https://hackviser.com/verify?id=HV-CORE-VI3OBCHH" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Certified Cybersecurity Foundations</h4>
+            <img src="Certificates/hackviser-certified-cybersecurity-foundations.jpg" alt="Hackviser Certified Cybersecurity Foundations Certificate" class="cert-modal-trigger">
+            <a href="https://hackviser.com/verify?id=HV-CORE-VI3OBCHH" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
         </div>
-      </div>
+      </div>      
 
       <!-- HackerRank -->
-      <div class="gallery-card" data-issuer="HackerRank" data-category="Data analyses">
-        <div class="card-img-wrapper">
-          <img src="Certificates/hackerrank-sql-advanced.jpg" alt="SQL (Advanced)" loading="lazy" class="clickable-cert">
+      <div class="cert-provider" data-org="hackerrank">
+        <div class="provider-header">
+          <img src="Logos/HackerRank_s_logo.png" alt="HackerRank Logo" class="provider-logo">
+          <h3>HackerRank</h3>
         </div>
-        <div class="card-content">
-          <h3>SQL (Advanced)</h3>
-          <p class="issuer">Issuer: HackerRank</p>
-          <a href="https://www.hackerrank.com/certificates/iframe/88790c6c8155" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
-        </div>
-      </div>
-
-      <div class="gallery-card" data-issuer="HackerRank" data-category="Data analyses">
-        <div class="card-img-wrapper">
-          <img src="Certificates/hackerrank-python-basic.jpg" alt="Python (Basic)" loading="lazy" class="clickable-cert">
-        </div>
-        <div class="card-content">
-          <h3>Python (Basic)</h3>
-          <p class="issuer">Issuer: HackerRank</p>
-          <a href="https://www.hackerrank.com/certificates/iframe/2e1d8d6933ac" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>SQL (Advanced)</h4>
+            <img src="Certificates/hackerrank-sql-advanced.jpg" alt="HackerRank SQL Advanced Certificate" class="cert-modal-trigger">
+            <a href="https://www.hackerrank.com/certificates/iframe/88790c6c8155" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Python (Basic)</h4>
+            <img src="Certificates/hackerrank-python-basic.jpg" alt="HackerRank Python Basic Certificate" class="cert-modal-trigger">
+            <a href="https://www.hackerrank.com/certificates/iframe/2e1d8d6933ac" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
         </div>
       </div>
 
       <!-- RedTeamLeaders -->
-      <div class="gallery-card" data-issuer="RedTeamLeaders" data-category="Artificial Intelligence">
-        <div class="card-img-wrapper">
-          <img src="Certificates/redteamleaders-offensive-agent-ai-course.jpg" alt="Offensive Agent AI Course" loading="lazy" class="clickable-cert">
+      <div class="cert-provider" data-org="redteamleaders">
+        <div class="provider-header">
+          <img src="Logos/RedTeamLeaders_s_logo.jfif" alt="RedTeamLeaders Logo" class="provider-logo">
+          <h3>RedTeamLeaders</h3>
         </div>
-        <div class="card-content">
-          <h3>Offensive Agent AI Course</h3>
-          <p class="issuer">Issuer: RedTeamLeaders</p>
-          <a href="https://courses.redteamleaders.com/completion/3ff5b8af94fab772" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
-        </div>
-      </div>
-
-      <div class="gallery-card" data-issuer="RedTeamLeaders" data-category="Cybersecurity">
-        <div class="card-img-wrapper">
-          <img src="Certificates/Introduction_to_Offensive_Security_with_Artificial_Intelligence.jpg" alt="Introduction to Offensive Security with Artificial Intelligence" loading="lazy" class="clickable-cert">
-        </div>
-        <div class="card-content">
-          <h3>Introduction to Offensive Security with Artificial Intelligence</h3>
-          <p class="issuer">Issuer: RedTeamLeaders</p>
-          <a href="https://courses.redteamleaders.com/completion/3c97b1620c7b3163" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Credential</a>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Offensive Agent AI Course</h4>
+            <img src="Certificates/redteamleaders-offensive-agent-ai-course.jpg" alt="RedTeamLeaders Offensive Agent AI Certificate" class="cert-modal-trigger">
+            <a href="https://courses.redteamleaders.com/completion/3ff5b8af94fab772" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Introduction to Offensive Security with Artificial Intelligence</h4>
+            <img src="Certificates/Introduction_to_Offensive_Security_with_Artificial_Intelligence.jpg" alt="Introduction to Offensive Security with Artificial Intelligence Certificate" class="cert-modal-trigger">
+            <a href="https://courses.redteamleaders.com/completion/3c97b1620c7b3163" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Certificate Image Lightbox Modal -->
-  <div id="certModal" class="cert-modal">
-    <span class="cert-modal-close" id="modalClose">&times;</span>
-    <button class="modal-nav modal-prev" id="modalPrev">&#10094;</button>
-    <div class="cert-modal-content">
-      <img id="modalImg" src="" alt="Certificate View">
-    </div>
-    <button class="modal-nav modal-next" id="modalNext">&#10095;</button>
+  <!-- Image Lightbox Modal -->
+<!-- Image Lightbox Modal -->
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <button class="modal-arrow modal-prev" id="modalPrevBtn" aria-label="Previous Image">&#10094;</button>
+    <img class="modal-content" id="imgFull">
+    <button class="modal-arrow modal-next" id="modalNextBtn" aria-label="Next Image">&#10095;</button>
   </div>
-</main>
 
   <footer>
     <div class="footer-container">
-      <div class="footer-col">
-        <h3>Syed Abu Khalid</h3>
-        <p>IT & Software Candidate specializing in Python, SQL, and Agentic AI solutions.</p>
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="index.html">Home</a>
+          <a href="Skills.html">Skills</a>
+          <a href="Certifications.html">Certifications</a>
+          <a href="Badges.html">Badges</a>
+          <a href="Education.html">Education</a>
+          <a href="Experience.html">Experience</a>
+          <a href="Projects.html">Projects</a>
+          <a href="Contact.html">Contact</a>
+        </nav>
       </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="Skills.html">Skills</a></li>
-          <li><a href="Certifications.html">Certifications</a></li>
-          <li><a href="Badges.html">Badges</a></li>
-          <li><a href="Education.html">Education</a></li>
-          <li><a href="Experience.html">Experience</a></li>
-          <li><a href="Projects.html">Projects</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect & Profiles</h4>
-        <div class="footer-links">
+
+      <div class="footer-column">
+        <h3>Connect &amp; Profiles</h3>
+        <div class="footer-links footer-profile-links">
           <a href="https://www.linkedin.com/in/syed-abu-khalid/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
-          <a href="tel:0567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
-          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-wallet"></i> Accredible</a>
-          <a href="https://www.credly.com/users/muhammad-affan-bukhari/badges/credly" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Credly</a>
-          <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Edu</a>
-          <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Skills</a>
+          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+          <a href="tel:+966567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
+          <a href="https://github.com/syedabukhalid" target="_blank" rel="noopener noreferrer"><i class="devicon-github-original"></i> GitHub</a>
+          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Accredible</a>
+          <a href="https://www.credly.com/users/muhammad-affan-bukhari" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-award"></i> Credly</a>
+          <a href="https://learn.microsoft.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-microsoft"></i> Microsoft</a>
+          <a href="https://edu.google.com/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Edu</a>
+          <a href="https://www.skills.google/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Skills</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Syed Abu Khalid (Muhammad Affan Bukhari). All rights reserved.</p>
-    </div>
+
+    <p class="footer-copyright">&copy; 2026 Syed Abu Khalid. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>

@@ -3,32 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Technical projects and software developments completed by Syed Abu Khalid.">
-  <title>Projects | Syed Abu Khalid</title>
+  <title>Projects - Syed Abu Khalid</title>
   <link rel="icon" type="image/jpeg" href="profile.jpg">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Devicon CDN for tech and brand logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <!-- tsParticles Engine & Preset Links CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-basic@2.12.0/tsparticles.basic.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-grab@2.12.0/tsparticles.interaction.external.grab.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-attract@2.12.0/tsparticles.interaction.external.attract.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-canvas-mask@2.12.0/tsparticles.plugin.canvas-mask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 </head>
 <body>
 
+  <!-- Lightweight Background Container for Neural Network Particle Mesh -->
   <div id="tsparticles"></div>
 
   <header>
     <nav class="navbar">
       <a href="index.html" class="logo">M. <span>Affan</span></a>
+
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="Skills.html">Skills</a></li>
-        <li><a href="Certifications.html">Certifications</a></li>
-        <li><a href="Badges.html">Badges</a></li>
-        <li><a href="Education.html">Education</a></li>
-        <li><a href="Experience.html">Experience</a></li>
-        <li><a href="Projects.html" class="active">Projects</a></li>
-        <li><a href="Contact.html">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Skills.html">Skills</a></li>
+      <li><a href="Certifications.html">Certifications</a></li>
+      <li><a href="Badges.html">Badges</a></li>
+      <li><a href="Education.html">Education</a></li>
+      <li><a href="Experience.html">Experience</a></li>
+      <li><a href="Projects.html" class="active" aria-current="page">Projects</a></li>
+      <li><a href="Contact.html">Contact</a></li>
       </ul>
+
+      <!-- Theme Toggle Switch -->
       <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle light and dark mode">
         <i class="fa-solid fa-sun"></i>
       </button>
+
+      <!-- Hamburger Toggle Button -->
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -38,77 +52,146 @@
   </header>
 
   <main>
-    <section class="section page-header-section">
-      <h1 class="page-title">Featured Technical Projects</h1>
-      <p class="page-description">A showcase of software implementations, custom web solutions, and AI automated systems.</p>
-    </section>
+<section id="projects" class="section">
+  <h2 class="section-title">Projects</h2>
+  <p style="text-align: center; margin-bottom: 2rem; color: var(--text-muted); font-size: 1.05rem;">
+    Explore my <a href="https://github.com/syedabukhalid" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">GitHub</a> profile to see my coding style, architecture choices, and recent commits.
+  </p>
+  <div class="projects-container">
+    <div class="projects-cards">
 
-    <section class="section">
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-img-wrapper">
-            <img src="Projects/project_1.png" alt="Multi-page Portfolio Site Project" loading="lazy">
-          </div>
-          <div class="project-info">
-            <h3>Responsive Dark-Futuristic Portfolio Website</h3>
-            <p>A multi-page portfolio built with vanilla HTML5, CSS3, and JavaScript, featuring interactive canvas particles, multi-carousel engines, and dark/light theme toggling.</p>
-            <div class="tech-tags">
-              <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Particles.js</span>
-            </div>
+      <!-- My personal portfolio website -->
+      <div class="project-card">
+        <div class="project-card-content">
+          <h3>My personal portfolio website</h3>
+          <p class="edu-sub">This responsive portfolio serves as a live demonstration of my fundamentals in HTML5, CSS3, and JavaScript.</p>
+        </div>
+        <div class="project-action">
+          <a href="https://syedabukhalid.github.io/My-Portfolio/" class="btn project-btn">View Project</a>
+        </div>
+      </div>
+
+      <!-- Shoaib Arif's portfolio (Box on Left, Snapshots Carousel on Right) -->
+      <div class="project-layout-row left-box">
+        <div class="project-card block-card">
+          <h3>Shoaib Arif's portfolio</h3>
+          <p class="edu-sub"><br>This is an executive portfolio website I recently engineered for a senior Telecommunications Project Manager with 22+ years of industry experience. <br><br>
+            I designed this site to instantly establish high level authority by combining key achievement metrics, an 
+            interactive timeline of his international corporate career (Huawei, Nokia, NEC), structured technical expertise 
+            cards, certification badges, and a direct client inquiry system. The site features full dark/light mode switching, 
+            responsive mobile layout, and clean typography.</p>
+          <div class="project-action">
+            <!-- Updated link to trigger modal with local folder path -->
+            <button class="btn project-btn open-modal-btn" data-src="Project_Shoaib_Arif/Project files/index.html" data-title="Shoaib Arif's portfolio">Experience Project</button>
           </div>
         </div>
-
-        <div class="project-card">
-          <div class="project-img-wrapper">
-            <img src="Projects/project_2.png" alt="Agentic AI RAG Pipeline Project" loading="lazy">
-          </div>
-          <div class="project-info">
-            <h3>Agentic AI Workflow & Vector Indexer</h3>
-            <p>Automated pipeline connecting multi-agent frameworks (AutoGen & LangChain) to vector storage for instant document reasoning and structured answer generation.</p>
-            <div class="tech-tags">
-              <span>Python</span><span>LangChain</span><span>AutoGen</span><span>Vector DB</span>
-            </div>
+        <div class="snapshot-carousel" id="shoaibCarousel">
+          <div class="carousel-track">
+            <img src="Project_Shoaib_Arif/Project_Shoaib_Arif_Snaps/Shoaib_Arif_Project_Snapshot_1.png" alt="Shoaib Arif Project Snapshot 1" class="snapshot-img">
+            <img src="Project_Shoaib_Arif/Project_Shoaib_Arif_Snaps/Shoaib_Arif_Project_Snapshot_2.png" alt="Shoaib Arif Project Snapshot 2" class="snapshot-img">
+            <img src="Project_Shoaib_Arif/Project_Shoaib_Arif_Snaps/Shoaib_Arif_Project_Snapshot_3.png" alt="Shoaib Arif Project Snapshot 3" class="snapshot-img">
+            <img src="Project_Shoaib_Arif/Project_Shoaib_Arif_Snaps/Shoaib_Arif_Project_Snapshot_4.png" alt="Shoaib Arif Project Snapshot 4" class="snapshot-img">
+            <img src="Project_Shoaib_Arif/Project_Shoaib_Arif_Snaps/Shoaib_Arif_Project_Snapshot_5.png" alt="Shoaib Arif Project Snapshot 5" class="snapshot-img">
+            <img src="Project_Shoaib_Arif/Project_Shoaib_Arif_Snaps/Shoaib_Arif_Project_Snapshot_6.png" alt="Shoaib Arif Project Snapshot 6" class="snapshot-img">
           </div>
         </div>
       </div>
-    </section>
+      
+      <!-- Zubair Alam's portfolio (Snapshots Carousel on Left, Box on Right) -->
+      <div class="project-layout-row right-box">
+        <div class="snapshot-carousel" id="zubairCarousel">
+          <div class="carousel-track">
+            <img src="Project_Zubair_Alam/Project_Zubair_Alam_Snaps/Zubair_Alam_Project_Snapshot_1.png" alt="Zubair Alam Project Snapshot 1" class="snapshot-img">
+            <img src="Project_Zubair_Alam/Project_Zubair_Alam_Snaps/Zubair_Alam_Project_Snapshot_2.png" alt="Zubair Alam Project Snapshot 2" class="snapshot-img">
+            <img src="Project_Zubair_Alam/Project_Zubair_Alam_Snaps/Zubair_Alam_Project_Snapshot_3.png" alt="Zubair Alam Project Snapshot 3" class="snapshot-img">
+            <img src="Project_Zubair_Alam/Project_Zubair_Alam_Snaps/Zubair_Alam_Project_Snapshot_4.png" alt="Zubair Alam Project Snapshot 4" class="snapshot-img">
+            <img src="Project_Zubair_Alam/Project_Zubair_Alam_Snaps/Zubair_Alam_Project_Snapshot_5.png" alt="Zubair Alam Project Snapshot 5" class="snapshot-img">
+            <img src="Project_Zubair_Alam/Project_Zubair_Alam_Snaps/Zubair_Alam_Project_Snapshot_6.png" alt="Zubair Alam Project Snapshot 6" class="snapshot-img">
+          </div>
+        </div>
+        <div class="project-card block-card">
+          <h3>Zubair Alam's portfolio</h3>
+          <p class="edu-sub"><br>This is another senior engineering portfolio website I designed and developed. <br> <br>
+            For this project, I turned 19+ years of international telecom engineering experience across 4 countries into a clean,
+            modern digital presence. Key features include an interactive career timeline with deep-dive pop-up modals for each role
+            (Huawei, Ericsson, ZTE), visual technical skill badges, certification showcases, and a full dark/light mode toggle.</p>
+          <div class="project-action">
+            <!-- Updated link to trigger modal with local folder path -->
+            <button class="btn project-btn open-modal-btn" data-src="Project_Zubair_Alam/Project files/index.html" data-title="Zubair Alam's portfolio">Experience Project</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- POPUP MODAL HTML CONTAINER (Place this right before </body>) -->
+      <div id="projectModal" class="modal-overlay">
+        <div class="modal-container">
+          <!-- Chrome-style Tab Bar -->
+          <div class="chrome-tab-bar">
+            <div class="chrome-tab-list">
+              <div class="chrome-tab active">
+                <svg class="chrome-icon" viewBox="0 0 24 24" width="16" height="16">
+                  <path fill="#4285F4" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                  <circle fill="#EA4335" cx="12" cy="12" r="5"/>
+                  <circle fill="#FBBC05" cx="12" cy="12" r="3"/>
+                  <circle fill="#34A853" cx="12" cy="12" r="1.5"/>
+                </svg>
+                <span id="chromeTabTitle" class="chrome-tab-title">Project Title</span>
+              </div>
+            </div>
+            <!-- Square Chrome Close button at top right -->
+            <button id="closeModalBtn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+          </div>
+          <iframe id="projectIframe" src="" title="Project Live View" frameborder="0"></iframe>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
   </main>
+
+  <!-- Image Lightbox Modal -->
+<!-- Image Lightbox Modal -->
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <button class="modal-arrow modal-prev" id="modalPrevBtn" aria-label="Previous Image">&#10094;</button>
+    <img class="modal-content" id="imgFull">
+    <button class="modal-arrow modal-next" id="modalNextBtn" aria-label="Next Image">&#10095;</button>
+  </div>
 
   <footer>
     <div class="footer-container">
-      <div class="footer-col">
-        <h3>Syed Abu Khalid</h3>
-        <p>IT & Software Candidate specializing in Python, SQL, and Agentic AI solutions.</p>
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="index.html">Home</a>
+          <a href="Skills.html">Skills</a>
+          <a href="Certifications.html">Certifications</a>
+          <a href="Badges.html">Badges</a>
+          <a href="Education.html">Education</a>
+          <a href="Experience.html">Experience</a>
+          <a href="Projects.html">Projects</a>
+          <a href="Contact.html">Contact</a>
+        </nav>
       </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="Skills.html">Skills</a></li>
-          <li><a href="Certifications.html">Certifications</a></li>
-          <li><a href="Badges.html">Badges</a></li>
-          <li><a href="Education.html">Education</a></li>
-          <li><a href="Experience.html">Experience</a></li>
-          <li><a href="Projects.html">Projects</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect & Profiles</h4>
-        <div class="footer-links">
+
+      <div class="footer-column">
+        <h3>Connect &amp; Profiles</h3>
+        <div class="footer-links footer-profile-links">
           <a href="https://www.linkedin.com/in/syed-abu-khalid/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
-          <a href="tel:0567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
-          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-wallet"></i> Accredible</a>
-          <a href="https://www.credly.com/users/muhammad-affan-bukhari/badges/credly" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Credly</a>
-          <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Edu</a>
-          <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Skills</a>
+          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+          <a href="tel:+966567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
+          <a href="https://github.com/syedabukhalid" target="_blank" rel="noopener noreferrer"><i class="devicon-github-original"></i> GitHub</a>
+          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Accredible</a>
+          <a href="https://www.credly.com/users/muhammad-affan-bukhari" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-award"></i> Credly</a>
+          <a href="https://learn.microsoft.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-microsoft"></i> Microsoft</a>
+          <a href="https://edu.google.com/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Edu</a>
+          <a href="https://www.skills.google/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Skills</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Syed Abu Khalid (Muhammad Affan Bukhari). All rights reserved.</p>
-    </div>
+
+    <p class="footer-copyright">&copy; 2026 Syed Abu Khalid. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>

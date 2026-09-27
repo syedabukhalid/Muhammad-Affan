@@ -3,32 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Teaching, freelancing, and practical software engineering experience of Syed Abu Khalid.">
-  <title>Experience | Syed Abu Khalid</title>
+  <title>Experience - Syed Abu Khalid</title>
   <link rel="icon" type="image/jpeg" href="profile.jpg">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Devicon CDN for tech and brand logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <!-- tsParticles Engine & Preset Links CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-basic@2.12.0/tsparticles.basic.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-grab@2.12.0/tsparticles.interaction.external.grab.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-attract@2.12.0/tsparticles.interaction.external.attract.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-canvas-mask@2.12.0/tsparticles.plugin.canvas-mask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 </head>
 <body>
 
+  <!-- Lightweight Background Container for Neural Network Particle Mesh -->
   <div id="tsparticles"></div>
 
   <header>
     <nav class="navbar">
       <a href="index.html" class="logo">M. <span>Affan</span></a>
+
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="Skills.html">Skills</a></li>
-        <li><a href="Certifications.html">Certifications</a></li>
-        <li><a href="Badges.html">Badges</a></li>
-        <li><a href="Education.html">Education</a></li>
-        <li><a href="Experience.html" class="active">Experience</a></li>
-        <li><a href="Projects.html">Projects</a></li>
-        <li><a href="Contact.html">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Skills.html">Skills</a></li>
+      <li><a href="Certifications.html">Certifications</a></li>
+      <li><a href="Badges.html">Badges</a></li>
+      <li><a href="Education.html">Education</a></li>
+      <li><a href="Experience.html" class="active" aria-current="page">Experience</a></li>
+      <li><a href="Projects.html">Projects</a></li>
+      <li><a href="Contact.html">Contact</a></li>
       </ul>
+
+      <!-- Theme Toggle Switch -->
       <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle light and dark mode">
         <i class="fa-solid fa-sun"></i>
       </button>
+
+      <!-- Hamburger Toggle Button -->
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -38,78 +52,100 @@
   </header>
 
   <main>
-    <section class="section page-header-section">
-      <h1 class="page-title">Practical Experience</h1>
-      <p class="page-description">Hands-on experience in online technical instruction, freelance web development, and AI agent integration.</p>
-    </section>
+<section id="experience" class="section">
+      <h2 class="section-title">Experience</h2>
+      <div class="experience-container">
+        <div class="experience-cards">
 
-    <section class="section">
-      <div class="experience-list">
-        <div class="exp-card">
-          <div class="exp-badge"><i class="fa-solid fa-chalkboard-user"></i> Teaching & Tutoring</div>
-          <h3>Private Online STEM & CS Tutor</h3>
-          <span class="exp-sub">AS Level Physics & Computer Science</span>
-          <p>
-            Delivering structured online tutoring for students in AS Level Physics and Computer Science curricula. Responsibilities include breaking down complex physical concepts, problem-solving methodologies, algorithm design, and foundational Python/SQL principles.
-          </p>
-        </div>
+          <!-- Computer Science Experience Row -->
+           <div class="experience-layout-row left-box">
+            <div class="exp-card block-card">
+              <div class="exp-header">
+                <h3>Private AS Levels Tutor</h3>
+                <span class="exp-subject">Computer Science</span>
+              </div>
+              <p>
+                Delivered private online lectures for Cambridge International AS Level Computer Science (9618), helping students understand complex technical concepts through interactive classes. I created custom learning materials, practice problems, and exam preparation strategies tailored to Cambridge International AS Level Computer Science 9618 standards.
+              </p>
+            </div>
+            <div class="testimonial-carousel" id="csTestimonialsCarousel">
+              <div class="carousel-track">
+                <img src="Testimonials/Computer Science students/PC_Testimonials_Snapshot_Taha-Tahir.jpeg" alt="Computer Science Testimonial Taha Tahir" class="snapshot-img">
+                <img src="Testimonials/Computer Science students/PC_Testimonials_Snapshot_Humza.jpeg" alt="Computer Science Testimonial Humza" class="snapshot-img">
+                <img src="Testimonials/Computer Science students/PC_Testimonials_Snapshot_Taha-Tahir.jpeg" alt="Computer Science Testimonial Taha Tahir" class="snapshot-img">
+                <img src="Testimonials/Computer Science students/PC_Testimonials_Snapshot_Humza.jpeg" alt="Computer Science Testimonial Humza" class="snapshot-img">
+              </div>
+            </div>
+          </div>
 
-        <div class="exp-card">
-          <div class="exp-badge"><i class="fa-solid fa-laptop-code"></i> Web Development</div>
-          <h3>Freelance Web Developer & IT Consultant</h3>
-          <span class="exp-sub">Client Web Solutions & Optimization</span>
-          <p>
-            Designing and developing responsive custom websites for private clients and personal projects. Implementing clean vanilla HTML/CSS/JS, database backends, and dark futuristic user interfaces optimized for modern accessibility and device responsiveness.
-          </p>
-        </div>
+          <!-- Physics Experience Row (Carousel Left, Box Right) -->
+           <div class="experience-layout-row right-box">
+            <div class="testimonial-carousel" id="physicsTestimonialsCarousel">
+              <div class="carousel-track">
+                <img src="Testimonials/Physics students/Testimonials_Snapshot_Usman.jpeg" alt="Physics Testimonial Usman" class="snapshot-img">
+                <img src="Testimonials/Physics students/Testimonials_Snapshot_Ali.jpeg" alt="Physics Testimonial Ali" class="snapshot-img">
+                <img src="Testimonials/Physics students/Testimonials_Snapshot_Usman.jpeg" alt="Physics Testimonial Usman" class="snapshot-img">
+                <img src="Testimonials/Physics students/Testimonials_Snapshot_Ali.jpeg" alt="Physics Testimonial Ali" class="snapshot-img">
+              </div>
+            </div>
+            <div class="exp-card block-card">
+              <div class="exp-header">
+                <h3>Private AS Levels Tutor</h3>
+                <span class="exp-subject">Physics</span>
+              </div>
+              <p>
+                I provide dedicated private online lectures for Edexcel IAL AS Level Physics, guiding students through Unit 1 (Mechanics and Materials), Unit 2 (Waves and Electricity), and Unit 3 (Practical Skills). My interactive lessons simplified complex physical principles and mathematical applications. Using SaveMyExams notes alongside my own custom designed practice problems, I help students bridge the gap between theory and exam application, ensuring they feel confident and fully prepared on exam day.
+              </p>
+            </div>
+          </div>
 
-        <div class="exp-card">
-          <div class="exp-badge"><i class="fa-solid fa-microchip"></i> Technical Implementation</div>
-          <h3>Agentic AI Workflow Practitioner</h3>
-          <span class="exp-sub">Independent Technical Exercises</span>
-          <p>
-            Designing autonomous multi-agent workflows using LangChain and AutoGen. Implementing RAG (Retrieval-Augmented Generation) architectures with vector databases to process complex data streams and document sets.
-          </p>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Image Lightbox Modal -->
+<!-- Image Lightbox Modal -->
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <button class="modal-arrow modal-prev" id="modalPrevBtn" aria-label="Previous Image">&#10094;</button>
+    <img class="modal-content" id="imgFull">
+    <button class="modal-arrow modal-next" id="modalNextBtn" aria-label="Next Image">&#10095;</button>
+  </div>
+
   <footer>
     <div class="footer-container">
-      <div class="footer-col">
-        <h3>Syed Abu Khalid</h3>
-        <p>IT & Software Candidate specializing in Python, SQL, and Agentic AI solutions.</p>
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="index.html">Home</a>
+          <a href="Skills.html">Skills</a>
+          <a href="Certifications.html">Certifications</a>
+          <a href="Badges.html">Badges</a>
+          <a href="Education.html">Education</a>
+          <a href="Experience.html">Experience</a>
+          <a href="Projects.html">Projects</a>
+          <a href="Contact.html">Contact</a>
+        </nav>
       </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="Skills.html">Skills</a></li>
-          <li><a href="Certifications.html">Certifications</a></li>
-          <li><a href="Badges.html">Badges</a></li>
-          <li><a href="Education.html">Education</a></li>
-          <li><a href="Experience.html">Experience</a></li>
-          <li><a href="Projects.html">Projects</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect & Profiles</h4>
-        <div class="footer-links">
+
+      <div class="footer-column">
+        <h3>Connect &amp; Profiles</h3>
+        <div class="footer-links footer-profile-links">
           <a href="https://www.linkedin.com/in/syed-abu-khalid/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
-          <a href="tel:0567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
-          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-wallet"></i> Accredible</a>
-          <a href="https://www.credly.com/users/muhammad-affan-bukhari/badges/credly" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Credly</a>
-          <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Edu</a>
-          <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Skills</a>
+          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+          <a href="tel:+966567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
+          <a href="https://github.com/syedabukhalid" target="_blank" rel="noopener noreferrer"><i class="devicon-github-original"></i> GitHub</a>
+          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Accredible</a>
+          <a href="https://www.credly.com/users/muhammad-affan-bukhari" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-award"></i> Credly</a>
+          <a href="https://learn.microsoft.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-microsoft"></i> Microsoft</a>
+          <a href="https://edu.google.com/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Edu</a>
+          <a href="https://www.skills.google/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Skills</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Syed Abu Khalid (Muhammad Affan Bukhari). All rights reserved.</p>
-    </div>
+
+    <p class="footer-copyright">&copy; 2026 Syed Abu Khalid. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>

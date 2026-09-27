@@ -3,32 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Syed Abu Khalid (Muhammad Affan Bukhari) for professional collaborations, hiring, and technical inquiries.">
-  <title>Contact | Syed Abu Khalid</title>
+  <title>Contact - Syed Abu Khalid</title>
   <link rel="icon" type="image/jpeg" href="profile.jpg">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Devicon CDN for tech and brand logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <!-- tsParticles Engine & Preset Links CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-basic@2.12.0/tsparticles.basic.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-grab@2.12.0/tsparticles.interaction.external.grab.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-attract@2.12.0/tsparticles.interaction.external.attract.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-canvas-mask@2.12.0/tsparticles.plugin.canvas-mask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 </head>
 <body>
 
+  <!-- Lightweight Background Container for Neural Network Particle Mesh -->
   <div id="tsparticles"></div>
 
   <header>
     <nav class="navbar">
       <a href="index.html" class="logo">M. <span>Affan</span></a>
+
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="Skills.html">Skills</a></li>
-        <li><a href="Certifications.html">Certifications</a></li>
-        <li><a href="Badges.html">Badges</a></li>
-        <li><a href="Education.html">Education</a></li>
-        <li><a href="Experience.html">Experience</a></li>
-        <li><a href="Projects.html">Projects</a></li>
-        <li><a href="Contact.html" class="active">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Skills.html">Skills</a></li>
+      <li><a href="Certifications.html">Certifications</a></li>
+      <li><a href="Badges.html">Badges</a></li>
+      <li><a href="Education.html">Education</a></li>
+      <li><a href="Experience.html">Experience</a></li>
+      <li><a href="Projects.html">Projects</a></li>
+      <li><a href="Contact.html" class="active" aria-current="page">Contact</a></li>
       </ul>
+
+      <!-- Theme Toggle Switch -->
       <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle light and dark mode">
         <i class="fa-solid fa-sun"></i>
       </button>
+
+      <!-- Hamburger Toggle Button -->
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -38,114 +52,104 @@
   </header>
 
   <main>
-    <section class="section page-header-section">
-      <h1 class="page-title">Get In Touch</h1>
-      <p class="page-description">Have a project in mind, a tutoring inquiry, or want to connect? Reach out using the direct channels below.</p>
-    </section>
+<section id="contact" class="section">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-container">
+        <!-- Left Side Details -->
+        <div class="contact-info">
+          <h3>Get in Touch</h3>
+          <p class="contact-sub">Have a question or want to work together? Drop me a message!</p>
 
-    <section class="section">
-      <div class="two-column-layout">
-        <!-- Direct Contact Details -->
-        <div class="column-text">
-          <div class="contact-info-card">
-            <h3>Contact Details</h3>
-            <div class="contact-item">
-              <i class="fa-solid fa-envelope"></i>
-              <div>
-                <span>Email</span>
-                <a href="mailto:syedabukhalid.pro@gmail.com">syedabukhalid.pro@gmail.com</a>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <i class="fa-solid fa-phone"></i>
-              <div>
-                <span>Phone</span>
-                <a href="tel:0567967138">0567967138</a>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <i class="fa-brands fa-linkedin"></i>
-              <div>
-                <span>LinkedIn</span>
-                <a href="https://www.linkedin.com/in/syed-abu-khalid/" target="_blank" rel="noopener noreferrer">syed-abu-khalid</a>
-              </div>
+          <div class="info-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <strong>Email</strong>
+              <p><a href="mailto:syedabukhalid.pro@gmail.com" target="_blank" rel="noopener noreferrer">syedabukhalid.pro@gmail.com</a></p>
             </div>
           </div>
 
-          <div class="contact-info-card mt-2">
-            <h3>Verified Wallets</h3>
-            <div class="wallet-links">
-              <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" class="badge-link-btn"><i class="fa-solid fa-wallet"></i> Accredible</a>
-              <a href="https://www.credly.com/users/muhammad-affan-bukhari/badges/credly" target="_blank" rel="noopener noreferrer" class="badge-link-btn"><i class="fa-solid fa-certificate"></i> Credly</a>
-              <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" class="badge-link-btn"><i class="fa-brands fa-google"></i> Google Edu</a>
-              <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761" target="_blank" rel="noopener noreferrer" class="badge-link-btn"><i class="fa-solid fa-graduation-cap"></i> Google Skills</a>
+          <div class="info-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <strong>Phone</strong>
+              <p><a href="tel:+966567967138">+966 56 796 7138</a></p>
             </div>
           </div>
-        </div>
 
-        <!-- Contact Form UI (Front-end only demonstration) -->
-        <div class="column-media">
-          <div class="form-container-card">
-            <h3>Send a Message</h3>
-            <p class="form-note">Note: This is a static UI. Direct messages are best sent via the email link provided.</p>
-            <form id="contactForm" onsubmit="event.preventDefault(); alert('Please send direct inquiries to syedabukhalid.pro@gmail.com');">
-              <div class="form-group">
-                <label for="name">Your Name</label>
-                <input type="text" id="name" placeholder="John Doe" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Your Email</label>
-                <input type="email" id="email" placeholder="john@example.com" required>
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
-              </div>
-              <button type="submit" class="btn btn-full">Submit Form</button>
-            </form>
+          <div class="info-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            <div>
+              <strong>WhatsApp</strong>
+              <p> <a href="https://wa.link/87ixgk" target="_blank" rel="noopener noreferrer">you can click here</a> or <a href="https://wa.me/966567967138" target="_blank" rel="noopener noreferrer">you can click here</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="fa-brands fa-linkedin"></i>
+            <div>
+              <strong>LinkedIn</strong>
+              <p><a href="https://www.linkedin.com/in/syed-abu-khalid/" target="_blank" rel="noopener noreferrer">linkedin.com/in/syed-abu-khalid/</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Location</strong>
+              <p><a href="https://maps.app.goo.gl/r87WWgJw9U3M8tPj6" target="_blank" rel="noopener noreferrer"> Riyadh, KSA </a></p>
+            <p><a href="https://maps.app.goo.gl/9j8eX5dM8AyS41Mm6" target="_blank" rel="noopener noreferrer"> Islamabad, Pakistan </a></p>
+            </div>
           </div>
         </div>
+
+        <!-- Right Side Form -->
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/meajnpbj" method="POST">
+          <input type="text" name="name" autocomplete="name" placeholder="Your Name" required>
+          <input type="tel" name="phone" autocomplete="tel" placeholder="Your Number (Optional)">
+          <input type="email" name="email" autocomplete="email" placeholder="Your Email" required>
+          <input type="text" name="subject" autocomplete="off" placeholder="Subject" required>
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn" id="submitBtn">Send Message</button>
+          <p style="text-align: center;"> OR </p>
+          <a href="https://forms.gle/8LvuGeu4SNAqk6as9" target="_blank" class="btn" id="googleFormButton" style="text-align: center; text-decoration: none; display: inline-block;">Submit a Google form</a>
+        </form>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="footer-container">
-      <div class="footer-col">
-        <h3>Syed Abu Khalid</h3>
-        <p>IT & Software Candidate specializing in Python, SQL, and Agentic AI solutions.</p>
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="index.html">Home</a>
+          <a href="Skills.html">Skills</a>
+          <a href="Certifications.html">Certifications</a>
+          <a href="Badges.html">Badges</a>
+          <a href="Education.html">Education</a>
+          <a href="Experience.html">Experience</a>
+          <a href="Projects.html">Projects</a>
+          <a href="Contact.html">Contact</a>
+        </nav>
       </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="Skills.html">Skills</a></li>
-          <li><a href="Certifications.html">Certifications</a></li>
-          <li><a href="Badges.html">Badges</a></li>
-          <li><a href="Education.html">Education</a></li>
-          <li><a href="Experience.html">Experience</a></li>
-          <li><a href="Projects.html">Projects</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect & Profiles</h4>
-        <div class="footer-links">
+
+      <div class="footer-column">
+        <h3>Connect &amp; Profiles</h3>
+        <div class="footer-links footer-profile-links">
           <a href="https://www.linkedin.com/in/syed-abu-khalid/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
-          <a href="tel:0567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
-          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-wallet"></i> Accredible</a>
-          <a href="https://www.credly.com/users/muhammad-affan-bukhari/badges/credly" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Credly</a>
-          <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Edu</a>
-          <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Skills</a>
+          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+          <a href="tel:+966567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
+          <a href="https://github.com/syedabukhalid" target="_blank" rel="noopener noreferrer"><i class="devicon-github-original"></i> GitHub</a>
+          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Accredible</a>
+          <a href="https://www.credly.com/users/muhammad-affan-bukhari" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-award"></i> Credly</a>
+          <a href="https://learn.microsoft.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-microsoft"></i> Microsoft</a>
+          <a href="https://edu.google.com/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Edu</a>
+          <a href="https://www.skills.google/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Skills</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Syed Abu Khalid (Muhammad Affan Bukhari). All rights reserved.</p>
-    </div>
+
+    <p class="footer-copyright">&copy; 2026 Syed Abu Khalid. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>

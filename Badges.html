@@ -3,32 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Verified micro-credentials and technical badges earned by Syed Abu Khalid.">
-  <title>Badges | Syed Abu Khalid</title>
+  <title>Badges - Syed Abu Khalid</title>
   <link rel="icon" type="image/jpeg" href="profile.jpg">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Devicon CDN for tech and brand logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <!-- tsParticles Engine & Preset Links CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-basic@2.12.0/tsparticles.basic.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-grab@2.12.0/tsparticles.interaction.external.grab.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-attract@2.12.0/tsparticles.interaction.external.attract.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-canvas-mask@2.12.0/tsparticles.plugin.canvas-mask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 </head>
 <body>
 
+  <!-- Lightweight Background Container for Neural Network Particle Mesh -->
   <div id="tsparticles"></div>
 
   <header>
     <nav class="navbar">
       <a href="index.html" class="logo">M. <span>Affan</span></a>
+
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="Skills.html">Skills</a></li>
-        <li><a href="Certifications.html">Certifications</a></li>
-        <li><a href="Badges.html" class="active">Badges</a></li>
-        <li><a href="Education.html">Education</a></li>
-        <li><a href="Experience.html">Experience</a></li>
-        <li><a href="Projects.html">Projects</a></li>
-        <li><a href="Contact.html">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Skills.html">Skills</a></li>
+      <li><a href="Certifications.html">Certifications</a></li>
+      <li><a href="Badges.html" class="active" aria-current="page">Badges</a></li>
+      <li><a href="Education.html">Education</a></li>
+      <li><a href="Experience.html">Experience</a></li>
+      <li><a href="Projects.html">Projects</a></li>
+      <li><a href="Contact.html">Contact</a></li>
       </ul>
+
+      <!-- Theme Toggle Switch -->
       <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle light and dark mode">
         <i class="fa-solid fa-sun"></i>
       </button>
+
+      <!-- Hamburger Toggle Button -->
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -38,121 +52,425 @@
   </header>
 
   <main>
-    <section class="section page-header-section">
-      <h1 class="page-title">Verified Digital Badges</h1>
-      <p class="page-description">Micro-credentials earned through practical lab assessments and specialized technical workshops.</p>
-      
-      <div class="external-badges-bar">
-        <span>Verify directly on official wallets of <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Accredible</a>, <a href="https://www.credly.com/users/muhammad-affan-bukhari" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Credly</a> and <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Google for Education</a>.</span>
+<!-- Badges Section -->
+    <section id="badges" class="section">
+      <h2 class="section-title">Badges</h2>
+      <p style="text-align: center; margin-bottom: 2rem; color: var(--text-muted); font-size: 1.05rem;">
+        Explore my <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Accredible</a>, <a href="https://www.credly.com/users/muhammad-affan-bukhari" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Credly</a> and <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Google for Education profile</a> to see my verified Certificates and Badges achievements.
+      </p>
+
+      <!-- Organization Filter Box for Badges -->
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all" data-target="badges">
+          <span>All</span>
+        </button>
+        <button class="filter-btn" data-filter="google" data-target="badges">
+          <img src="Logos/Google_logo.webp" alt="Google Logo">
+          <span>Google</span>
+        </button>
+        <button class="filter-btn" data-filter="microsoft" data-target="badges">
+          <img src="Logos/Microsoft_t_logo.png" alt="Microsoft Logo">
+          <span>Microsoft</span>
+        </button>
+        <button class="filter-btn" data-filter="cisco" data-target="badges">
+          <img src="Logos/Cisco_logo.webp" alt="Cisco Logo">
+          <span>Cisco</span>
+        </button>
+        <button class="filter-btn" data-filter="confluent" data-target="badges">
+          <img src="Logos/CONFLUENT-Developer_dt_o_logo.png" alt="Confluent Logo">
+          <span>Confluent</span>
+        </button>
+        <button class="filter-btn" data-filter="oracle" data-target="badges">
+          <img src="Logos/Oracle_d_logo.webp" alt="Oracle Logo">
+          <span>Oracle</span>
+        </button>
       </div>
-    </section>
 
-    <section class="section">
-      <div class="gallery-grid">
-        <div class="gallery-card badge-card">
-          <div class="card-img-wrapper">
-            <img src="Badges/Gemini_for_Security_Engineers.png" alt="Gemini for Security Engineers Badge" loading="lazy">
+      <!-- Google Badges -->
+      <div class="cert-provider" data-org="google">
+        <div class="provider-header">
+          <img src="Logos/Google_logo.webp" alt="Google Logo" class="provider-logo">
+          <h3>Google</h3>
+        </div>
+      <div class ="provider-description">
+        <p style="text-align: left; margin-bottom: 2rem; color: var(--text-muted); font-size: 1.05rem;">
+           I earned these badges from <a href="https://www.skills.google/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Google Skills</a> after completing short training courses. You can <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">view my full profile here.</a> 
+        </p>
+      </div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Google Certified Educator Level 1 Exam (A)</h4>
+            <img src="Badges/Google_Certified_Educator_Level_1_Exam_(A).png" alt="Google Certified Educator Level 1 Exam (A) Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27105687" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
           </div>
-          <div class="card-content">
-            <h3>Gemini for Security Engineers</h3>
-            <p class="issuer">Issuer: Google Skills</p>
-            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27154957" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Badge</a>
+          <div class="cert-card">
+            <h4>Gemini for Security Engineers</h4>
+            <img src="Badges/Gemini_for_Security_Engineers.png" alt="Gemini for Security Engineers Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27154957" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Security Command Center Fundamentals</h4>
+            <img src="Badges/Security_Command_Center_Fundamentals.png" alt="Security Command Center Fundamentals Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27164145" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Gemini for Data Scientists and Analysts</h4>
+            <img src="Badges/Gemini_for_Data_Scientists_and_Analysts.png" alt="Gemini for Data Scientists and Analysts Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27288783" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Trust and Security with Google Cloud</h4>
+            <img src="Badges/Trust_and_Security_with_Google_Cloud.png" alt="Trust and Security with Google Cloud Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27421847" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Managing and Securing the Apigee Hybrid API Platform</h4>
+            <img src="Badges/Managing_and_Securing_the_Apigee_Hybrid_API_Platform.png" alt="Managing and Securing the Apigee Hybrid API Platform Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27786019" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Machine Learning Operations (MLOps) for Generative AI</h4>
+            <img src="Badges/Machine_Learning_Operations_(MLOps)_for_Generative_AI.png" alt="Machine Learning Operations (MLOps) for Generative AI Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27811127" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Machine Learning Operations (MLOps) with Agent Platform: Model Evaluation</h4>
+            <img src="Badges/Machine_Learning_Operations_(MLOps)_with_Agent_Platform-_Model_Evaluation.png" alt="Machine Learning Operations (MLOps) with Agent Platform: Model Evaluation Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27922074" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Responsible AI for Developers: Fairness & Bias</h4>
+            <img src="Badges/Responsible_AI_for_Developers-_Fairness_&_Bias.png" alt="Responsible AI for Developers: Fairness & Bias Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27922810" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Responsible AI for Developers: Interpretability & Transparency</h4>
+            <img src="Badges/Responsible_AI_for_Developers-_Interpretability_&_Transparency.png" alt="Responsible AI for Developers: Interpretability & Transparency Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27924986" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Responsible AI for Developers: Privacy & Safety</h4>
+            <img src="Badges/Responsible_AI_for_Developers-_Privacy_&amp;_Safety.png" alt="Responsible AI for Developers: Privacy & Safety Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27946084" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Introduction to Security in the World of AI</h4>
+            <img src="Badges/Introduction_to_Security_in_the_World_of_AI.png" alt="Introduction to Security in the World of AI Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27946084" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Model Armor: Securing AI Deployments</h4>
+            <img src="Badges/Model_Armor-_Securing_AI_Deployments.png" alt="Model Armor: Securing AI Deployments Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27948836" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Mitigate Threats and Vulnerabilities with Security Command Center</h4>
+            <img src="Badges/Mitigate_Threats_and_Vulnerabilities_with_Security_Command_Center.png" alt="Mitigate Threats and Vulnerabilities with Security Command Center Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27924986" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Introduction to Security Principles in Cloud Computing</h4>
+            <img src="Badges/Introduction_to_Security_Principles_in_Cloud_Computing.png" alt="Introduction to Security Principles in Cloud Computing Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/28035964" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Strategies for Cloud Security Risk Management</h4>
+            <img src="Badges/Strategies_for_Cloud_Security_Risk_Management.png" alt="Strategies for Cloud Security Risk Management Badge" class="cert-modal-trigger">
+            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/28039714" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
           </div>
         </div>
+      </div>
 
-        <div class="gallery-card badge-card">
-          <div class="card-img-wrapper">
-            <img src="Badges/Security_Command_Center_Fundamentals.png" alt="Security Command Center Fundamentals Badge" loading="lazy">
+      <!--Google AI Educator Series -->
+      <div class="cert-provider" data-org="google">
+        <div class="Text-header">
+          <p style="text-align: left; margin-bottom: 2rem; color: var(--text-muted); font-size: 1.05rem;">
+            Badges I earned from <a href="https://edu.google.com/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Google for Education</a> by doing <a href="https://educertifications.google/google-ai-educator-series" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green); text-decoration: underline;">Google AI Educator Series</a> short training sessions: 
+          </p>
+        </div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Introduction to Gemini for Education</h4>
+            <img src="Badges/Introduction_to_Gemini_for_Education.png" alt="Introduction to Gemini for Education Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/6fd73075-7852-4bf8-a7ab-d27404c11a8c#acc.xnkKUH06" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
           </div>
-          <div class="card-content">
-            <h3>Security Command Center Fundamentals</h3>
-            <p class="issuer">Issuer: Google Skills</p>
-            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27164145" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Badge</a>
+          <div class="cert-card">
+            <h4>Introduction to Gemini Notebook</h4>
+            <img src="Badges/Introduction_to_Gemini_Notebook.png" alt="Introduction to Gemini Notebook Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/674c3685-0676-4da0-a4a8-f466dca516a4#acc.cteD9wVb" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Introduction to Vibe Coding with Gemini</h4>
+            <img src="Badges/Introduction_to_Vibe_Coding_with_Gemini.png" alt="Introduction to Vibe Coding with Gemini Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/dcbdf91c-8ecf-43aa-a61e-14230a80fa4f#acc.De21IHZ0" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Adapt (level) materials to meet student needs</h4>
+            <img src="Badges/Adapt_(level)_materials_to_meet_student_needs_badge.png" alt="Adapt (level) materials to meet student needs Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/0801709d-b81b-4c32-add7-147da80e5cd8#acc.HU1s2oFW" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Evaluate resources and claims</h4>
+            <img src="Badges/Evaluate_resources_and_claims_badge.png" alt="Evaluate resources and claims Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/c0b8c0a4-d52b-4713-8037-85ea22ad6292#acc.3fcxE7o0" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Google AI Educator Series: 5 badges earned</h4>
+            <img src="Badges/Google_AI_Educator_Series_5_badges_earned_bagde.png" alt="Google AI Educator Series: 5 badges earned Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/1776a317-c5e7-4964-86da-2b32e5917b07#acc.6WjEqmpS" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Create scaffolds to support reading comprehension</h4>
+            <img src="Badges/Create_scaffolds_to_support_reading_comprehension_badge.png" alt="Create scaffolds to support reading comprehension Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/f4362a95-8c0a-4d91-977d-32238123813a?key=046e30b0594bd57341675a866b4c040c5bf7172891bc92e087e1d372e828929e" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Remixing to gain deeper insights</h4>
+            <img src="Badges/Remixing_to_gain_deeper_insights.png" alt="Remixing to gain deeper insights Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/2a8f089f-820b-4fc5-b1c5-5991cef16567#acc.0wrCHaft" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Create a lesson plan and supporting materials</h4>
+            <img src="Badges/Create_a_lesson_plan_and_supporting_materials.png" alt="Create a lesson plan and supporting materials Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/a2abcd89-4aaf-480a-bfdd-496939fc9382#acc.SVYxoCbR" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Design assessments that capture student thinking</h4>
+            <img src="Badges/Design_assessments_that_capture_student_thinking.png" alt="Design assessments that capture student thinking Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/a7fbc1c5-89de-4d1a-bfa4-5776624e10da#acc.P04Wj23A" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Google AI Educator Series: 10 badges earned</h4>
+            <img src="Badges/Google_AI_Educator_Series_10_badges_earned.png" alt="Google AI Educator Series: 10 badges earned Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/8218d394-0a76-4e1e-915b-bc67765a8690#acc.50hWDLRG" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Build student inquiry skills</h4>
+            <img src="Badges/Build_student_inquiry_skills.png" alt="Build student inquiry skills Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/512e1f3a-4e37-4730-949c-fc393bb1a5ab#acc.CSPo3FEI" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Design problem solving scenarios that encourage critical thinking</h4>
+            <img src="Badges/Design_problem_solving_scenarios_that_encourage_critical_thinking.png" alt="Design problem solving scenarios that encourage critical thinking Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/478189f8-6ce6-4d3c-bfd4-403023a9ed41#acc.wcFadNLu" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Create a role-play scenario</h4>
+            <img src="Badges/Create_a_role-play_scenario.png" alt="Create a role-play scenario Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/aebc2bba-b26e-4ee1-bdc7-4fa1cb1c2c54#acc.njzhf6Z3" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Remixing to gain deeper insights</h4>
+            <img src="Badges/Remixing_to_gain_deeper_insights (Higher_Ed_Pedagogical).png" alt="Remixing to gain deeper insights Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/706c6eed-5b9b-4915-bc11-dad7e3b54d5e#acc.SJRs2HVw" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Google AI Educator Series: 15 badges earned</h4>
+            <img src="Badges/Google_AI_Educator_Series_15_badges_earned.png" alt="Google AI Educator Series: 15 badges earned Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/c4e817cc-2e81-4bcc-a57a-da88238a7259#acc.SQs6uqG2" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Generate tailored scenarios</h4>
+            <img src="Badges/Generate_tailored_scenarios.png" alt="Generate tailored scenarios Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/3cc5b0db-0173-4302-8fe0-4182a65c62c0#acc.4PkBIahm" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Visualize complex concepts through custom images</h4>
+            <img src="Badges/Visualize_complex_concepts_through_custom_images.png" alt="Visualize complex concepts through custom images Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/60bf1ebf-1be4-443c-972b-0b14481c6fd5#acc.Nq81JG7l" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Create process-based assessments</h4>
+            <img src="Badges/Create_process-based_assessments.png" alt="Create process-based assessments Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/996128bc-958a-40b4-8915-64e18fdf50c2#acc.mM58lOe3" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Create rubrics for assessments</h4>
+            <img src="Badges/Create_rubrics_for_assessments.png" alt="Create rubrics for assessments Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/b7b807e1-0ded-4230-85f9-70d45fa27566#acc.FOVycLk3" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Make research more accessible to students</h4>
+            <img src="Badges/Make_research_more_accessible_to_students.png" alt="Make research more accessible to students Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/a2869c0d-2bfa-4ae3-acb5-02a60294855e#acc.uAYNRb7c" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Integrate your industry knowledge into your course</h4>
+            <img src="Badges/Integrate_your_industry_knowledge_into_your_course.png" alt="Integrate your industry knowledge into your course Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/30b748c2-2ce7-459e-970e-a9185097b6e4#acc.k3GiaYRT" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Connect career readiness and course outcomes</h4>
+            <img src="Badges/Connect_career_readiness_and_course_outcomes.png" alt="Connect career readiness and course outcomes Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/c44cbd67-5482-4558-90fb-1622e2d41753#acc.sB3xPH4u" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Generate authentic scenarios from images/visuals</h4>
+            <img src="Badges/Generate_authentic_scenarios_from_imagesvisuals.png" alt="Generate authentic scenarios from images/visuals Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/064504a0-4ae8-4f48-b0db-6ccb125727ea#acc.ohismBnI" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Active Problem-Solving</h4>
+            <img src="Badges/Active_Problem-Solving.png" alt="Active Problem-Solving Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/753c00eb-388a-416c-912e-7c4ba16fb9fa#acc.cP2sJXB4" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Facilitate Interactive Experiences With AI Quests: Market Marshes</h4>
+            <img src="Badges/Facilitate_Interactive_Experiences_With_AI_Quests-_Market_Marshes.png" alt="Facilitate Interactive Experiences With AI Quests: Market Marshes Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/097c893d-406a-40a0-b432-db9b4dec636c#acc.Fgp4b8GB" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Planning the Inquiry</h4>
+            <img src="Badges/Planning_the_Inquiry.png" alt="Planning the Inquiry Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/33bfa8cd-4ea4-4795-9961-b5417dd6255d#acc.zeCY2fHQ" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Draft parent communications</h4>
+            <img src="Badges/Draft_parent_communications.png" alt="Draft parent communications Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/a2ef124d-2c5e-4c9b-b6df-e10d4d4608ab#acc.1olJXtnq" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Turn benchmark data into instructional strategies</h4>
+            <img src="Badges/Turn_benchmark_data_into_instructional_strategies.png" alt="Turn benchmark data into instructional strategies Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/97e6adfb-9b61-407d-a079-486263b495a5#acc.cSDAulMd" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Build just-in-time coaching</h4>
+            <img src="Badges/Build_just-in-time_coaching.png" alt="Build just-in-time coaching Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/768c8267-12d8-4967-bda7-52ac58701ca0#acc.5d24ZARe" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Write better grants</h4>
+            <img src="Badges/Write_better_grants.png" alt="Write better grants Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/5e981f67-e798-41da-a240-18052062fc9e#acc.c35MJYUf" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Synthesize research findings</h4>
+            <img src="Badges/Synthesize_research_findings.png" alt="Synthesize research findings Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/d1782fb7-cb60-41ec-8c51-982ec6690c2c#acc.a15zpNuH" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Eliminate invisible work</h4>
+            <img src="Badges/Eliminate_invisible_work.png" alt="Eliminate invisible work Badge" class="cert-modal-trigger">
+            <a href="https://edu.google.accredible.com/5c274d82-3b39-40ba-b97f-da11a2c828f6#acc.Tky2YBgp" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
           </div>
         </div>
+      </div>
 
-        <div class="gallery-card badge-card">
-          <div class="card-img-wrapper">
-            <img src="Badges/Machine_Learning_Operations_(MLOps)_for_Generative_AI.png" alt="MLOps for Generative AI Badge" loading="lazy">
+      <!-- Microsoft Badges -->
+      <div class="cert-provider" data-org="microsoft">
+        <div class="provider-header">
+          <img src="Logos/Microsoft_t_logo.png" alt="Microsoft Logo" class="provider-logo">
+          <h3>Microsoft</h3>
+        </div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Design and implement database objects with SQL</h4>
+            <img src="Badges/Microsoft_Badge.svg" alt="Microsoft Design and implement database objects with SQL Badge" class="cert-modal-trigger">
+            <a href="https://learn.microsoft.com/api/achievements/share/en-us/MuhammadAffanBukhari-2036/8VBUHXJW?sharingId=889055E55B93E0B6" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
           </div>
-          <div class="card-content">
-            <h3>MLOps for Generative AI</h3>
-            <p class="issuer">Issuer: Google Skills</p>
-            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27811127" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Badge</a>
+          <div class="cert-card">
+            <h4>Implement programmability objects with SQL</h4>
+            <img src="Badges/Microsoft_Badge.svg" alt="Microsoft Implement programmability objects with SQL Badge" class="cert-modal-trigger">
+            <a href="https://learn.microsoft.com/api/achievements/share/en-us/MuhammadAffanBukhari-2036/WMD8ABYN?sharingId=889055E55B93E0B6" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
+          </div>
+          <div class="cert-card">
+            <h4>Write advanced T-SQL code</h4>
+            <img src="Badges/Microsoft_Badge.svg" alt="Microsoft Write advanced T-SQL code Badge" class="cert-modal-trigger">
+            <a href="https://learn.microsoft.com/api/achievements/share/en-us/MuhammadAffanBukhari-2036/P6WETQB4?sharingId=889055E55B93E0B6" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
           </div>
         </div>
+      </div>
 
-        <div class="gallery-card badge-card">
-          <div class="card-img-wrapper">
-            <img src="Badges/Trust_and_Security_with_Google_Cloud.png" alt="Trust and Security with Google Cloud Badge" loading="lazy">
-          </div>
-          <div class="card-content">
-            <h3>Trust & Security with Google Cloud</h3>
-            <p class="issuer">Issuer: Google Skills</p>
-            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27421847" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Badge</a>
+      <!-- Cisco Badges -->
+      <div class="cert-provider" data-org="cisco">
+        <div class="provider-header">
+          <img src="Logos/Cisco_logo.webp" alt="Cisco Logo" class="provider-logo">
+          <h3>Cisco</h3>
+        </div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Introduction to Cybersecurity</h4>
+            <img src="Badges/Introduction_to_Cybersecurity_badge.png" alt="Cisco Introduction to Cybersecurity Badge" class="cert-modal-trigger">
+            <a href="https://www.netacad.com/recognitions/verify/4c41588d-a839-4fee-a819-44cec4621f76" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
           </div>
         </div>
+      </div>
 
-        <div class="gallery-card badge-card">
-          <div class="card-img-wrapper">
-            <img src="Badges/Introduction_to_Gemini_for_Education.png" alt="Introduction to Gemini for Education Badge" loading="lazy">
-          </div>
-          <div class="card-content">
-            <h3>Introduction to Gemini for Education</h3>
-            <p class="issuer">Issuer: Google for Education</p>
-            <a href="https://edu.google.accredible.com/6fd73075-7852-4bf8-a7ab-d27404c11a8c#acc.xnkKUH06" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Badge</a>
+      <!-- CONFLUENT Developer -->
+      <div class="cert-provider" data-org="confluent">
+        <div class="provider-header">
+          <img src="Logos/CONFLUENT-Developer_dt_o_logo.png" alt="CONFLUENT Developer Logo" class="provider-logo">
+          <h3>Confluent Developer</h3>
+        </div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Data Streaming Engineer Foundations</h4>
+            <img src="Badges/Data_Streaming_Engineer_Foundations.png" alt="CONFLUENT Developer Certificate" class="cert-modal-trigger" id="confluentCertImg">
+            <a href="https://certificates.confluent.io/7f3506da-b842-4fef-8ba7-44f64ef6caba#acc.VNQfgjUO" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
           </div>
         </div>
+      </div>
 
-        <div class="gallery-card badge-card">
-          <div class="card-img-wrapper">
-            <img src="Badges/Model_Armor-_Securing_AI_Deployments.png" alt="Model Armor Securing AI Deployments Badge" loading="lazy">
-          </div>
-          <div class="card-content">
-            <h3>Model Armor: Securing AI Deployments</h3>
-            <p class="issuer">Issuer: Google Skills</p>
-            <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761/badges/27948836" target="_blank" rel="noopener noreferrer" class="btn btn-small">Verify Badge</a>
+      <!-- Oracle Badges -->
+      <div class="cert-provider" data-org="oracle">
+        <div class="provider-header">
+          <img src="Logos/Oracle_d_logo.webp" alt="Oracle Logo" class="provider-logo">
+          <h3>Oracle</h3>
+        </div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>Agentic AI Certified Foundations Associate</h4>
+            <img src="Badges/Agentic_AI_Certified_Foundations_Associate_badge.png" alt="Oracle Agentic AI Certified Foundations Associate Badge" class="cert-modal-trigger">
+            <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=346B5346DB92DBAF5377FE00AC85859B90EECDE3F2DCB7817D7D8DB29A82DA9E" target="_blank" rel="noopener noreferrer" class="btn cert-btn">Verify Credential</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Image Lightbox Modal -->
+<!-- Image Lightbox Modal -->
+  <div id="imageModal" class="modal">
+    <span class="modal-close">&times;</span>
+    <button class="modal-arrow modal-prev" id="modalPrevBtn" aria-label="Previous Image">&#10094;</button>
+    <img class="modal-content" id="imgFull">
+    <button class="modal-arrow modal-next" id="modalNextBtn" aria-label="Next Image">&#10095;</button>
+  </div>
+
   <footer>
     <div class="footer-container">
-      <div class="footer-col">
-        <h3>Syed Abu Khalid</h3>
-        <p>IT & Software Candidate specializing in Python, SQL, and Agentic AI solutions.</p>
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="index.html">Home</a>
+          <a href="Skills.html">Skills</a>
+          <a href="Certifications.html">Certifications</a>
+          <a href="Badges.html">Badges</a>
+          <a href="Education.html">Education</a>
+          <a href="Experience.html">Experience</a>
+          <a href="Projects.html">Projects</a>
+          <a href="Contact.html">Contact</a>
+        </nav>
       </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="Skills.html">Skills</a></li>
-          <li><a href="Certifications.html">Certifications</a></li>
-          <li><a href="Badges.html">Badges</a></li>
-          <li><a href="Education.html">Education</a></li>
-          <li><a href="Experience.html">Experience</a></li>
-          <li><a href="Projects.html">Projects</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect & Profiles</h4>
-        <div class="footer-links">
+
+      <div class="footer-column">
+        <h3>Connect &amp; Profiles</h3>
+        <div class="footer-links footer-profile-links">
           <a href="https://www.linkedin.com/in/syed-abu-khalid/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email Me</a>
-          <a href="tel:0567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
-          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-wallet"></i> Accredible</a>
-          <a href="https://www.credly.com/users/muhammad-affan-bukhari/badges/credly" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Credly</a>
-          <a href="https://edu.google.accredible.com/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Edu</a>
-          <a href="https://www.skills.google/public_profiles/4b2668df-834c-4ac3-86bd-82a32398b761" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Skills</a>
+          <a href="mailto:syedabukhalid.pro@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+          <a href="tel:+966567967138"><i class="fa-solid fa-phone"></i> 0567967138</a>
+          <a href="https://github.com/syedabukhalid" target="_blank" rel="noopener noreferrer"><i class="devicon-github-original"></i> GitHub</a>
+          <a href="https://www.credential.net/profile/muhammadaffanbukhari/wallet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-certificate"></i> Accredible</a>
+          <a href="https://www.credly.com/users/muhammad-affan-bukhari" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-award"></i> Credly</a>
+          <a href="https://learn.microsoft.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-microsoft"></i> Microsoft</a>
+          <a href="https://edu.google.com/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Google Edu</a>
+          <a href="https://www.skills.google/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Skills</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Syed Abu Khalid (Muhammad Affan Bukhari). All rights reserved.</p>
-    </div>
+
+    <p class="footer-copyright">&copy; 2026 Syed Abu Khalid. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
