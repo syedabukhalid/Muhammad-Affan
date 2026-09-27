@@ -8,7 +8,7 @@
 
 Welcome to the repository for my official personal portfolio website. The site is organized as a responsive multi-page portfolio for displaying my technical skills, certifications, verified digital badges, education, experience, projects, and contact information.
 
-👉 **Live Site:** [https://syedabukhalid.github.io/My-Portfolio/](https://syedabukhalid.github.io/My-Portfolio/)
+👉 **Live Site:** [https://syedabukhalid.github.io/Muhammad-Affan/](https://syedabukhalid.github.io/Muhammad-Affan/)
 
 ---
 
