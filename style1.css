@@ -308,7 +308,7 @@ header {
   gap: 3.5rem;
   align-items: center;
   width: max-content;
-  animation: smoothSlide var(--marquee-duration, 35s) linear infinite;
+  animation: smoothSlide 35s linear infinite;
 }
 
 .logo-slider-track:hover {
@@ -317,10 +317,10 @@ header {
 
 @keyframes smoothSlide {
   0% {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translateX(-50%);
   }
 }
 
@@ -430,7 +430,7 @@ header {
   display: flex;
   gap: 1.2rem;
   width: max-content;
-  animation: scrollSkills var(--marquee-duration, 28s) linear infinite;
+  animation: scrollSkills 28s linear infinite;
 }
 
 /* Pause animation on hover */
@@ -556,8 +556,8 @@ header {
 
 /* Animations */
 @keyframes scrollSkills {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 @keyframes modalFadeIn {
@@ -649,7 +649,7 @@ header {
   display: flex;
   gap: 1.2rem;
   width: max-content;
-  animation: scrollCerts var(--marquee-duration, 38s) linear infinite;
+  animation: scrollCerts 38s linear infinite;
 }
 
 /* Pause animation on hover */
@@ -660,10 +660,10 @@ header {
 /* Keyframe for Scrolling Right to Left */
 @keyframes scrollCerts {
   0% {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translateX(-50%);
   }
 }
 
@@ -1934,7 +1934,7 @@ footer {
   align-items: center;
   gap: 1rem;
   width: max-content;
-  animation: homeOverviewSlideRTL var(--marquee-duration, 65s) linear infinite;
+  animation: homeOverviewSlideLTR 65s linear infinite;
   will-change: transform;
 }
 
@@ -1942,10 +1942,11 @@ footer {
   animation-play-state: paused;
 }
 
-/* The duplicated track travels continuously right-to-left. */
-@keyframes homeOverviewSlideRTL {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
+/* The duplicated track travels from right-to-left in reverse order:
+   starting at -50% and moving to 0% creates the requested left-to-right motion. */
+@keyframes homeOverviewSlideLTR {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 /* Badge / testimonial / project image cards */
@@ -2149,363 +2150,6 @@ select {
   min-height: 0;
 }
 
-
-/* =========================================================
-   JAVASCRIPT COMPATIBILITY + RESPONSIVE SAFETY
-   ---------------------------------------------------------
-   These rules support the behavior introduced by the merged
-   script.js without changing the existing visual design.
-   ========================================================= */
-
-/* Prevent page-level horizontal overflow while allowing
-   individual marquee areas to use their own clipping. */
-html {
-  overflow-x: hidden;
-}
-
-body.modal-open,
-body.nav-open {
-  overflow: hidden;
-}
-
-/* Reserve stable space for the animated role line so the
-   hero does not jump when the text changes length. */
-#typedRole {
-  display: inline-block;
-  min-height: 1.6em;
-  line-height: 1.6;
-  vertical-align: bottom;
-}
-
-/* Keep buttons and controls usable with keyboard focus. */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--accent-green);
-  outline-offset: 3px;
-}
-
-/* Continuous marquee areas remain clipped horizontally but
-   preserve normal vertical touch scrolling on mobile. */
-.logo-slider-container,
-.skills-carousel-side,
-.certs-carousel-side,
-.home-overview-carousel {
-  touch-action: pan-y;
-  overscroll-behavior-x: contain;
-  min-width: 0;
-}
-
-.logo-slider-track,
-.skills-carousel-track,
-.certs-carousel-track,
-.home-overview-track {
-  flex: 0 0 max-content;
-  will-change: transform;
-}
-
-/* Never allow a card to force a viewport wider than the screen. */
-.certs-carousel-side .cert-overview-card,
-.skills-carousel-side .skill-card,
-.home-overview-image-card,
-.home-overview-logo-card {
-  max-width: calc(100vw - 2rem);
-}
-
-/* Lightbox image remains contained inside the viewport. */
-.modal-content {
-  width: auto;
-  max-width: min(85vw, 1400px);
-  max-height: calc(100vh - 2rem);
-}
-
-/* Skill and certificate modal bodies can scroll internally when
-   content becomes taller than the available viewport. */
-.skill-modal-content,
-.cert-modal-content {
-  max-height: calc(100vh - 2rem);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Project preview never exceeds the viewport. */
-.modal-container {
-  max-width: calc(100vw - 2rem);
-  max-height: calc(100vh - 2rem);
-  min-width: 0;
-  min-height: 0;
-}
-
-#projectIframe {
-  min-width: 0;
-  min-height: 0;
-}
-
-/* Support either .nav-links directly or Code 2's optional
-   #siteNavigation wrapper when the mobile drawer is open. */
-@media (max-width: 768px) {
-  .navbar {
-    justify-content: flex-start;
-  }
-
-  /* The hamburger remains on the RIGHT side of the mobile header. */
-  .hamburger {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    min-height: 48px;
-    padding: 0;
-    margin-left: 0.5rem;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .hamburger .bar {
-    width: 25px;
-    height: 3px;
-  }
-
-  /* Keep the mobile drawer on the right side. */
-  #siteNavigation,
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: min(75vw, 300px);
-    max-width: calc(100vw - 1rem);
-    height: 100dvh;
-    min-height: 100vh;
-    background-color: var(--header-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    transition: right 0.4s ease-in-out;
-    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
-    z-index: 1050;
-    padding: 5rem 1.25rem 2rem;
-  }
-
-  #siteNavigation.nav-active,
-  #siteNavigation.is-open,
-  .nav-links.nav-active,
-  .nav-links.is-open {
-    right: 0;
-  }
-
-  /* When #siteNavigation is a wrapper around .nav-links, keep
-     the actual list in a normal vertical layout. */
-  #siteNavigation .nav-links {
-    position: static;
-    right: auto;
-    width: 100%;
-    max-width: none;
-    height: auto;
-    min-height: 0;
-    padding: 0;
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: none;
-  }
-
-  .nav-links a {
-    font-size: 1.2rem;
-  }
-
-  /* Mobile close controls receive a real 48x48px touch target. */
-  .modal-close,
-  .skill-modal-close,
-  .cert-modal-close,
-  .modal-close-btn {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    min-height: 48px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .modal-close {
-    top: 0.75rem;
-    right: 0.75rem;
-    font-size: 32px;
-  }
-
-  .skill-modal-close {
-    top: 0.5rem;
-    right: 0.5rem;
-    font-size: 28px;
-  }
-
-  .cert-modal-close {
-    top: 0.5rem;
-    right: 0.5rem;
-    font-size: 28px;
-  }
-
-  /* Constrain every modal to the mobile viewport and allow the
-     modal itself/body to scroll internally when necessary. */
-  .modal,
-  .skill-modal,
-  .cert-modal {
-    padding: 0.75rem;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    align-items: center;
-  }
-
-  .modal-content {
-    width: auto;
-    max-width: calc(100vw - 3.5rem);
-    max-height: calc(100vh - 3.5rem);
-    max-height: calc(100dvh - 3.5rem);
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .skill-modal-content,
-  .cert-modal-content {
-    width: min(92vw, 750px);
-    max-width: calc(100vw - 1.5rem);
-    max-height: calc(100vh - 1.5rem);
-    max-height: calc(100dvh - 1.5rem);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .skill-modal-body p,
-  .cert-modal-content h3 {
-    overflow-wrap: anywhere;
-  }
-
-  /* Keep mobile form controls at the browser-safe 16px size. */
-  .contact-form input,
-  .contact-form textarea,
-  .contact-form select,
-  .contact-form button {
-    font-size: 16px;
-  }
-
-  /* The live project preview needs an internal viewport rather than
-     growing beyond the phone screen. */
-  .modal-container {
-    width: calc(100vw - 1rem);
-    height: calc(100vh - 1rem);
-    height: calc(100dvh - 1rem);
-    max-width: calc(100vw - 1rem);
-    max-height: calc(100vh - 1rem);
-    max-height: calc(100dvh - 1rem);
-    border-radius: 8px;
-  }
-
-  .chrome-tab-bar {
-    min-height: 44px;
-  }
-
-  .modal-close-btn {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    min-height: 48px;
-    font-size: 20px;
-  }
-
-  /* Explicit mobile snapshot sizing/order so the images remain
-     visible without forcing horizontal overflow. */
-  .snapshot-carousel,
-  .testimonial-carousel {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-  }
-
-  .snapshot-img,
-  img.testimonial-img {
-    max-width: min(85%, calc(100vw - 2rem));
-  }
-
-  /* Marquee cards become fluid before the very narrow phone range. */
-  .skills-carousel-side .skill-card {
-    width: min(250px, calc(100vw - 3rem));
-  }
-
-  .certs-carousel-side .cert-overview-card {
-    width: min(260px, calc(100vw - 3rem));
-  }
-
-  .home-overview-image-card {
-    width: min(220px, calc(100vw - 3rem));
-  }
-
-  .home-overview-logo-card {
-    width: min(190px, calc(100vw - 3rem));
-  }
-}
-
-/* Very narrow phones: keep cards and modals safely inside the
-   viewport instead of waiting until the 380px breakpoint. */
-@media (max-width: 380px) {
-  .skills-carousel-side .skill-card {
-    width: calc(100vw - 2rem);
-  }
-
-  .certs-carousel-side .cert-overview-card {
-    width: calc(100vw - 2rem);
-    max-width: calc(100vw - 2rem);
-  }
-
-  .home-overview-image-card,
-  .testimonial-overview-card,
-  .home-overview-carousel-testimonials .home-overview-image-card,
-  .home-overview-carousel-projects .home-overview-image-card {
-    width: calc(100vw - 2rem);
-    max-width: calc(100vw - 2rem);
-  }
-
-  .home-overview-logo-card {
-    width: calc(100vw - 2rem);
-    max-width: calc(100vw - 2rem);
-  }
-
-  .modal,
-  .skill-modal,
-  .cert-modal {
-    padding: 0.5rem;
-  }
-
-  .modal-content {
-    max-width: calc(100vw - 3rem);
-    max-height: calc(100vh - 3rem);
-    max-height: calc(100dvh - 3rem);
-  }
-
-  .skill-modal-content,
-  .cert-modal-content {
-    max-width: calc(100vw - 1rem);
-  }
-
-  .page-navigation {
-    gap: 0.75rem;
-  }
-
-  .page-nav-link {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-}
-
-
 /* Respect users who disable animation at the OS/browser level. */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -2634,7 +2278,7 @@ select:focus-visible {
 @media (max-width: 480px) {
   .home-overview-track {
     gap: 0.75rem;
-    animation-duration: var(--marquee-duration, 52s);
+    animation-duration: 52s;
   }
 
   .home-overview-image-card {
