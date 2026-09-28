@@ -1869,3 +1869,440 @@ footer {
     opacity: 0.4;
   }
 }
+
+/* =========================================================
+   HOME OVERVIEW SECTIONS
+   Added to keep the same visual language as Skills/Certifications
+   while matching the requested left/right layout pattern.
+   ========================================================= */
+
+.home-overview-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.home-overview-container.home-overview-left-text {
+  flex-direction: row;
+}
+
+.home-overview-container.home-overview-right-text {
+  flex-direction: row;
+}
+
+.home-overview-info {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.home-overview-info h3 {
+  font-size: 1.8rem;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.home-overview-desc {
+  color: var(--text-main);
+  opacity: 0.9;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.home-overview-action {
+  margin-top: 1rem;
+}
+
+.home-overview-carousel {
+  flex: 1.2;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  padding: 14px 0;
+  mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+}
+
+.home-overview-track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: max-content;
+  animation: homeOverviewSlideLTR 65s linear infinite;
+  will-change: transform;
+}
+
+.home-overview-carousel:hover .home-overview-track {
+  animation-play-state: paused;
+}
+
+/* The duplicated track travels from right-to-left in reverse order:
+   starting at -50% and moving to 0% creates the requested left-to-right motion. */
+@keyframes homeOverviewSlideLTR {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Badge / testimonial / project image cards */
+.home-overview-image-card {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-overview-image-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-green);
+  box-shadow: var(--glow-shadow);
+}
+
+.home-overview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.testimonial-overview-card,
+.home-overview-carousel-testimonials .home-overview-image-card {
+  width: 270px;
+  height: 190px;
+}
+
+.home-overview-carousel-projects .home-overview-image-card {
+  width: 280px;
+  height: 180px;
+}
+
+/* Education logos use a little more breathing room than the badge cards. */
+.home-overview-logo-card {
+  flex: 0 0 auto;
+  width: 190px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-overview-logo-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-green);
+  box-shadow: var(--glow-shadow);
+}
+
+.home-overview-logo {
+  width: 100%;
+  height: 75px;
+  object-fit: contain;
+  display: block;
+  cursor: pointer;
+}
+
+.home-overview-logo-card span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Contact has no image panel, so the copy is intentionally centered. */
+.contact-overview-card {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.contact-overview-inner h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.contact-overview-inner .home-overview-desc {
+  margin-bottom: 1.75rem;
+}
+
+/* =========================================================
+   PAGE PREVIOUS / NEXT ARROW NAVIGATION
+   Injected by script.js into Skills → Contact pages.
+   Navigation wraps around so every requested page has
+   both a working previous and next control.
+   ========================================================= */
+
+.page-navigation {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.page-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 160px;
+  justify-content: center;
+  padding: 0.8rem 1.1rem;
+  color: var(--text-main);
+  text-decoration: none;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  transition: transform 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.page-nav-link:hover,
+.page-nav-link:focus-visible {
+  color: var(--accent-green);
+  border-color: var(--accent-green);
+  box-shadow: var(--glow-shadow);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.page-nav-arrow {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.page-nav-label {
+  font-weight: 600;
+}
+
+/* =========================================================
+   EXTRA RESPONSIVE SAFETY
+   These overrides fix common overflow problems on tablets,
+   narrow laptops, and small phones without changing theme.
+   ========================================================= */
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.home-container,
+.home-overview-container,
+.education-container,
+.experience-container,
+.projects-container,
+.contact-container {
+  min-width: 0;
+}
+
+.contact-container {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-text,
+.home-img,
+.skills-info-side,
+.skills-carousel-side,
+.certs-carousel-side,
+.certs-info-side {
+  min-width: 0;
+}
+
+/* Project modal stays usable on smaller screens. */
+.modal-container {
+  width: min(95vw, 1400px);
+  height: min(92vh, 1000px);
+}
+
+#projectIframe {
+  min-height: 0;
+}
+
+/* Respect users who disable animation at the OS/browser level. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .navbar {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .home-overview-container,
+  .home-overview-container.home-overview-left-text,
+  .home-overview-container.home-overview-right-text {
+    flex-direction: column;
+  }
+
+  /* On smaller screens the requested "side-by-side" design becomes
+     a readable vertical stack, with the carousel kept visible. */
+  .home-overview-info,
+  .home-overview-carousel {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .home-overview-right-text .home-overview-info {
+    order: 1;
+  }
+
+  .home-overview-right-text .home-overview-carousel {
+    order: 2;
+  }
+
+  .contact-overview-card {
+    padding: 2rem;
+  }
+
+  .page-navigation {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.9rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .home-text h1 {
+    overflow-wrap: anywhere;
+  }
+
+  .home-overview-info h3,
+  .contact-overview-inner h3 {
+    font-size: 1.5rem;
+  }
+
+  .home-overview-desc {
+    font-size: 0.95rem;
+  }
+
+  .home-overview-carousel {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .home-overview-image-card {
+    width: 190px;
+    height: 150px;
+  }
+
+  .testimonial-overview-card,
+  .home-overview-carousel-testimonials .home-overview-image-card {
+    width: 230px;
+    height: 165px;
+  }
+
+  .home-overview-carousel-projects .home-overview-image-card {
+    width: 240px;
+    height: 155px;
+  }
+
+  .home-overview-logo-card {
+    width: 160px;
+    height: 135px;
+  }
+
+  .home-overview-logo {
+    height: 65px;
+  }
+
+  .contact-overview-card {
+    padding: 1.5rem 1.1rem;
+  }
+
+  .page-navigation {
+    flex-direction: column;
+    padding: 0 1rem 2.5rem;
+  }
+
+  .page-nav-link {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .home-overview-track {
+    gap: 0.75rem;
+    animation-duration: 52s;
+  }
+
+  .home-overview-image-card {
+    width: 170px;
+    height: 135px;
+  }
+
+  .testimonial-overview-card,
+  .home-overview-carousel-testimonials .home-overview-image-card {
+    width: 205px;
+    height: 145px;
+  }
+
+  .home-overview-carousel-projects .home-overview-image-card {
+    width: 215px;
+    height: 140px;
+  }
+
+  .home-overview-logo-card {
+    width: 145px;
+    height: 120px;
+  }
+
+  .home-overview-logo {
+    height: 55px;
+  }
+}
