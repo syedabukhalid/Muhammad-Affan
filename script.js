@@ -1067,6 +1067,379 @@
   }
 
   /* =======================================================
+     9A. INTERACTIVE HOMEPAGE MARQUEE CONTROLS
+     -------------------------------------------------------
+     The existing CSS animations continue to control the automatic
+     movement exactly as before. This additional feature simply lets
+     the user manually move the same animated tracks when desired.
+
+     Supported interactions:
+       - Mouse wheel over a carousel
+       - Horizontal trackpad scrolling
+       - Click-and-drag with a mouse
+       - Touch swipe on phones/tablets
+
+     Manual movement temporarily pauses the CSS animation, changes
+     its current timeline position, and then resumes from that new
+     position. This prevents the carousel from jumping back to the
+     beginning after the user manually moves it.
+
+     The following homepage carousels are included:
+       - Skills
+       - Certifications
+       - Badges
+       - Education
+       - Experience / Testimonials
+       - Projects
+     ======================================================= */
+
+  let interactiveMarqueeScrollingInitialized = false;
+
+  function initInteractiveMarqueeScrolling() {
+    /* Prevent duplicate event listeners if initialization runs twice. */
+    if (interactiveMarqueeScrollingInitialized) return;
+
+    const carousels = [
+      {
+        containerSelector: ".skills-carousel-side",
+        trackSelector: ".skills-carousel-track"
+      },
+      {
+        containerSelector: ".certs-carousel-side",
+        trackSelector: ".certs-carousel-track"
+      },
+      {
+        containerSelector: ".home-overview-carousel-badges",
+        trackSelector: ".home-overview-track"
+      },
+      {
+        containerSelector: ".home-overview-carousel-education",
+        trackSelector: ".home-overview-track"
+      },
+      {
+        containerSelector: ".home-overview-carousel-testimonials",
+        trackSelector: ".home-overview-track"
+      },
+      {
+        containerSelector: ".home-overview-carousel-projects",
+        trackSelector: ".home-overview-track"
+      }
+    ];
+
+    const getMarqueeAnimation = (track) => {
+      if (!track || typeof track.getAnimations !== "function") return null;
+
+      /*
+       * CSS animations appear in getAnimations(). We use the first
+       * animation with a usable timeline because each marquee track
+       * has one continuous CSS animation controlling its transform.
+       */
+      return (
+        track
+          .getAnimations()
+          .find((animation) => animation.effect && animation.currentTime != null) ||
+        null
+      );
+    };
+
+    const getAnimationDuration = (animation, track) => {
+      const effectDuration = animation?.effect?.getComputedTiming?.().duration;
+
+      if (
+        typeof effectDuration === "number" &&
+        Number.isFinite(effectDuration) &&
+        effectDuration > 0
+      ) {
+        return effectDuration;
+      }
+
+      /* Fallback for browsers where the animation effect does not expose duration. */
+      const durationText = getComputedStyle(track).animationDuration.split(",")[0].trim();
+      if (!durationText) return 0;
+
+      const durationValue = parseFloat(durationText);
+      if (!Number.isFinite(durationValue) || durationValue <= 0) return 0;
+
+      return durationText.endsWith("ms")
+        ? durationValue
+        : durationValue * 1000;
+    };
+
+    const moveTrackByPixels = (track, pixelDelta) => {
+      if (!track || !Number.isFinite(pixelDelta) || pixelDelta === 0) return false;
+
+      const animation = getMarqueeAnimation(track);
+      if (!animation) return false;
+
+      /*
+       * The existing marquee keyframes travel from 0% to -50%.
+       * Because the HTML contains a duplicated set of items, half of
+       * the track width represents one complete seamless loop.
+       */
+      const loopWidth = track.scrollWidth / 2;
+      if (!Number.isFinite(loopWidth) || loopWidth <= 1) return false;
+
+      const duration = getAnimationDuration(animation, track);
+      if (!Number.isFinite(duration) || duration <= 0) return false;
+
+      const currentTime = Number(animation.currentTime);
+      if (!Number.isFinite(currentTime)) return false;
+
+      /*
+       * Positive pixelDelta means "move the visible track to the right".
+       * Increasing animation time moves the track left, so the signs are
+       * intentionally reversed here.
+       */
+      const timeDelta = (-pixelDelta / loopWidth) * duration;
+
+      /*
+       * Keep the timeline inside one animation cycle. Because the
+       * animation repeats forever, wrapping the time this way gives
+       * the same visual position without ever producing a negative
+       * timeline value when the user scrolls far in the opposite direction.
+       */
+      let nextTime = currentTime + timeDelta;
+      nextTime = ((nextTime % duration) + duration) % duration;
+
+      animation.pause();
+      animation.currentTime = nextTime;
+      return true;
+    };
+
+    const setupCarousel = (container, track) => {
+      if (!container || !track || container.dataset.manualScrollBound === "true") {
+        return;
+      }
+
+      container.dataset.manualScrollBound = "true";
+
+      let resumeTimer = null;
+      let pointerActive = false;
+      let horizontalDrag = false;
+      let dragMoved = false;
+      let pointerId = null;
+      let startX = 0;
+      let startY = 0;
+      let lastX = 0;
+      let suppressClickUntil = 0;
+
+      const clearResumeTimer = () => {
+        if (resumeTimer) {
+          window.clearTimeout(resumeTimer);
+          resumeTimer = null;
+        }
+      };
+
+      const isHovering = () => {
+        try {
+          return container.matches(":hover");
+        } catch (error) {
+          return false;
+        }
+      };
+
+      const resumeAnimation = () => {
+        clearResumeTimer();
+
+        /*
+         * Preserve the existing hover behavior: desktop carousels stay
+         * paused while the pointer remains over them and resume after it
+         * leaves, just as they did before manual scrolling was added.
+         */
+        if (isHovering()) return;
+
+        const animation = getMarqueeAnimation(track);
+        animation?.play();
+      };
+
+      const scheduleResume = () => {
+        clearResumeTimer();
+
+        /* A short delay lets a series of wheel/swipe movements feel continuous. */
+        resumeTimer = window.setTimeout(resumeAnimation, 900);
+      };
+
+      /*
+       * Mouse wheel + trackpad support.
+       * Horizontal trackpad movement uses deltaX directly. A normal
+       * mouse wheel uses deltaY as a convenient horizontal control so
+       * the user does not need a special horizontal scrollbar.
+       */
+      container.addEventListener(
+        "wheel",
+        (event) => {
+          let pixelDelta = 0;
+
+          if (event.shiftKey && Math.abs(event.deltaY) > 0) {
+            /*
+             * Shift + wheel is a horizontal scroll gesture. Browser
+             * positive horizontal deltas normally mean "scroll content
+             * to the right", which visually moves the content left.
+             * Reverse that delta so the carousel follows the user's
+             * requested left/right direction.
+             */
+            pixelDelta = -event.deltaY;
+          } else if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+            /*
+             * Horizontal trackpad gesture. deltaX uses the browser's
+             * scroll direction, so reverse it to match the direction
+             * the carousel visibly moves on screen.
+             */
+            pixelDelta = -event.deltaX;
+          } else {
+            /* Regular vertical mouse wheel becomes horizontal carousel movement. */
+            pixelDelta = -event.deltaY;
+          }
+
+          if (!Number.isFinite(pixelDelta) || Math.abs(pixelDelta) < 0.5) return;
+
+          const moved = moveTrackByPixels(track, pixelDelta);
+          if (!moved) return;
+
+          /* Stop the page itself from moving while the user controls the carousel. */
+          event.preventDefault();
+          event.stopPropagation();
+          scheduleResume();
+        },
+        { passive: false }
+      );
+
+      /*
+       * Pointer dragging provides the same manual movement on desktop
+       * as a swipe provides on touch devices.
+       */
+      container.addEventListener("pointerdown", (event) => {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+
+        pointerActive = true;
+        horizontalDrag = false;
+        dragMoved = false;
+        pointerId = event.pointerId;
+        startX = event.clientX;
+        startY = event.clientY;
+        lastX = event.clientX;
+
+        clearResumeTimer();
+
+        const animation = getMarqueeAnimation(track);
+        animation?.pause();
+      });
+
+      container.addEventListener("pointermove", (event) => {
+        if (!pointerActive || event.pointerId !== pointerId) return;
+
+        const totalX = event.clientX - startX;
+        const totalY = event.clientY - startY;
+
+        /* Decide whether this gesture is horizontal or normal page scrolling. */
+        if (!horizontalDrag && !dragMoved) {
+          if (Math.abs(totalX) < 6 && Math.abs(totalY) < 6) return;
+
+          if (Math.abs(totalX) <= Math.abs(totalY)) {
+            /* Vertical gesture: leave it to the browser/page. */
+            pointerActive = false;
+            return;
+          }
+
+          horizontalDrag = true;
+          container.setPointerCapture?.(pointerId);
+        }
+
+        if (!horizontalDrag) return;
+
+        const deltaX = event.clientX - lastX;
+        lastX = event.clientX;
+
+        if (Math.abs(deltaX) < 0.01) return;
+
+        const moved = moveTrackByPixels(track, deltaX);
+        if (!moved) return;
+
+        dragMoved = true;
+        event.preventDefault();
+        scheduleResume();
+      });
+
+      const finishPointer = (event) => {
+        if (!pointerActive || event.pointerId !== pointerId) return;
+
+        if (horizontalDrag && dragMoved) {
+          /* Prevent the drag from accidentally activating a card/lightbox on release. */
+          suppressClickUntil = performance.now() + 350;
+        }
+
+        try {
+          if (container.hasPointerCapture?.(pointerId)) {
+            container.releasePointerCapture(pointerId);
+          }
+        } catch (error) {
+          /* Pointer capture is optional; failure should never break the carousel. */
+        }
+
+        pointerActive = false;
+        horizontalDrag = false;
+        dragMoved = false;
+        pointerId = null;
+        scheduleResume();
+      };
+
+      container.addEventListener("pointerup", finishPointer);
+      container.addEventListener("pointercancel", finishPointer);
+      container.addEventListener("lostpointercapture", () => {
+        pointerActive = false;
+        horizontalDrag = false;
+        dragMoved = false;
+        pointerId = null;
+      });
+
+      /*
+       * A horizontal drag generates a normal click event after release.
+       * Suppress only that generated click; ordinary single clicks still
+       * open the existing skill modal/lightbox exactly as before.
+       */
+      container.addEventListener(
+        "click",
+        (event) => {
+          if (performance.now() < suppressClickUntil) {
+            event.preventDefault();
+            event.stopPropagation();
+            suppressClickUntil = 0;
+          }
+        },
+        true
+      );
+
+      /* Respect the existing CSS hover-pause behavior. */
+      container.addEventListener("pointerleave", () => {
+        if (!pointerActive) {
+          const animation = getMarqueeAnimation(track);
+          animation?.play();
+        }
+      });
+
+      /* Keep the page usable if the user tabs through carousel controls. */
+      container.addEventListener("focusout", () => {
+        window.setTimeout(() => {
+          if (!container.contains(document.activeElement) && !pointerActive) {
+            const animation = getMarqueeAnimation(track);
+            animation?.play();
+          }
+        }, 0);
+      });
+    };
+
+    carousels.forEach(({ containerSelector, trackSelector }) => {
+      $$(containerSelector).forEach((container) => {
+        const track = $(trackSelector, container);
+        setupCarousel(container, track);
+      });
+    });
+
+    interactiveMarqueeScrollingInitialized = true;
+  }
+
+
+  /* =======================================================
      10. CERTIFICATE / BADGE FILTER BUTTONS
      ======================================================= */
 
@@ -1486,6 +1859,7 @@
     initSkillModal();
     initImageLightbox();
     initCertificatePreviewModal();
+    initInteractiveMarqueeScrolling();
     initFilterButtons();
     initMarquees();
     initSnapshotCarousels();
