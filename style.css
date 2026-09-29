@@ -2662,3 +2662,55 @@ select:focus-visible {
     height: 55px;
   }
 }
+
+/* =========================================================
+   HOME OVERVIEW CAROUSELS: TRANSPARENT CARD BACKGROUNDS
+   ---------------------------------------------------------
+   The Certifications carousel already has a clean visual style
+   because its images visually fill the certificate cards.
+
+   The Badges, Education, Experience, and Projects overview
+   carousels use different card classes. Their cards originally
+   had a theme-colored background, border, shadow, and padding,
+   which created the extra "panel" behind the sliding images.
+
+   These overrides remove that extra background while keeping
+   the existing carousel animation, image sizing, layout,
+   hover movement, and lightbox behavior unchanged.
+   ========================================================= */
+
+/* Keep all Home Overview carousel windows transparent. */
+.home-overview-carousel {
+  background: transparent;
+}
+
+/* Remove the visible background panel from overview image cards.
+   The image itself remains fully clickable through the existing
+   .lightbox-trigger JavaScript behavior. */
+.home-overview-image-card,
+.home-overview-logo-card {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Remove the card background/border appearance from the overview
+   image cards so they visually match the clean Certifications
+   carousel style instead of looking like separate panels. */
+.home-overview-image-card {
+  border-color: transparent;
+}
+
+/* Education uses logo cards plus a text label underneath.
+   Keep the existing spacing and dimensions; only remove the
+   visible background panel. */
+.home-overview-logo-card {
+  border-color: transparent;
+}
+
+/* Preserve the existing hover effect without bringing back a
+   colored background. The border can still glow on hover. */
+.home-overview-image-card:hover,
+.home-overview-logo-card:hover {
+  background: transparent;
+}
+

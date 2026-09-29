@@ -960,14 +960,11 @@
      */
     $$(".lightbox-trigger, .cert-modal-trigger").forEach((trigger) => {
       /*
-       * Homepage certificate cards have their own dedicated certModal.
-       * Do not bind the generic image lightbox to those same cards,
-       * otherwise both modals would open from one click.
+       * Certificate overview cards now use the same shared lightbox
+       * as badges, education, testimonials, and project snapshots.
+       * The existing cert-modal-trigger class is retained because it
+       * may also be used by the site's visual styling.
        */
-      if (trigger.matches("#certifications-overview .cert-modal-trigger")) {
-        return;
-      }
-
       if (trigger.dataset.lightboxBound === "true") return;
 
       trigger.dataset.lightboxBound = "true";
@@ -1002,8 +999,10 @@
   /* =======================================================
      9. HOMEPAGE CERTIFICATE PREVIEW MODAL
      -------------------------------------------------------
-     Kept separately from the generic image lightbox so the
-     homepage certificate cards retain their existing behavior.
+     Legacy certificate-modal code is kept for compatibility.
+     Certificate overview cards now use the shared image lightbox
+     above, giving them the same previous/next navigation as the
+     other homepage overview images.
      ======================================================= */
 
   function initCertificatePreviewModal() {
@@ -1025,7 +1024,7 @@
 
     certModal.setAttribute("aria-hidden", "true");
 
-    $$("#certifications-overview .cert-modal-trigger").forEach((card) => {
+    $$("#certifications-overview .cert-modal-trigger:not(.lightbox-trigger)").forEach((card) => {
       card.addEventListener("click", (event) => {
         /*
          * This dedicated homepage modal handles the card preview.
