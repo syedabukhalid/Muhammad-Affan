@@ -2421,6 +2421,31 @@ select:focus-visible {
     font-size: 20px;
   }
 
+  /* ---------- Contact layout / iOS form zoom prevention ---------- */
+.contact-container {
+  min-width: 0;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .contact-info,
+  .contact-form {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
   /* Explicit mobile snapshot sizing/order so the images remain
      visible without forcing horizontal overflow. */
   .snapshot-carousel,
