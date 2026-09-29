@@ -1078,6 +1078,7 @@
        - Horizontal trackpad scrolling
        - Click-and-drag with a mouse
        - Touch swipe on phones/tablets
+       - Horizontal finger movement follows the user's swipe direction
 
      Manual movement temporarily pauses the CSS animation, changes
      its current timeline position, and then resumes from that new
@@ -1223,6 +1224,19 @@
       let lastX = 0;
       let suppressClickUntil = 0;
 
+      /*
+       * Touch devices get their own swipe state.
+       * Keeping touch handling separate from mouse pointer-drag handling
+       * prevents mobile browsers from treating a horizontal swipe as an
+       * ordinary page gesture before the carousel can respond to it.
+       */
+      let touchActive = false;
+      let touchHorizontal = false;
+      let touchMoved = false;
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchLastX = 0;
+
       const clearResumeTimer = () => {
         if (resumeTimer) {
           window.clearTimeout(resumeTimer);
@@ -1309,6 +1323,12 @@
        * as a swipe provides on touch devices.
        */
       container.addEventListener("pointerdown", (event) => {
+        /*
+         * Touch screens use the explicit touch handlers below.
+         * Keeping pointer handling for mouse input preserves the
+         * existing laptop/desktop drag behavior exactly as before.
+         */
+        if (event.pointerType === "touch") return;
         if (event.pointerType === "mouse" && event.button !== 0) return;
 
         pointerActive = true;
@@ -1326,6 +1346,8 @@
       });
 
       container.addEventListener("pointermove", (event) => {
+        /* Touch movement is handled separately below. */
+        if (event.pointerType === "touch") return;
         if (!pointerActive || event.pointerId !== pointerId) return;
 
         const totalX = event.clientX - startX;
@@ -1361,6 +1383,8 @@
       });
 
       const finishPointer = (event) => {
+        /* Touch screens use touchend/touchcancel below instead. */
+        if (event.pointerType === "touch") return;
         if (!pointerActive || event.pointerId !== pointerId) return;
 
         if (horizontalDrag && dragMoved) {
@@ -1391,6 +1415,125 @@
         dragMoved = false;
         pointerId = null;
       });
+
+      /*
+       * -------------------------------------------------------------
+       * Mobile touch swipe support
+       * -------------------------------------------------------------
+       * The carousel keeps its automatic CSS animation, but users can
+       * also swipe a finger horizontally across it:
+       *
+       *   Finger moves LEFT  -> carousel moves LEFT
+       *   Finger moves RIGHT -> carousel moves RIGHT
+       *
+       * A vertical finger movement is deliberately handed back to the
+       * browser so the normal page scroll remains smooth.
+       */
+      const getSingleTouch = (event) => {
+        if (!event.touches || event.touches.length !== 1) return null;
+        return event.touches[0];
+      };
+
+      container.addEventListener(
+        "touchstart",
+        (event) => {
+          const touch = getSingleTouch(event);
+          if (!touch) return;
+
+          touchActive = true;
+          touchHorizontal = false;
+          touchMoved = false;
+          touchStartX = touch.clientX;
+          touchStartY = touch.clientY;
+          touchLastX = touch.clientX;
+
+          clearResumeTimer();
+
+          /* Pause the automatic motion while the finger controls the carousel. */
+          const animation = getMarqueeAnimation(track);
+          animation?.pause();
+        },
+        { passive: true }
+      );
+
+      container.addEventListener(
+        "touchmove",
+        (event) => {
+          if (!touchActive) return;
+
+          const touch = getSingleTouch(event);
+          if (!touch) return;
+
+          const totalX = touch.clientX - touchStartX;
+          const totalY = touch.clientY - touchStartY;
+
+          /*
+           * Wait for a small movement before deciding whether this is
+           * horizontal carousel control or normal vertical page scrolling.
+           */
+          if (!touchHorizontal && !touchMoved) {
+            if (Math.abs(totalX) < 6 && Math.abs(totalY) < 6) return;
+
+            if (Math.abs(totalX) <= Math.abs(totalY)) {
+              /*
+               * Vertical swipe: stop controlling the carousel and let
+               * the browser continue scrolling the page normally.
+               */
+              touchActive = false;
+
+              const animation = getMarqueeAnimation(track);
+              animation?.play();
+              return;
+            }
+
+            touchHorizontal = true;
+          }
+
+          if (!touchHorizontal) return;
+
+          const deltaX = touch.clientX - touchLastX;
+          touchLastX = touch.clientX;
+
+          if (!Number.isFinite(deltaX) || Math.abs(deltaX) < 0.01) return;
+
+          /*
+           * Finger direction and visible carousel direction should match:
+           * moving the finger left moves the carousel left, and vice versa.
+           */
+          const moved = moveTrackByPixels(track, deltaX);
+          if (!moved) return;
+
+          touchMoved = true;
+
+          /*
+           * Once the gesture is confirmed as horizontal, prevent the page
+           * from turning it into a browser-level horizontal movement.
+           */
+          event.preventDefault();
+          event.stopPropagation();
+
+          scheduleResume();
+        },
+        { passive: false }
+      );
+
+      const finishTouch = () => {
+        if (!touchActive) return;
+
+        if (touchHorizontal && touchMoved) {
+          /* Prevent the swipe from accidentally opening the card on release. */
+          suppressClickUntil = performance.now() + 350;
+        }
+
+        touchActive = false;
+        touchHorizontal = false;
+        touchMoved = false;
+
+        scheduleResume();
+      };
+
+      container.addEventListener("touchend", finishTouch, { passive: true });
+      container.addEventListener("touchcancel", finishTouch, { passive: true });
 
       /*
        * A horizontal drag generates a normal click event after release.
