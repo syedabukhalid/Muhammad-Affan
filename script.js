@@ -48,12 +48,13 @@
    *
    * IMPORTANT:
    * "Testimonials" is included here so testimonial images never
-   * get mixed with certificates, badges, logos, or project snapshots.
+   * get mixed with certificates, badges, logos, Education_logos or project snapshots.
    */
   const imageGalleryGroups = new Set([
     "Certificates",
     "Badges",
     "Logos",
+    "Education_logos",
     "Testimonials",
     "Project_Shoaib_Arif_Snaps",
     "Project_Zubair_Alam_Snaps"
@@ -377,14 +378,14 @@
       },
       {
         selector: 'img[src*="ICE_dt_1"], img[src*="ICE_lt_1"]',
-        dark: "Logos/ICE_dt_1.png",
-        light: "Logos/ICE_lt_1.png"
+        dark: "Logos/Education_logos/ICE_dt_1.png",
+        light: "Logos/Education_logos/ICE_lt_1.png"
       },
       {
         selector:
           'img[src*="Olevels_dt_logo"], img[src*="olevels_lt_logo"]',
-        dark: "Logos/Olevels_dt_logo.png",
-        light: "Logos/olevels_lt_logo.png"
+        dark: "Logos/Education_logos/Olevels_dt_logo.png",
+        light: "Logos/Education_logos/olevels_lt_logo.png"
       }
     ];
 
@@ -726,6 +727,7 @@
 
     if (parts.includes("Certificates")) return "Certificates";
     if (parts.includes("Badges")) return "Badges";
+    if (parts.includes("Education_logos")) return "Education_logos";
     if (parts.includes("Logos")) return "Logos";
     if (parts.includes("Testimonials")) return "Testimonials";
 
@@ -769,6 +771,11 @@
     $$('img[src*="Logos/"]').forEach((img) => {
       img.classList.add("lightbox-trigger");
     });
+    
+    $$('img[src*="Education_logos/"]').forEach((img) => {
+      img.classList.add('lightbox-trigger');
+    });
+
 
     /* Snapshot/testimonial images should use the same lightbox system. */
     $$(".snapshot-img, img.testimonial-img").forEach((img) => {
