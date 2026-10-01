@@ -1308,8 +1308,8 @@
              */
             pixelDelta = -event.deltaX;
           } else {
-            /* Regular vertical mouse wheel becomes horizontal carousel movement. */
-            pixelDelta = -event.deltaY;
+            /* Normal vertical mouse wheel should scroll the webpage, not the carousel. */
+            return;
           }
 
           if (!Number.isFinite(pixelDelta) || Math.abs(pixelDelta) < 0.5) return;
