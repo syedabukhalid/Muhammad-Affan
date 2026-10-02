@@ -272,7 +272,7 @@
       "a Software Developer",
       "Specializing in Agentic AI integrations",
       "a Data Analyst",
-      "Cybersecurity enthusiast"
+      "a Cybersecurity enthusiast"
     ];
 
     const reduceMotion =
