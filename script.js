@@ -269,9 +269,9 @@
     if (!target) return;
 
     const roles = [
-      "Software Developer",
+      "a Software Developer",
       "Specializing in Agentic AI integrations",
-      "Data Analyst",
+      "a Data Analyst",
       "Cybersecurity enthusiast"
     ];
 
