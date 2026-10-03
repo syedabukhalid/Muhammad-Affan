@@ -55,7 +55,10 @@
     "Badges",
     "Logos",
     "Education_logos",
-    "Testimonials",
+    "home_testimonials",
+    "home_projects",
+    "computer_science_testimonials",
+    "physics_testimonials",
     "Project_Shoaib_Arif_Snaps",
     "Project_Zubair_Alam_Snaps"
   ]);
@@ -690,20 +693,24 @@
      to navigate once certificates, badges, logos, testimonials,
      and project snapshots are all present.
      
-     The improved version derives a gallery from the image path:
-       Certificates
-       Badges
-       Logos
-       Testimonials
-       Project_Shoaib_Arif_Snaps
-       Project_Zubair_Alam_Snaps
+     Homepage overview sliders intentionally combine both testimonial
+     sets and both project sets. Dedicated pages instead derive separate
+     galleries from each image path.
      
      Duplicate image paths are removed inside each group, so the
      same source image cannot appear twice in its arrow sequence.
      ======================================================= */
 
-  const deriveGallery = (src) => {
+  const deriveGallery = (src, element = null) => {
     if (!src) return null;
+
+    if (element?.closest(".home-overview-carousel-testimonials")) {
+      return "home_testimonials";
+    }
+
+    if (element?.closest(".home-overview-carousel-projects")) {
+      return "home_projects";
+    }
 
     let normalized = src;
 
@@ -714,13 +721,22 @@
     }
 
     normalized = normalized.replace(/\\/g, "/");
+    const normalizedLowerCase = normalized.toLowerCase();
 
-    if (normalized.includes("Project_Shoaib_Arif_Snaps/")) {
+    if (normalizedLowerCase.includes("project_shoaib_arif_snaps/")) {
       return "Project_Shoaib_Arif_Snaps";
     }
 
-    if (normalized.includes("Project_Zubair_Alam_Snaps/")) {
+    if (normalizedLowerCase.includes("project_zubair_alam_snaps/")) {
       return "Project_Zubair_Alam_Snaps";
+    }
+
+    if (normalizedLowerCase.includes("computer_science_students_testimonials/")) {
+      return "computer_science_testimonials";
+    }
+
+    if (normalizedLowerCase.includes("physics_students_testimonials/")) {
+      return "physics_testimonials";
     }
 
     const parts = normalized.split("/");
@@ -729,7 +745,6 @@
     if (parts.includes("Badges")) return "Badges";
     if (parts.includes("Education_logos")) return "Education_logos";
     if (parts.includes("Logos")) return "Logos";
-    if (parts.includes("Testimonials")) return "Testimonials";
 
     return null;
   };
@@ -792,7 +807,7 @@
 
     $$(selector).forEach((element) => {
       const src = getElementImageSource(element);
-      if (!src || deriveGallery(src) !== group) return;
+      if (!src || deriveGallery(src, element) !== group) return;
 
       let absoluteSrc = src;
 
@@ -883,7 +898,7 @@
       const source = getElementImageSource(element);
       if (!source) return;
 
-      currentGroup = deriveGallery(source);
+      currentGroup = deriveGallery(source, element);
 
       if (currentGroup && imageGalleryGroups.has(currentGroup)) {
         currentItems = uniqueGalleryItems(currentGroup);
