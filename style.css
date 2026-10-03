@@ -1458,9 +1458,11 @@ body.light .modal-close-btn:hover,
   /* Carousel containers always render second directly under text */
   .experience-layout-row .testimonial-carousel,
   .project-layout-row .snapshot-carousel {
+    flex: 0 0 auto;
     order: 2 !important;
     width: 100%;
     height: 220px;
+    min-height: 220px;
     position: relative;
     overflow: hidden;
   }
@@ -1853,6 +1855,12 @@ footer {
 
   .snapshot-carousel {
     height: 180px;
+  }
+
+  .experience-layout-row .testimonial-carousel,
+  .project-layout-row .snapshot-carousel {
+    height: 180px;
+    min-height: 180px;
   }
 
   .snapshot-img {
@@ -2738,4 +2746,3 @@ select:focus-visible {
 .home-overview-logo-card:hover {
   background: transparent;
 }
-
