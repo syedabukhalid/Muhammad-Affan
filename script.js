@@ -627,12 +627,52 @@
     const skillModalTitle = $("#modalSkillTitle");
     const skillModalDesc = $("#modalSkillDesc");
     const skillModalClose = $(".skill-modal-close", skillModal || document);
+    const skillModalPrev = $("#skillModalPrevBtn");
+    const skillModalNext = $("#skillModalNextBtn");
+    const skillCards = $$(".skill-modal-trigger").filter(
+      (card) => card.getAttribute("aria-hidden") !== "true"
+    );
 
     if (!skillModal) return;
+
+    let currentSkillIndex = 0;
+
+    const renderSkill = () => {
+      const card = skillCards[currentSkillIndex];
+      if (!card) return;
+
+      const title = card.getAttribute("data-title") || "";
+      const iconClass = card.getAttribute("data-icon") || "fa-code";
+      const desc = card.getAttribute("data-desc") || "";
+      const isBrandIcon =
+        iconClass.includes("microsoft") ||
+        iconClass.includes("google") ||
+        iconClass.includes("github") ||
+        iconClass.includes("linkedin");
+
+      if (skillModalIcon) {
+        skillModalIcon.className = `${
+          isBrandIcon ? "fa-brands" : "fa-solid"
+        } ${iconClass}`;
+      }
+
+      if (skillModalTitle) skillModalTitle.textContent = title;
+      if (skillModalDesc) skillModalDesc.textContent = desc;
+    };
+
+    const moveSkill = (delta) => {
+      if (skillCards.length < 2) return;
+
+      currentSkillIndex =
+        (currentSkillIndex + delta + skillCards.length) % skillCards.length;
+      renderSkill();
+    };
 
     const closeSkillModal = () => {
       skillModal.style.display = "none";
       skillModal.setAttribute("aria-hidden", "true");
+      if (skillModalPrev) skillModalPrev.hidden = true;
+      if (skillModalNext) skillModalNext.hidden = true;
       lockBody(false);
     };
 
@@ -641,31 +681,35 @@
 
     $$(".skill-modal-trigger").forEach((card) => {
       card.addEventListener("click", () => {
-        const title = card.getAttribute("data-title") || "";
-        const iconClass = card.getAttribute("data-icon") || "fa-code";
-        const desc = card.getAttribute("data-desc") || "";
-
-        if (skillModalIcon) {
-          /* Font Awesome brand icons need fa-brands; normal icons need fa-solid. */
-          const isBrandIcon =
-            iconClass.includes("microsoft") ||
-            iconClass.includes("google") ||
-            iconClass.includes("github") ||
-            iconClass.includes("linkedin");
-
-          skillModalIcon.className = `${
-            isBrandIcon ? "fa-brands" : "fa-solid"
-          } ${iconClass}`;
-        }
-
-        if (skillModalTitle) skillModalTitle.textContent = title;
-        if (skillModalDesc) skillModalDesc.textContent = desc;
+        const clickedSkillIndex = skillCards.indexOf(card);
+        currentSkillIndex =
+          clickedSkillIndex >= 0
+            ? clickedSkillIndex
+            : skillCards.findIndex(
+                (skillCard) =>
+                  skillCard.getAttribute("data-title") ===
+                  card.getAttribute("data-title")
+              );
+        if (currentSkillIndex < 0) currentSkillIndex = 0;
+        renderSkill();
 
         skillModal.style.display = "flex";
         skillModal.setAttribute("aria-hidden", "false");
+        if (skillModalPrev) skillModalPrev.hidden = skillCards.length < 2;
+        if (skillModalNext) skillModalNext.hidden = skillCards.length < 2;
         lockBody(true);
         skillModalClose?.focus();
       });
+    });
+
+    skillModalPrev?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      moveSkill(-1);
+    });
+
+    skillModalNext?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      moveSkill(1);
     });
 
     skillModalClose?.addEventListener("click", closeSkillModal);
@@ -682,6 +726,17 @@
         skillModal.style.display === "flex"
       ) {
         closeSkillModal();
+        return;
+      }
+
+      if (skillModal.style.display === "flex" && event.key === "ArrowLeft") {
+        event.preventDefault();
+        moveSkill(-1);
+      }
+
+      if (skillModal.style.display === "flex" && event.key === "ArrowRight") {
+        event.preventDefault();
+        moveSkill(1);
       }
     });
   }

@@ -554,6 +554,11 @@ header {
   transform: scale(1.1);
 }
 
+.skill-modal-arrow {
+  position: fixed;
+  z-index: 10001;
+}
+
 /* Animations */
 @keyframes scrollSkills {
   0% { transform: translate3d(0, 0, 0); }
