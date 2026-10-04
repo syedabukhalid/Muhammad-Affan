@@ -1993,6 +1993,10 @@ footer {
   cursor: pointer;
 }
 
+.testimonial-picture {
+  display: contents;
+}
+
 .testimonial-overview-card,
 .home-overview-carousel-testimonials .home-overview-image-card {
   width: 270px;
