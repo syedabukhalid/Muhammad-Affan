@@ -2048,10 +2048,10 @@ footer {
   margin: 0 auto;
   padding: 2.5rem;
   text-align: center;
-  border: 1px solid var(--border-color);
+  border: 0;
   border-radius: 12px;
-  background: var(--bg-secondary);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  background: transparent;
+  box-shadow: none;
 }
 
 .contact-overview-inner h3 {
