@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, Teleport, watch } from "vue";
+import { onBeforeUnmount, onMounted, ref, Teleport } from "vue";
 
 const props = withDefaults(
   defineProps<{
     targetElement: HTMLElement;
     containerElement: HTMLElement;
     isImage?: boolean;
-    active?: boolean;
-    forceActive?: boolean;
     color?: string;
     radius?: number;
     speed?: number;
@@ -15,8 +13,6 @@ const props = withDefaults(
   }>(),
   {
     isImage: false,
-    active: false,
-    forceActive: false,
     speed: 1,
     chaos: 0.12,
   },
@@ -25,9 +21,6 @@ const props = withDefaults(
 const canvas = ref<HTMLCanvasElement | null>(null);
 const rootStyle = ref<Record<string, string>>({});
 const isHovered = ref(false);
-const shouldAnimate = computed(
-  () => isHovered.value || props.active || props.forceActive,
-);
 
 let animationFrame = 0;
 let resizeObserver: ResizeObserver | undefined;
@@ -48,7 +41,7 @@ const clearCanvas = () => {
 
 const startAnimation = () => {
   if (
-    !shouldAnimate.value ||
+    !isHovered.value ||
     !isInViewport ||
     document.hidden ||
     animationFrame
@@ -76,10 +69,7 @@ const stopAnimation = () => {
 const handlePointerEnter = (event: PointerEvent) => {
   if (event.pointerType !== "mouse" && event.pointerType !== "pen") return;
   isHovered.value = true;
-  window.addEventListener("resize", readBounds);
-  window.addEventListener("scroll", readBounds, true);
-  document.addEventListener("visibilitychange", updateDocumentVisibility);
-  startAnimation();
+  syncAnimation();
 };
 
 const handlePointerLeave = () => {
@@ -88,7 +78,7 @@ const handlePointerLeave = () => {
 };
 
 const syncAnimation = () => {
-  if (shouldAnimate.value) {
+  if (isHovered.value) {
     window.addEventListener("resize", readBounds);
     window.addEventListener("scroll", readBounds, true);
     document.addEventListener("visibilitychange", updateDocumentVisibility);
@@ -204,7 +194,7 @@ const strokeElectricPath = (
 };
 
 const draw = (time: number) => {
-  if (!shouldAnimate.value || !isInViewport || document.hidden) {
+  if (!isHovered.value || !isInViewport || document.hidden) {
     animationFrame = 0;
     return;
   }
@@ -270,7 +260,7 @@ const updateVisibility = (entries: IntersectionObserverEntry[]) => {
 const updateDocumentVisibility = () => {
   if (document.hidden) {
     stopAnimation();
-  } else if (shouldAnimate.value && isInViewport) {
+  } else if (isHovered.value && isInViewport) {
     syncAnimation();
   }
 };
@@ -304,7 +294,6 @@ onMounted(() => {
     isInViewport = false;
   }
 
-  watch(shouldAnimate, syncAnimation, { immediate: true });
 });
 
 onBeforeUnmount(() => {
@@ -320,8 +309,9 @@ onBeforeUnmount(() => {
   <Teleport :to="containerElement">
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute z-10"
-      v-show="shouldAnimate"
+      class="electric-border-canvas pointer-events-none absolute z-10"
+      :class="{ 'electric-border-visible': isHovered }"
+      v-show="isHovered"
       :style="rootStyle"
     >
       <canvas ref="canvas" class="h-full w-full" />

@@ -1,3 +1,11 @@
 @import "tailwindcss/utilities" layer(utilities);
 
 @source "./components/ElectricBorder.vue";
+
+.electric-border-canvas {
+  visibility: hidden;
+}
+
+.electric-border-canvas.electric-border-visible {
+  visibility: visible;
+}
