@@ -3,13 +3,13 @@
   --bg-primary: #0a1128;
   --bg-secondary: #001f54;
   --bg-card: #034078;
-  --header-bg: rgba(10, 17, 40, 0.95);
+  --header-bg: rgba(13, 28, 58, 0.97);
+  --footer-bg: #101a36;
   --border-color: rgba(255, 255, 255, 0.05);
   --text-main: #f4f4f9;
   --text-muted: #a0aab8;
   --accent-green: #00ff87;
   --glow-shadow: 0 0 15px rgba(0, 255, 135, 0.6);
-  --particle-color: #00ff87;
 }
 
 /* Light Blue Theme Variables */
@@ -17,13 +17,13 @@
   --bg-primary: #e6f0fa;
   --bg-secondary: #cce0f5;
   --bg-card: #b3d1f0;
-  --header-bg: rgba(230, 240, 250, 0.95);
+  --header-bg: rgba(211, 230, 248, 0.97);
+  --footer-bg: #d9e7f6;
   --border-color: rgba(0, 51, 102, 0.1);
   --text-main: #0a1828;
   --text-muted: #3a506b;
   --accent-green: #311ce6;
   --glow-shadow: 0 0 15px rgba(0, 119, 182, 0.4);
-  --particle-color: #311ce6;
 }
 
 /* Active link highlight using theme custom variable */
@@ -56,17 +56,6 @@
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
-}
-
-/* Fixed background for tsParticles canvas container */
-#tsparticles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
 }
 
 body {
@@ -121,6 +110,30 @@ header {
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
+}
+
+.nav-roll {
+  display: inline-block;
+  height: 1.6em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.nav-roll__track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-roll__label {
+  display: block;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.nav-links a:hover .nav-roll__track,
+.nav-links a:focus-visible .nav-roll__track {
+  transform: translateY(-50%);
 }
 
 .nav-links a:hover,
@@ -292,91 +305,6 @@ header {
   z-index: 1;
 }
 
-/* Smooth Infinite Logo Slider Container (No Background Strip) */
-.logo-slider-container {
-  width: 100%;
-  overflow: hidden;
-  padding: 2.5rem 0;
-  position: relative;
-  background: transparent;
-  display: flex;
-  align-items: center;
-}
-
-.logo-slider-track {
-  display: flex;
-  gap: 3.5rem;
-  align-items: center;
-  width: max-content;
-  animation: smoothSlide var(--marquee-duration, 35s) linear infinite;
-}
-
-.logo-slider-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes smoothSlide {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-.logo-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-width: 75px;
-  transition: transform 0.3s ease;
-}
-
-.logo-item:hover {
-  transform: translateY(-4px);
-}
-
-.logo-item i {
-  font-size: 2.4rem;
-}
-
-.logo-item span {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-/* Dynamic Image Logo Sizing inside Slider */
-.slider-img-logo {
-  height: 38px;
-  width: auto;
-  max-width: 85px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-  transition: filter 0.3s ease;
-}
-
-/* Custom Icon Colors */
-.colored-excel { color: #107c41; }
-.colored-powerbi { color: #f2c811; }
-.colored-langchain { color: #1c3c3c; }
-.colored-autogen { color: #0078d4; }
-.colored-onenote { color: #7719aa; }
-.colored-word { color: #185abd; }
-.colored-powerpoint { color: #c43e1c; }
-.colored-docs { color: #4285f4; }
-.colored-sheets { color: #0f9d58; }
-.colored-forms { color: #7248b9; }
-.colored-slides { color: #f4b400; }
-.colored-classroom { color: #0f9d58; }
-.colored-drive { color: #ffba00; }
-.colored-gmail { color: #ea4335; }
-.colored-calendar { color: #4285f4; }
-.colored-github { color: var(--text-main); }
-
 /* ==========================================
  home page skills section 
 ========================================== */
@@ -434,10 +362,6 @@ header {
 }
 
 /* Pause animation on hover */
-.skills-carousel-side:hover .skills-carousel-track {
-  animation-play-state: paused;
-}
-
 /* Uniform Skill Card Sizing & Centering */
 .skills-carousel-side .skill-card {
   width: 250px;             /* Fixed Exact Width */
@@ -460,7 +384,6 @@ header {
 
 .skills-carousel-side .skill-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .skills-carousel-side .skill-card i {
@@ -592,7 +515,7 @@ header {
   padding: 2rem;
   border-radius: 8px;
   text-align: center;
-  border: 1px solid var(--border-color);
+  border: 1px solid transparent;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -602,8 +525,6 @@ header {
 
 .skill-card:hover {
   transform: translateY(-5px);
-  border-color: var(--accent-green);
-  box-shadow: var(--glow-shadow);
 }
 
 .skill-card i {
@@ -658,10 +579,6 @@ header {
 }
 
 /* Pause animation on hover */
-.certs-carousel-side:hover .certs-carousel-track {
-  animation-play-state: paused;
-}
-
 /* Keyframe for Scrolling Right to Left */
 @keyframes scrollCerts {
   0% {
@@ -679,7 +596,7 @@ header {
   flex-shrink: 0;
   border-radius: 10px;
   background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  border: 1px solid transparent;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -690,8 +607,6 @@ header {
 
 .certs-carousel-side .cert-overview-card:hover {
   transform: translateY(-6px);
-  border-color: var(--accent-green);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), var(--glow-shadow);
 }
 
 .certs-carousel-side .cert-overview-card img {
@@ -746,7 +661,7 @@ header {
 .cert-modal-content {
   background-color: var(--bg-secondary);
   color: var(--text-main);
-  border: 1px solid var(--border-color);
+  border: 1px solid transparent;
   margin: auto;
   padding: 2rem;
   border-radius: 12px;
@@ -754,7 +669,7 @@ header {
   max-width: 750px;
   position: relative;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--glow-shadow);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .cert-modal-content h3 {
@@ -880,7 +795,7 @@ header {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border: 1px solid var(--border-color);
+  border: 1px solid transparent;
   height: 100%;
   opacity: 1;
   transform: translateY(0);
@@ -889,8 +804,6 @@ header {
 
 .cert-card:hover {
   transform: translateY(-5px);
-  border-color: var(--accent-green);
-  box-shadow: var(--glow-shadow);
 }
 
 .cert-card h4 {
@@ -1031,10 +944,10 @@ header {
   background-color: var(--bg-secondary);
   padding: 1.5rem;
   border-radius: 8px;
-  border-left: 4px solid var(--accent-green);
-  border-top: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-left: 4px solid transparent;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1043,8 +956,6 @@ header {
 
 .edu-card:hover {
   transform: translateY(-5px);
-  border-color: var(--accent-green);
-  box-shadow: var(--glow-shadow);
 }
 
 .edu-card i {
@@ -1109,10 +1020,10 @@ header {
   background-color: var(--bg-secondary);
   padding: 1.5rem;
   border-radius: 8px;
-  border-left: 4px solid var(--accent-green);
-  border-top: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-left: 4px solid transparent;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
   flex: 1;
 }
@@ -1124,8 +1035,6 @@ header {
 
 .exp-card:hover {
   transform: translateY(-5px);
-  border-color: var(--accent-green);
-  box-shadow: var(--glow-shadow);
 }
 
 .exp-header {
@@ -1171,10 +1080,10 @@ header {
   background-color: var(--bg-secondary);
   padding: 1.5rem;
   border-radius: 8px;
-  border-left: 4px solid var(--accent-green);
-  border-top: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-left: 4px solid transparent;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1198,8 +1107,6 @@ header {
 
 .project-card:hover {
   transform: translateY(-5px);
-  border-color: var(--accent-green);
-  box-shadow: var(--glow-shadow);
 }
 
 .project-action {
@@ -1405,8 +1312,8 @@ body.light .modal-close-btn:hover,
   max-width: 80%;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid transparent;
+  box-shadow: none;
   transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   opacity: 0;
   transform: translateX(100%) scale(0.85);
@@ -1420,8 +1327,6 @@ body.light .modal-close-btn:hover,
   transform: translateX(0) scale(1);
   z-index: 3;
   pointer-events: auto;
-  box-shadow: var(--glow-shadow);
-  border-color: var(--accent-green);
 }
 
 /* Left Peek Snapshot */
@@ -1567,7 +1472,7 @@ body.light .modal-close-btn:hover,
 footer {
   margin-top: 2rem;
   padding: 3rem 2rem 1.5rem;
-  background-color: var(--bg-primary);
+  background-color: var(--footer-bg);
   border-top: 1px solid var(--border-color);
   color: var(--text-muted);
   font-size: 0.9rem;
@@ -1951,10 +1856,6 @@ footer {
   will-change: transform;
 }
 
-.home-overview-carousel:hover .home-overview-track {
-  animation-play-state: paused;
-}
-
 /* The duplicated track travels continuously right-to-left. */
 @keyframes homeOverviewSlideRTL {
   0% { transform: translate3d(0, 0, 0); }
@@ -1980,8 +1881,6 @@ footer {
 
 .home-overview-image-card:hover {
   transform: translateY(-5px);
-  border-color: var(--accent-green);
-  box-shadow: var(--glow-shadow);
 }
 
 .home-overview-image {
@@ -2027,8 +1926,6 @@ footer {
 
 .home-overview-logo-card:hover {
   transform: translateY(-5px);
-  border-color: var(--accent-green);
-  box-shadow: var(--glow-shadow);
 }
 
 .home-overview-logo {
@@ -2206,7 +2103,6 @@ select:focus-visible {
 
 /* Continuous marquee areas remain clipped horizontally but
    preserve normal vertical touch scrolling on mobile. */
-.logo-slider-container,
 .skills-carousel-side,
 .certs-carousel-side,
 .home-overview-carousel {
@@ -2215,7 +2111,6 @@ select:focus-visible {
   min-width: 0;
 }
 
-.logo-slider-track,
 .skills-carousel-track,
 .certs-carousel-track,
 .home-overview-track {

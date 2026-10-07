@@ -116,6 +116,27 @@
 
     /* Highlight the current page and expose it to screen readers. */
     navLinks.forEach((link) => {
+      if (!link.querySelector(".nav-roll")) {
+        const label = link.textContent.trim();
+        const roll = document.createElement("span");
+        const track = document.createElement("span");
+        const original = document.createElement("span");
+        const duplicate = document.createElement("span");
+
+        roll.className = "nav-roll";
+        track.className = "nav-roll__track";
+        original.className = "nav-roll__label";
+        duplicate.className = "nav-roll__label";
+        roll.setAttribute("aria-hidden", "true");
+        original.textContent = label;
+        duplicate.textContent = label;
+        track.append(original, duplicate);
+        roll.append(track);
+
+        link.setAttribute("aria-label", label);
+        link.replaceChildren(roll);
+      }
+
       link.classList.remove("active");
       link.removeAttribute("aria-current");
 
@@ -339,14 +360,6 @@
      4. THEME HELPERS + DYNAMIC LOGO SWAPPING
      ======================================================= */
 
-  let particlesInstance = null;
-
-  const isLightTheme = () =>
-    document.documentElement.getAttribute("data-theme") === "light";
-
-  const getParticleColor = (light) =>
-    light ? "#0077b6" : "#00ff87";
-
   function updateLogosForTheme(light) {
     /*
      * These rules preserve Code 1's exact logo swapping behavior.
@@ -399,130 +412,6 @@
     });
   }
 
-  const destroyParticles = () => {
-    if (
-      particlesInstance &&
-      typeof particlesInstance.destroy === "function"
-    ) {
-      try {
-        particlesInstance.destroy();
-      } catch (error) {
-        /* The visual background is optional; never break the page for it. */
-      }
-    }
-
-    particlesInstance = null;
-  };
-
-  const initTsParticles = (light) => {
-    if (!window.tsParticles || typeof window.tsParticles.load !== "function") {
-      return;
-    }
-
-    const container = $("#tsparticles");
-    if (!container) return;
-
-    destroyParticles();
-
-    const particleColor = getParticleColor(light);
-
-    const options = {
-      fullScreen: { enable: false },
-      fpsLimit: 60,
-      background: { color: { value: "transparent" } },
-      particles: {
-        number: {
-          value: 65,
-          density: {
-            enable: true,
-            area: 800
-          }
-        },
-        color: { value: particleColor },
-        shape: { type: "circle" },
-        opacity: {
-          value: 0.5,
-          random: false
-        },
-        size: {
-          value: { min: 1.5, max: 3.5 }
-        },
-        links: {
-          enable: true,
-          distance: 140,
-          color: particleColor,
-          opacity: 0.35,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 1.2,
-          direction: "none",
-          random: false,
-          straight: false,
-          outModes: { default: "bounce" },
-          attract: {
-            enable: true,
-            rotateX: 600,
-            rotateY: 1200
-          }
-        }
-      },
-      interactivity: {
-        detectsOn: "window",
-        events: {
-          onHover: {
-            enable: true,
-            mode: ["grab", "attract"]
-          },
-          resize: true
-        },
-        modes: {
-          grab: {
-            distance: 180,
-            links: { opacity: 0.75 }
-          },
-          attract: {
-            distance: 220,
-            duration: 0.4,
-            factor: 3,
-            speed: 1
-          }
-        }
-      },
-      detectRetina: true
-    };
-
-    try {
-      /*
-       * Code 1's API form is kept first because it is compatible with
-       * the common tsParticles browser build used by the portfolio.
-       * A second signature is provided as a safe fallback for builds
-       * that expose the object-only load API.
-       */
-      let loadResult;
-
-      try {
-        loadResult = window.tsParticles.load("tsparticles", options);
-      } catch (firstError) {
-        loadResult = window.tsParticles.load({
-          id: "tsparticles",
-          options
-        });
-      }
-
-      Promise.resolve(loadResult)
-        .then((instance) => {
-          particlesInstance = instance || null;
-        })
-        .catch((error) => {
-          console.warn("tsParticles could not be initialized:", error);
-        });
-    } catch (error) {
-      console.warn("tsParticles could not be initialized:", error);
-    }
-  };
-
   /* =======================================================
      5. THEME TOGGLE
      -------------------------------------------------------
@@ -530,6 +419,9 @@
      theme remains valid. Code 2's key is also accepted for users
      coming from that script.
      ======================================================= */
+
+  const isLightTheme = () =>
+    document.documentElement.getAttribute("data-theme") === "light";
 
   function initTheme() {
     const themeToggleBtn = $("#themeToggleBtn");
@@ -565,7 +457,6 @@
       }
 
       updateLogosForTheme(light);
-      initTsParticles(light);
     };
 
     applyTheme(savedTheme === "light");
@@ -1180,27 +1071,33 @@
     const carousels = [
       {
         containerSelector: ".skills-carousel-side",
-        trackSelector: ".skills-carousel-track"
+        trackSelector: ".skills-carousel-track",
+        cardSelector: ".skill-card"
       },
       {
         containerSelector: ".certs-carousel-side",
-        trackSelector: ".certs-carousel-track"
+        trackSelector: ".certs-carousel-track",
+        cardSelector: ".cert-overview-card"
       },
       {
         containerSelector: ".home-overview-carousel-badges",
-        trackSelector: ".home-overview-track"
+        trackSelector: ".home-overview-track",
+        cardSelector: ".home-overview-image-card"
       },
       {
         containerSelector: ".home-overview-carousel-education",
-        trackSelector: ".home-overview-track"
+        trackSelector: ".home-overview-track",
+        cardSelector: ".home-overview-logo-card"
       },
       {
         containerSelector: ".home-overview-carousel-testimonials",
-        trackSelector: ".home-overview-track"
+        trackSelector: ".home-overview-track",
+        cardSelector: ".home-overview-image-card"
       },
       {
         containerSelector: ".home-overview-carousel-projects",
-        trackSelector: ".home-overview-track"
+        trackSelector: ".home-overview-track",
+        cardSelector: ".home-overview-image-card"
       }
     ];
 
@@ -1284,12 +1181,13 @@
       return true;
     };
 
-    const setupCarousel = (container, track) => {
+    const setupCarousel = (container, track, cardSelector) => {
       if (!container || !track || container.dataset.manualScrollBound === "true") {
         return;
       }
 
       container.dataset.manualScrollBound = "true";
+      const cards = $$(cardSelector, container);
 
       let resumeTimer = null;
       let pointerActive = false;
@@ -1321,23 +1219,10 @@
         }
       };
 
-      const isHovering = () => {
-        try {
-          return container.matches(":hover");
-        } catch (error) {
-          return false;
-        }
-      };
-
       const resumeAnimation = () => {
         clearResumeTimer();
 
-        /*
-         * Preserve the existing hover behavior: desktop carousels stay
-         * paused while the pointer remains over them and resume after it
-         * leaves, just as they did before manual scrolling was added.
-         */
-        if (isHovering()) return;
+        if (cards.some((card) => card.matches(":hover"))) return;
 
         const animation = getMarqueeAnimation(track);
         animation?.play();
@@ -1349,6 +1234,23 @@
         /* A short delay lets a series of wheel/swipe movements feel continuous. */
         resumeTimer = window.setTimeout(resumeAnimation, 900);
       };
+
+      cards.forEach((card) => {
+        card.addEventListener("pointerenter", (event) => {
+          if (event.pointerType === "touch") return;
+
+          clearResumeTimer();
+          getMarqueeAnimation(track)?.pause();
+        });
+
+        card.addEventListener("pointerleave", (event) => {
+          if (event.pointerType === "touch") return;
+
+          if (cards.some((hoveredCard) => hoveredCard.matches(":hover"))) return;
+
+          getMarqueeAnimation(track)?.play();
+        });
+      });
 
       /*
        * Mouse wheel + trackpad support.
@@ -1648,10 +1550,10 @@
       });
     };
 
-    carousels.forEach(({ containerSelector, trackSelector }) => {
+    carousels.forEach(({ containerSelector, trackSelector, cardSelector }) => {
       $$(containerSelector).forEach((container) => {
         const track = $(trackSelector, container);
-        setupCarousel(container, track);
+        setupCarousel(container, track, cardSelector);
       });
     });
 
@@ -1714,7 +1616,6 @@
      consistent even when the content size changes.
      
      Supported tracks:
-       - logo-slider-track
        - skills-carousel-track
        - certs-carousel-track
        - home-overview-track
@@ -1722,7 +1623,7 @@
 
   function initMarquees() {
     const tracks = $$(
-      ".logo-slider-track, .skills-carousel-track, .certs-carousel-track, .home-overview-track"
+      ".skills-carousel-track, .certs-carousel-track, .home-overview-track"
     );
 
     if (!tracks.length) return;
@@ -1761,7 +1662,6 @@
 
         if (!travelDistance || !Number.isFinite(travelDistance)) return;
 
-        /* 60px/s keeps all homepage marquees physically synchronized. */
         const durationSeconds = Math.max(8, travelDistance / 60);
         track.style.setProperty(
           "--marquee-duration",
