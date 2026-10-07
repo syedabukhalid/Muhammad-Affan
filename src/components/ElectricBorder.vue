@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, Teleport } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, Teleport, watch } from "vue";
 
 const props = withDefaults(
   defineProps<{
     targetElement: HTMLElement;
     containerElement: HTMLElement;
     isImage?: boolean;
+    active?: boolean;
+    forceActive?: boolean;
     color?: string;
     radius?: number;
     speed?: number;
@@ -13,6 +15,8 @@ const props = withDefaults(
   }>(),
   {
     isImage: false,
+    active: false,
+    forceActive: false,
     speed: 1,
     chaos: 0.12,
   },
@@ -21,6 +25,9 @@ const props = withDefaults(
 const canvas = ref<HTMLCanvasElement | null>(null);
 const rootStyle = ref<Record<string, string>>({});
 const isHovered = ref(false);
+const shouldAnimate = computed(
+  () => isHovered.value || props.active || props.forceActive,
+);
 
 let animationFrame = 0;
 let resizeObserver: ResizeObserver | undefined;
@@ -41,7 +48,7 @@ const clearCanvas = () => {
 
 const startAnimation = () => {
   if (
-    !isHovered.value ||
+    !shouldAnimate.value ||
     !isInViewport ||
     document.hidden ||
     animationFrame
@@ -77,6 +84,18 @@ const handlePointerEnter = (event: PointerEvent) => {
 
 const handlePointerLeave = () => {
   isHovered.value = false;
+  syncAnimation();
+};
+
+const syncAnimation = () => {
+  if (shouldAnimate.value) {
+    window.addEventListener("resize", readBounds);
+    window.addEventListener("scroll", readBounds, true);
+    document.addEventListener("visibilitychange", updateDocumentVisibility);
+    startAnimation();
+    return;
+  }
+
   stopAnimation();
   window.removeEventListener("resize", readBounds);
   window.removeEventListener("scroll", readBounds, true);
@@ -185,7 +204,7 @@ const strokeElectricPath = (
 };
 
 const draw = (time: number) => {
-  if (!isHovered.value || !isInViewport || document.hidden) {
+  if (!shouldAnimate.value || !isInViewport || document.hidden) {
     animationFrame = 0;
     return;
   }
@@ -242,7 +261,7 @@ const updateVisibility = (entries: IntersectionObserverEntry[]) => {
   isInViewport = entries.some((entry) => entry.isIntersecting);
 
   if (isInViewport) {
-    startAnimation();
+    syncAnimation();
   } else {
     stopAnimation();
   }
@@ -251,8 +270,8 @@ const updateVisibility = (entries: IntersectionObserverEntry[]) => {
 const updateDocumentVisibility = () => {
   if (document.hidden) {
     stopAnimation();
-  } else if (isHovered.value && isInViewport) {
-    startAnimation();
+  } else if (shouldAnimate.value && isInViewport) {
+    syncAnimation();
   }
 };
 
@@ -284,6 +303,8 @@ onMounted(() => {
     intersectionObserver.observe(props.targetElement);
     isInViewport = false;
   }
+
+  watch(shouldAnimate, syncAnimation, { immediate: true });
 });
 
 onBeforeUnmount(() => {
@@ -300,7 +321,7 @@ onBeforeUnmount(() => {
     <div
       aria-hidden="true"
       class="pointer-events-none absolute z-10"
-      v-show="isHovered"
+      v-show="shouldAnimate"
       :style="rootStyle"
     >
       <canvas ref="canvas" class="h-full w-full" />
