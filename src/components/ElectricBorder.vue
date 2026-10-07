@@ -20,11 +20,12 @@ const props = withDefaults(
 
 const canvas = ref<HTMLCanvasElement | null>(null);
 const rootStyle = ref<Record<string, string>>({});
+const isHovered = ref(false);
 
 let animationFrame = 0;
 let resizeObserver: ResizeObserver | undefined;
 let intersectionObserver: IntersectionObserver | undefined;
-let visible = true;
+let isInViewport = true;
 let previousFrame = 0;
 let context: CanvasRenderingContext2D | null = null;
 let pixelRatio = 1;
@@ -32,6 +33,55 @@ let canvasWidth = 0;
 let canvasHeight = 0;
 
 const frameInterval = 1000 / 30;
+
+const clearCanvas = () => {
+  if (!context || !canvas.value) return;
+  context.clearRect(0, 0, canvas.value.width, canvas.value.height);
+};
+
+const startAnimation = () => {
+  if (
+    !isHovered.value ||
+    !isInViewport ||
+    document.hidden ||
+    animationFrame
+  ) {
+    return;
+  }
+
+  previousFrame = 0;
+  readBounds();
+  animationFrame = requestAnimationFrame(draw);
+  window.addEventListener("resize", readBounds);
+  window.addEventListener("scroll", readBounds, true);
+  document.addEventListener("visibilitychange", updateDocumentVisibility);
+};
+
+const stopAnimation = () => {
+  if (animationFrame) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = 0;
+  }
+
+  clearCanvas();
+};
+
+const handlePointerEnter = (event: PointerEvent) => {
+  if (event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+  isHovered.value = true;
+  window.addEventListener("resize", readBounds);
+  window.addEventListener("scroll", readBounds, true);
+  document.addEventListener("visibilitychange", updateDocumentVisibility);
+  startAnimation();
+};
+
+const handlePointerLeave = () => {
+  isHovered.value = false;
+  stopAnimation();
+  window.removeEventListener("resize", readBounds);
+  window.removeEventListener("scroll", readBounds, true);
+  document.removeEventListener("visibilitychange", updateDocumentVisibility);
+};
 
 const readBounds = () => {
   const { targetElement, containerElement } = props;
@@ -135,7 +185,7 @@ const strokeElectricPath = (
 };
 
 const draw = (time: number) => {
-  if (!visible || document.hidden) {
+  if (!isHovered.value || !isInViewport || document.hidden) {
     animationFrame = 0;
     return;
   }
@@ -189,22 +239,20 @@ const draw = (time: number) => {
 };
 
 const updateVisibility = (entries: IntersectionObserverEntry[]) => {
-  visible = entries.some((entry) => entry.isIntersecting);
+  isInViewport = entries.some((entry) => entry.isIntersecting);
 
-  if (visible && !document.hidden && !animationFrame) {
-    animationFrame = requestAnimationFrame(draw);
-  } else if (!visible && animationFrame) {
-    cancelAnimationFrame(animationFrame);
-    animationFrame = 0;
+  if (isInViewport) {
+    startAnimation();
+  } else {
+    stopAnimation();
   }
 };
 
 const updateDocumentVisibility = () => {
-  if (document.hidden && animationFrame) {
-    cancelAnimationFrame(animationFrame);
-    animationFrame = 0;
-  } else if (visible && !document.hidden && !animationFrame) {
-    animationFrame = requestAnimationFrame(draw);
+  if (document.hidden) {
+    stopAnimation();
+  } else if (isHovered.value && isInViewport) {
+    startAnimation();
   }
 };
 
@@ -222,6 +270,9 @@ onMounted(() => {
     props.containerElement.style.position = "relative";
   }
 
+  props.targetElement.addEventListener("pointerenter", handlePointerEnter);
+  props.targetElement.addEventListener("pointerleave", handlePointerLeave);
+
   resizeObserver = new ResizeObserver(() => {
     previousFrame = 0;
   });
@@ -231,23 +282,16 @@ onMounted(() => {
   if ("IntersectionObserver" in window) {
     intersectionObserver = new IntersectionObserver(updateVisibility);
     intersectionObserver.observe(props.targetElement);
-    visible = false;
+    isInViewport = false;
   }
-
-  window.addEventListener("resize", readBounds);
-  window.addEventListener("scroll", readBounds, true);
-  document.addEventListener("visibilitychange", updateDocumentVisibility);
-
-  if (visible) animationFrame = requestAnimationFrame(draw);
 });
 
 onBeforeUnmount(() => {
-  cancelAnimationFrame(animationFrame);
+  stopAnimation();
+  props.targetElement.removeEventListener("pointerenter", handlePointerEnter);
+  props.targetElement.removeEventListener("pointerleave", handlePointerLeave);
   resizeObserver?.disconnect();
   intersectionObserver?.disconnect();
-  window.removeEventListener("resize", readBounds);
-  window.removeEventListener("scroll", readBounds, true);
-  document.removeEventListener("visibilitychange", updateDocumentVisibility);
 });
 </script>
 
@@ -256,6 +300,7 @@ onBeforeUnmount(() => {
     <div
       aria-hidden="true"
       class="pointer-events-none absolute z-10"
+      v-show="isHovered"
       :style="rootStyle"
     >
       <canvas ref="canvas" class="h-full w-full" />
