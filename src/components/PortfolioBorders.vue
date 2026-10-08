@@ -27,6 +27,7 @@ const cardSelector = [
   ".skill-card",
   ".cert-card",
   ".cert-overview-card",
+  ".skill-modal-content",
   ".edu-card",
   ".exp-card",
   ".project-card",
@@ -91,6 +92,13 @@ const syncModalSelections = (modals: HTMLElement[]) => {
     }
 
     const nextPreviewIds = new Set<number>();
+    modal
+      .querySelectorAll<HTMLElement>(".skill-modal-content")
+      .forEach((content) => {
+        const target = targetByElement.get(content);
+        if (target) nextPreviewIds.add(target.id);
+      });
+
     modal.querySelectorAll<HTMLImageElement>("img").forEach((image) => {
       if (!image.getAttribute("src")) return;
       const target = targetByElement.get(image);
@@ -133,6 +141,7 @@ const getTargetForClick = (event: MouseEvent): BorderTarget | undefined => {
 const handleTargetClick = (event: MouseEvent) => {
   const target = getTargetForClick(event);
   if (!target) return;
+  if (target.element.matches(".skill-modal-content")) return;
 
   const isActive = activeTargetIds.value.has(target.id);
   setTargetsActive([target.id], !isActive);
