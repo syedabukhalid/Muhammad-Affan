@@ -77,6 +77,31 @@
     </section>
 
 <!-- =========================================================
+         HOME PAGE: Portfolio at a Glance
+         ========================================================= -->
+
+    <section id="portfolio-stats" class="section stats-section" aria-labelledby="portfolio-stats-title">
+      <h2 id="portfolio-stats-title" class="section-title">Portfolio at a Glance</h2>
+      <div class="stats-grid">
+        <article class="stat-card">
+          <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+          <p class="stat-number" data-stat-source="Certifications.html" data-stat-selector=".cert-card">0</p>
+          <h3>Certifications</h3>
+        </article>
+        <article class="stat-card">
+          <i class="fa-solid fa-award" aria-hidden="true"></i>
+          <p class="stat-number" data-stat-source="Badges.html" data-stat-selector=".cert-card">0</p>
+          <h3>Badges</h3>
+        </article>
+        <article class="stat-card">
+          <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+          <p class="stat-number" data-stat-target="5">0</p>
+          <h3>Projects</h3>
+        </article>
+      </div>
+    </section>
+
+<!-- =========================================================
          HOME PAGE: SKILLS OVERVIEW
          Left: description | Right: left-to-right skill cards slider
          ========================================================= -->
@@ -961,6 +986,74 @@
     <p class="footer-copyright">&copy; 2026 Syed Abu Khalid. All rights reserved.</p>
   </footer>
 
+  <script>
+    (() => {
+      const statsSection = document.querySelector("#portfolio-stats");
+      const counters = [...statsSection.querySelectorAll(".stat-number")];
+
+      const animateCounter = (counter, target) => {
+        const duration = 1800;
+        const startedAt = performance.now();
+
+        const update = (now) => {
+          const progress = Math.min((now - startedAt) / duration, 1);
+          const easedProgress = 1 - Math.pow(1 - progress, 3);
+          counter.textContent = String(Math.floor(easedProgress * target));
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            counter.textContent = String(target);
+          }
+        };
+
+        requestAnimationFrame(update);
+      };
+
+      const loadTarget = async (counter) => {
+        const source = counter.dataset.statSource;
+        if (!source) {
+          return Number(counter.dataset.statTarget);
+        }
+
+        const response = await fetch(source);
+        if (!response.ok) {
+          throw new Error(`Unable to load ${source}: HTTP ${response.status}`);
+        }
+
+        const page = new DOMParser().parseFromString(await response.text(), "text/html");
+        return page.querySelectorAll(counter.dataset.statSelector).length;
+      };
+
+      const startCounters = async () => {
+        await Promise.all(counters.map(async (counter) => {
+          try {
+            const target = await loadTarget(counter);
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+              counter.textContent = String(target);
+              return;
+            }
+            animateCounter(counter, target);
+          } catch (error) {
+            console.error("Portfolio statistic could not be loaded.", error);
+            counter.textContent = "N/A";
+          }
+        }));
+      };
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer.disconnect();
+            startCounters();
+          }
+        }, { threshold: 0.2 });
+        observer.observe(statsSection);
+      } else {
+        startCounters();
+      }
+    })();
+  </script>
   <script src="script.js"></script>
   <script type="module" src="./src/main.ts"></script>
 </body>

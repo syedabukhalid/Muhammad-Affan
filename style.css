@@ -263,6 +263,45 @@ header {
   border-radius: 2px;
 }
 
+.stats-section {
+  min-height: 0;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.stat-card > i {
+  color: var(--accent-green);
+  font-size: 1.5rem;
+}
+
+.stat-number {
+  margin: 0.75rem 0 0.25rem;
+  color: var(--accent-green);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-card h3 {
+  color: var(--text-main);
+  font-size: 1.05rem;
+}
+
 /* Home Section & Gear Profile (Scroll Driven Rotation) */
 .home-container {
   display: flex;
@@ -519,6 +558,11 @@ header {
 @media (max-width: 768px) {
   .skills-overview-container {
     flex-direction: column;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   .skills-carousel-side {
     width: 100%;
