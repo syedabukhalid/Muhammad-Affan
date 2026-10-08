@@ -430,6 +430,8 @@
     const savedTheme =
       localStorage.getItem("theme") ||
       localStorage.getItem("portfolio-theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
 
     const applyTheme = (light) => {
       if (light) {
@@ -459,7 +461,7 @@
       updateLogosForTheme(light);
     };
 
-    applyTheme(savedTheme === "light");
+    applyTheme(initialTheme === "light");
 
     themeToggleBtn?.addEventListener("click", () => {
       applyTheme(!isLightTheme());
