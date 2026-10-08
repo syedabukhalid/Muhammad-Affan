@@ -652,12 +652,19 @@
   const deriveGallery = (src, element = null) => {
     if (!src) return null;
 
+    const explicitGroup = element?.closest("[data-gallery]")?.dataset.gallery;
+    if (explicitGroup) return explicitGroup;
+
     if (element?.closest(".home-overview-carousel-testimonials")) {
       return "home_testimonials";
     }
 
     if (element?.closest(".home-overview-carousel-projects")) {
       return "home_projects";
+    }
+
+    if (element?.closest(".home-overview-carousel-education")) {
+      return "Education_logos";
     }
 
     let normalized = src;
