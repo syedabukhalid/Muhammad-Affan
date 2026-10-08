@@ -200,6 +200,7 @@ onMounted(async () => {
   await updateLayout();
   const heading = host.value?.parentElement;
   if (!heading) return;
+  heading.dataset.strokeReady = "true";
 
   resizeObserver = new ResizeObserver(() => {
     void updateLayout();

@@ -26,6 +26,24 @@
   --glow-shadow: 0 0 15px rgba(0, 119, 182, 0.4);
 }
 
+/* Keep raw heading text from flashing before its SVG is measured and mounted. */
+[data-stroke-text]:not([data-stroke-ready="true"]) {
+  visibility: hidden;
+}
+
+/* SVG presentation attributes need a theme rule for high-contrast light text. */
+[data-theme="light"] [data-stroke-text][data-stroke-trigger="scroll"] .stroke-text__line {
+  fill: #0a1828;
+}
+
+[data-theme="light"] h1[data-stroke-text][data-stroke-trigger="mount"] .stroke-text__line {
+  stroke: #311ce6;
+}
+
+[data-theme="light"] #typedRole {
+  color: #311ce6;
+}
+
 /* Active link highlight using theme custom variable */
 .nav-links a.active {
   color: var(--accent-green);
