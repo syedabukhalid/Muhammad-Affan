@@ -281,6 +281,193 @@
   }
 
   /* =======================================================
+     SCROLL AND PAGE-ENTRY REVEALS
+     ======================================================= */
+
+  function initScrollAnimations() {
+    const reduceMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion || !("IntersectionObserver" in window) || !document.body) {
+      return;
+    }
+
+    const pendingElements = new Set();
+    let visibilityCheckScheduled = false;
+
+    const showElement = (element) => {
+      if (!pendingElements.has(element)) return;
+
+      pendingElements.delete(element);
+      element.classList.add("is-visible");
+      element.style.willChange = "transform, opacity";
+      observer.unobserve(element);
+
+      const clearAnimationState = () => {
+        element.style.willChange = "";
+        element.style.removeProperty("--reveal-delay");
+        element.classList.remove(
+          "scroll-reveal",
+          "scroll-reveal--fade",
+          "scroll-reveal--left",
+          "scroll-reveal--right",
+          "scroll-reveal--top",
+          "scroll-reveal--bottom",
+          "scroll-reveal--scale",
+          "is-visible"
+        );
+        element.removeEventListener("transitionend", onTransitionEnd);
+      };
+      const onTransitionEnd = (event) => {
+        if (event.propertyName === "opacity") clearAnimationState();
+      };
+
+      element.addEventListener("transitionend", onTransitionEnd);
+      window.setTimeout(clearAnimationState, 2600);
+    };
+
+    const reveal = (elements, direction = "fade", stagger = false, delay = 0) => {
+      const delayByGroup = new Map();
+
+      elements.forEach((element) => {
+        if (element.classList.contains("scroll-reveal")) return;
+
+        element.classList.add("scroll-reveal", `scroll-reveal--${direction}`);
+        if (delay) {
+          element.style.setProperty("--reveal-delay", `${delay}ms`);
+        }
+
+        if (stagger) {
+          const group =
+            element.closest(".cert-grid, .skills-grid") || element.parentElement;
+          const index = delayByGroup.get(group) || 0;
+          element.style.setProperty(
+            "--reveal-delay",
+            `${Math.min(index * 65, 455)}ms`
+          );
+          delayByGroup.set(group, index + 1);
+        }
+
+        pendingElements.add(element);
+        observer.observe(element);
+      });
+    };
+
+    const revealSelector = (selector, direction, stagger = false, delay = 0) =>
+      reveal($$(selector), direction, stagger, delay);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) showElement(entry.target);
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -5% 0px"
+      }
+    );
+
+    const currentPath =
+      window.location.pathname.split("/").pop().toLowerCase() || "index.html";
+
+    if (currentPath === "index.html") {
+      revealSelector("#home .bio, #home #download-vcard", "left");
+      revealSelector("#profilePic", "scale");
+      revealSelector("#portfolio-stats .stat-card:nth-child(odd)", "top", true);
+      revealSelector("#portfolio-stats .stat-card:nth-child(even)", "bottom", true);
+
+      revealSelector("#skills-overview .skills-desc, #skills-overview .skills-action", "left");
+      revealSelector("#skills-overview .skills-carousel-side", "right");
+
+      revealSelector("#certifications-overview .certs-carousel-side", "left");
+      revealSelector(
+        "#certifications-overview .certs-desc, #certifications-overview .certs-action",
+        "right"
+      );
+
+      revealSelector("#badges-overview .home-overview-desc, #badges-overview .home-overview-action", "left");
+      revealSelector("#badges-overview .home-overview-carousel", "right");
+
+      revealSelector("#education-overview .home-overview-carousel", "left");
+      revealSelector(
+        "#education-overview .home-overview-desc, #education-overview .home-overview-action",
+        "right"
+      );
+
+      revealSelector(
+        "#experience-overview .home-overview-desc, #experience-overview .home-overview-action",
+        "left"
+      );
+      revealSelector("#experience-overview .home-overview-carousel", "right");
+
+      revealSelector("#projects-overview .home-overview-carousel", "left");
+      revealSelector(
+        "#projects-overview .home-overview-desc, #projects-overview .home-overview-action",
+        "right"
+      );
+
+      revealSelector("#contact-overview .home-overview-desc, #contact-overview .home-overview-action", "fade");
+    } else if (currentPath === "skills.html") {
+      revealSelector("#skills .skill-card", "bottom", true);
+    } else if (currentPath === "certifications.html" || currentPath === "badges.html") {
+      revealSelector(
+        "#certifications > p, #badges > p, .filter-container",
+        "fade"
+      );
+      revealSelector(".cert-card", "bottom", true);
+    } else if (currentPath === "education.html") {
+      revealSelector("#education .edu-card:nth-child(odd)", "left");
+      revealSelector("#education .edu-card:nth-child(even)", "right");
+    } else if (currentPath === "experience.html") {
+      revealSelector(".experience-layout-row.left-box > .exp-card", "left");
+      revealSelector(".experience-layout-row.left-box > .testimonial-carousel", "right");
+      revealSelector(".experience-layout-row.right-box > .testimonial-carousel", "left");
+      revealSelector(".experience-layout-row.right-box > .exp-card", "right");
+    } else if (currentPath === "projects.html") {
+      revealSelector("#projects > p", "fade", false, 250);
+      revealSelector("#projects > .projects-container > .projects-cards > .project-card", "left");
+      revealSelector(".project-layout-row.left-box > .project-card", "left");
+      revealSelector(".project-layout-row.left-box > .snapshot-carousel", "right");
+      revealSelector(".project-layout-row.right-box > .snapshot-carousel", "left");
+      revealSelector(".project-layout-row.right-box > .project-card", "right");
+    } else if (currentPath === "contact.html") {
+      revealSelector("#contact .info-item, #contact .contact-sub", "left");
+      revealSelector("#contact .contact-form", "right");
+    }
+
+    const checkVisibleElements = () => {
+      visibilityCheckScheduled = false;
+
+      pendingElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        if (
+          rect.bottom > 0 &&
+          rect.top < window.innerHeight * 0.95 &&
+          rect.right > 0 &&
+          rect.left < window.innerWidth
+        ) {
+          showElement(element);
+        }
+      });
+    };
+    const scheduleVisibilityCheck = () => {
+      if (visibilityCheckScheduled) return;
+      visibilityCheckScheduled = true;
+      window.requestAnimationFrame(checkVisibleElements);
+    };
+
+    revealSelector(".page-navigation .page-nav-link:first-child", "left");
+    revealSelector(".page-navigation .page-nav-link:last-child", "right");
+
+    document.body.classList.add("motion-ready");
+    window.addEventListener("scroll", scheduleVisibilityCheck, { passive: true });
+    window.addEventListener("resize", scheduleVisibilityCheck, { passive: true });
+    scheduleVisibilityCheck();
+  }
+
+  /* =======================================================
      3. HOME PAGE TYPEWRITER EFFECT
      -------------------------------------------------------
      The visible role text is expected to contain fallback text
@@ -1982,6 +2169,7 @@
   function init() {
     initNavigation();
     initInnerPageNavigation();
+    initScrollAnimations();
     initTheme();
     initTypewriter();
     initGearRotation();
