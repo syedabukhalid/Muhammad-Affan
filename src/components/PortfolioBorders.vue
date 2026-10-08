@@ -7,7 +7,6 @@ interface BorderTarget {
   host: HTMLElement;
   isImage: boolean;
   id: number;
-  active: boolean;
   alwaysOn: boolean;
   modal: HTMLElement | null;
   modalActive: boolean;
@@ -51,7 +50,6 @@ const isModalOpen = (modal: HTMLElement) =>
   getComputedStyle(modal).display !== "none";
 
 let modalObserver: MutationObserver | undefined;
-let handleTargetClick: ((event: MouseEvent) => void) | undefined;
 
 onMounted(() => {
   const seen = new Set<HTMLElement>();
@@ -74,7 +72,6 @@ onMounted(() => {
         host,
         isImage: element instanceof HTMLImageElement,
         id,
-        active: false,
         alwaysOn:
           element.matches(".snapshot-img.active") &&
           host.matches(".snapshot-carousel, .testimonial-carousel"),
@@ -85,7 +82,6 @@ onMounted(() => {
 
   targets.value = borderTargets;
 
-  let hadOpenModal = modals.some(isModalOpen);
   const updateModalStates = () => {
     for (const target of targets.value) {
       target.modalActive = target.modal ? isModalOpen(target.modal) : false;
@@ -94,13 +90,6 @@ onMounted(() => {
         target.host.matches(".snapshot-carousel, .testimonial-carousel");
     }
 
-    const hasOpenModal = modals.some(isModalOpen);
-    if (hadOpenModal && !hasOpenModal) {
-      for (const target of targets.value) {
-        target.active = false;
-      }
-    }
-    hadOpenModal = hasOpenModal;
   };
 
   modalObserver = new MutationObserver(updateModalStates);
@@ -119,46 +108,11 @@ onMounted(() => {
     }
   }
 
-  handleTargetClick = (event) => {
-    if (!(event.target instanceof Element)) return;
-
-    const clickedElement = event.target.closest<HTMLElement>(
-      `${cardSelector}, ${imageSelector}, .open-modal-btn`,
-    );
-    if (!clickedElement) return;
-
-    const borderElement = cardSelector
-      .split(", ")
-      .map((selector) => clickedElement.closest<HTMLElement>(selector))
-      .find((element) => element !== null);
-    const targetElement =
-      borderElement ??
-      (imageSelector.split(", ").some((selector) =>
-        clickedElement.matches(selector),
-      )
-        ? clickedElement
-        : null);
-    const selectedTarget = targets.value.find(
-      (target) => target.element === targetElement,
-    );
-    if (!selectedTarget) return;
-
-    const wasActive = selectedTarget.active;
-    for (const target of targets.value) {
-      target.active = false;
-    }
-    selectedTarget.active = !wasActive;
-  };
-
-  document.addEventListener("click", handleTargetClick);
   updateModalStates();
 });
 
 onBeforeUnmount(() => {
   modalObserver?.disconnect();
-  if (handleTargetClick) {
-    document.removeEventListener("click", handleTargetClick);
-  }
 });
 </script>
 
@@ -170,7 +124,7 @@ onBeforeUnmount(() => {
       :target-element="target.element"
       :container-element="target.host"
       :is-image="target.isImage"
-      :active="target.active || target.modalActive"
+      :active="target.modalActive"
       :force-active="target.alwaysOn"
       :speed="1"
       :chaos="0.12"

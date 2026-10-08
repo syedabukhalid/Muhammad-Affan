@@ -895,7 +895,7 @@ header {
 }
 
 .modal-close:hover,
-.modal-close:focus {
+.modal-close:focus-visible {
   color: var(--accent-green);
 }
 
@@ -2103,6 +2103,32 @@ textarea:focus-visible,
 select:focus-visible {
   outline: 2px solid var(--accent-green);
   outline-offset: 3px;
+}
+
+:where(
+  button,
+  a,
+  [role="button"],
+  [tabindex],
+  .skill-card,
+  .cert-card,
+  .cert-overview-card,
+  .edu-card,
+  .exp-card,
+  .project-card,
+  .home-overview-image-card,
+  .home-overview-logo-card,
+  .snapshot-img,
+  .testimonial-img,
+  .lightbox-trigger,
+  .cert-modal-trigger,
+  .skill-modal-trigger,
+  .modal-arrow,
+  .modal-close,
+  .skill-modal-close,
+  .cert-modal-close
+):focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Continuous marquee areas remain clipped horizontally but
