@@ -999,8 +999,8 @@ header {
 }
 
 @media (max-width: 768px) {
-  .modal .modal-arrow {
-    display: none !important;
+  .modal-arrow {
+    touch-action: manipulation;
   }
 }
 
