@@ -998,6 +998,12 @@ header {
   right: 20px;
 }
 
+@media (max-width: 768px) {
+  .modal .modal-arrow {
+    display: none !important;
+  }
+}
+
 /* Education Section */
 .education-container {
   display: flex;

@@ -1100,22 +1100,24 @@
     imageModal.setAttribute("aria-hidden", "true");
 
     imageModal.addEventListener("click", (event) => {
+      const clickedElement =
+        event.target instanceof Element ? event.target : null;
+      const clickedArrow = clickedElement?.closest(
+        ".modal-prev, .modal-next"
+      );
+
+      if (clickedArrow) {
+        event.stopPropagation();
+        moveLightbox(clickedArrow.classList.contains("modal-prev") ? -1 : 1);
+        return;
+      }
+
       if (event.target === imageModal) {
         closeLightbox();
       }
     });
 
     imageModalClose?.addEventListener("click", closeLightbox);
-
-    imageModalPrev?.addEventListener("click", (event) => {
-      event.stopPropagation();
-      moveLightbox(-1);
-    });
-
-    imageModalNext?.addEventListener("click", (event) => {
-      event.stopPropagation();
-      moveLightbox(1);
-    });
 
     imageModalImg.addEventListener(
       "touchstart",
