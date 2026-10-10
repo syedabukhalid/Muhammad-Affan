@@ -87,13 +87,13 @@
           <i class="fa-solid fa-certificate" aria-hidden="true"></i>
           <p class="stat-number" data-stat-source="Certifications.html" data-stat-selector=".cert-card">0</p>
           <h3>Certifications</h3><br>
-          <p>16 Professional Certifications Completed</p>
+          <p class="stat-description" data-stat-suffix="Professional Certifications Completed">0 Professional Certifications Completed</p>
         </article>
         <article class="stat-card">
           <i class="fa-solid fa-award" aria-hidden="true"></i>
           <p class="stat-number" data-stat-source="Badges.html" data-stat-selector=".cert-card">0</p>
           <h3>Badges</h3><br>
-          <p>55 Skill Badges Earned</p>
+          <p class="stat-description" data-stat-suffix="Skill Badges Earned">0 Skill Badges Earned</p>
         </article>
         <article class="stat-card">
           <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
@@ -1028,10 +1028,22 @@
         return page.querySelectorAll(counter.dataset.statSelector).length;
       };
 
+      const updateDescription = (counter, value) => {
+        const description = counter
+          .closest(".stat-card")
+          .querySelector(".stat-description");
+        const suffix = description?.dataset.statSuffix;
+
+        if (suffix && description) {
+          description.textContent = `${value} ${suffix}`;
+        }
+      };
+
       const startCounters = async () => {
         await Promise.all(counters.map(async (counter) => {
           try {
             const target = await loadTarget(counter);
+            updateDescription(counter, target);
             if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
               counter.textContent = String(target);
               return;
@@ -1040,6 +1052,7 @@
           } catch (error) {
             console.error("Portfolio statistic could not be loaded.", error);
             counter.textContent = "N/A";
+            updateDescription(counter, "N/A");
           }
         }));
       };

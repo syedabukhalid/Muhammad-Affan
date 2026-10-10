@@ -375,8 +375,7 @@
     if (currentPath === "index.html") {
       revealSelector("#home .bio, #home #download-vcard", "left");
       revealSelector("#profilePic", "scale");
-      revealSelector("#portfolio-stats .stat-card:nth-child(odd)", "top", true);
-      revealSelector("#portfolio-stats .stat-card:nth-child(even)", "bottom", true);
+      revealSelector("#portfolio-stats .stat-card", "top", true);
 
       revealSelector("#skills-overview .skills-desc, #skills-overview .skills-action", "left");
       revealSelector("#skills-overview .skills-carousel-side", "right");
