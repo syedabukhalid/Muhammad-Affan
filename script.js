@@ -847,6 +847,11 @@
     const explicitGroup = element?.closest("[data-gallery]")?.dataset.gallery;
     if (explicitGroup) return explicitGroup;
 
+    if (element?.closest("#certifications")) return "Certificates";
+    if (element?.closest("#badges, .home-overview-carousel-badges")) {
+      return "Badges";
+    }
+
     if (element?.closest(".home-overview-carousel-testimonials")) {
       return "home_testimonials";
     }
