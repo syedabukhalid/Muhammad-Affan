@@ -462,6 +462,12 @@
     revealSelector(".page-navigation .page-nav-link:last-child", "right");
 
     document.body.classList.add("motion-ready");
+    if (currentPath === "index.html") {
+      const profilePic = $("#profilePic");
+      if (profilePic) {
+        window.requestAnimationFrame(() => showElement(profilePic));
+      }
+    }
     window.addEventListener("scroll", scheduleVisibilityCheck, { passive: true });
     window.addEventListener("resize", scheduleVisibilityCheck, { passive: true });
     scheduleVisibilityCheck();
