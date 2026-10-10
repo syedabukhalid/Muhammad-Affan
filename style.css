@@ -966,11 +966,15 @@ header {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  background: transparent;
   color: #fff;
-  border: 1px solid var(--border-color);
-  font-size: 2rem;
-  padding: 0.8rem 1.2rem;
+  border: 1px solid transparent;
+  font-size: 1.5rem;
   cursor: pointer;
   border-radius: 50%;
   transition: all 0.3s ease;
@@ -978,10 +982,12 @@ header {
   user-select: none;
 }
 
-.modal-arrow:hover {
-  background: var(--accent-green);
-  color: #000;
+.modal-arrow:hover,
+.modal-arrow:focus-visible {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
   box-shadow: var(--glow-shadow);
+  transform: translateY(-50%) scale(1.05);
 }
 
 .modal-prev {
@@ -1768,9 +1774,9 @@ footer {
   }
 
   .modal-arrow {
-    padding: 0.5rem 0.8rem;
-    font-size: 1.4rem;
-    background: rgba(0, 0, 0, 0.7);
+    width: 44px;
+    height: 44px;
+    font-size: 1.35rem;
   }
 
   .modal-prev {
@@ -1825,7 +1831,8 @@ footer {
   }
 
   .modal-arrow {
-    padding: 0.4rem 0.6rem;
+    width: 40px;
+    height: 40px;
     font-size: 1.2rem;
   }
 

@@ -881,12 +881,12 @@
       return "physics_testimonials";
     }
 
-    const parts = normalized.split("/");
+    const parts = normalizedLowerCase.split("/");
 
-    if (parts.includes("Certificates")) return "Certificates";
-    if (parts.includes("Badges")) return "Badges";
-    if (parts.includes("Education_logos")) return "Education_logos";
-    if (parts.includes("Logos")) return "Logos";
+    if (parts.includes("certificates")) return "Certificates";
+    if (parts.includes("badges")) return "Badges";
+    if (parts.includes("education_logos")) return "Education_logos";
+    if (parts.includes("logos")) return "Logos";
 
     return null;
   };
@@ -988,6 +988,7 @@
     let currentGroup = null;
     let currentItems = [];
     let lightboxIndex = 0;
+    let touchStartPoint = null;
 
     const setArrowState = () => {
       const canNavigate =
@@ -1114,6 +1115,40 @@
     imageModalNext?.addEventListener("click", (event) => {
       event.stopPropagation();
       moveLightbox(1);
+    });
+
+    imageModalImg.addEventListener(
+      "touchstart",
+      (event) => {
+        const touch = event.touches[0];
+        touchStartPoint = touch
+          ? { x: touch.clientX, y: touch.clientY }
+          : null;
+      },
+      { passive: true }
+    );
+
+    imageModalImg.addEventListener(
+      "touchend",
+      (event) => {
+        if (!touchStartPoint) return;
+
+        const touch = event.changedTouches[0];
+        const deltaX = touch ? touch.clientX - touchStartPoint.x : 0;
+        const deltaY = touch ? touch.clientY - touchStartPoint.y : 0;
+        touchStartPoint = null;
+
+        if (Math.abs(deltaX) < 50 || Math.abs(deltaX) <= Math.abs(deltaY)) {
+          return;
+        }
+
+        moveLightbox(deltaX < 0 ? 1 : -1);
+      },
+      { passive: true }
+    );
+
+    imageModalImg.addEventListener("touchcancel", () => {
+      touchStartPoint = null;
     });
 
     prepareGalleryTriggers();
