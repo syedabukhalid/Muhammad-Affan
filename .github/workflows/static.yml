@@ -38,6 +38,8 @@ jobs:
         with:
           node-version: 20
       - name: Build portfolio
+        env:
+          PORTFOLIO_BASE_PATH: /Muhammad-Affan/
         run: |
           npm ci
           npm run build

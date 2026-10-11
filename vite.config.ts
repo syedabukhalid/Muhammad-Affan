@@ -17,7 +17,7 @@ const pages = [
 ];
 
 export default defineConfig({
-  base: "/Muhammad-Affan/",
+  base: process.env.PORTFOLIO_BASE_PATH || "/",
   plugins: [vue(), tailwindcss()],
   build: {
     rollupOptions: {
