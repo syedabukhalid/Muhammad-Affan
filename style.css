@@ -864,12 +864,15 @@ header {
   border: 1px solid transparent;
   height: 100%;
   opacity: 1;
-  transform: translateY(0);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  contain: layout paint;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
 }
 
 .cert-card:hover {
-  transform: translateY(-5px);
+  transform: translate3d(0, -5px, 0);
 }
 
 .cert-card h4 {
@@ -888,12 +891,20 @@ header {
   border-radius: 4px;
   margin-bottom: 1rem;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transform: translateZ(0);
+  transform-origin: center;
+  backface-visibility: hidden;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
   margin-top: auto;
 }
 
 .cert-card img:hover {
-  transform: scale(1.03);
+  transform: scale3d(1.03, 1.03, 1);
+}
+
+.cert-card img:hover,
+.cert-card img:focus-visible {
+  will-change: transform;
 }
 
 .cert-btn {
